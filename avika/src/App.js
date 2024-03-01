@@ -6,12 +6,12 @@ import AdminLogin from './components/admin/AdminLogin';
 import AdminPage from './components/admin/AdminPage';
 import PatientDetails from './components/admin/PatientDetails';
 import { Provider } from 'react-redux';
-import store from './redux/Store';
+import Store from './redux/Store';
 
 
 const App = () => {
   return (
-  <Provider store={store}>
+   <Provider store={Store}>
      <BrowserRouter>
    <Routes>
     <Route path='/' element={<HomePage/>}/>
@@ -21,7 +21,7 @@ const App = () => {
     <Route path='/patientDeatils'element={<PatientDetails/>}/>
    </Routes>
    </BrowserRouter>
-  </Provider>
+   </Provider>
   )
 }
 

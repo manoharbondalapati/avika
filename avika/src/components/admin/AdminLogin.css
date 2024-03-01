@@ -28,6 +28,14 @@
 .password-container {
     position: relative;
 }
+.password-container input
+{
+    width: 75%;
+}
+.mobile_no-container input
+{
+    width: 75%;
+}
 
 .password-container span {
     position: absolute;
@@ -40,6 +48,7 @@
 input
 {
     width: 75%;
+    
     height: 40px;
     outline: none;
     border-radius: 5px;
@@ -54,6 +63,7 @@ input
     color: white;
     border: none;
     outline: none;
+    border-radius: 5px;
     
 }
 
@@ -102,4 +112,5 @@ label
 .astrick
 {
     color: rgb(223, 182, 19);
+    font-size: 17px;
 }

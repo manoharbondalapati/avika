@@ -66,8 +66,8 @@ const handleSubmit = e => {
 
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className='container' >
+      <form onSubmit={handleSubmit} className='userform'>
         <div>
           <label>OP Number:</label>
           <input type="text" name="op_number" value={userData.op_number} onChange={handleChange} />
