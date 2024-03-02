@@ -12,18 +12,22 @@ const AdminLogin = () => {
   const [password,setpassword]=useState('');
   const [showPassword,setShowPassword]=useState(false);
 
-  const loading=useSelector(state=>state.admin.loading);
-  const error =useSelector(state=>state.admin.error)
+  const {loading,error}=useSelector((state)=>state.admin);
 
 
   const dispatch =useDispatch();
   const navigate =useNavigate();
 
+
+  // const predefinedCredentails={mobile:'9964517148',password:'harish_med@123'};
+
   const  handleLoginform =(event)=>
   {
     event.preventDefault();
-    const adminCredientials ={mobile,password}
-    dispatch(loginAdmin(adminCredientials)).then((response)=>
+    
+    let adminCredentials ={mobile,password}
+    dispatch(loginAdmin(adminCredentials))
+    .then((response)=>
     {
       if(response.payload)
       {
@@ -32,8 +36,9 @@ const AdminLogin = () => {
         navigate('/adminpage');
       }
     })
+  
   }
-
+    
   return (
     <div id='adminlogin'>
       <div id='loginform'>
@@ -50,7 +55,9 @@ const AdminLogin = () => {
             <span id="showPassword" onClick={()=>setShowPassword(!showPassword)}>Show</span>
         </div>
        <button id='loginbutton' type="submit" >{loading?'Loading...':"Login"}</button>
-        {error && !loading &&(<p className='alert alert-danger'>{error}</p>)}
+       {error &&(<div className='alert alert-danger' role='alert'>{error}</div>)}
+       {/* <p id='credentials'><span id='note'>Note:</span><span>Mobile:</span>9964517148 and <span>password:</span>harish_med@123</p> */}
+       
     </form>
    
 </div>

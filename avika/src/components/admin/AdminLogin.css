@@ -20,7 +20,7 @@
 {
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
+    margin-top: 25px;
     margin-left: 40px;
     outline: none;
 }
@@ -43,12 +43,11 @@
     right: 80px;
     transform: translateY(-50%);
     cursor: pointer;
-    color: rgb(152, 152, 241);
+    color: rgb(82, 82, 173);
 }
 input
 {
     width: 75%;
-    
     height: 40px;
     outline: none;
     border-radius: 5px;
@@ -56,7 +55,7 @@ input
 }
 #loginbutton
 {
-    margin-top:50px ;
+    margin-top:40px ;
     margin-left: 70px;
     width: 50%;
     background-color: royalblue;
@@ -113,4 +112,16 @@ label
 {
     color: rgb(223, 182, 19);
     font-size: 17px;
+}
+#credentials
+{
+    margin-top: 15px;
+}
+#credentials span
+{
+    color: rgb(68, 68, 147);
+}
+#credentials #note
+{
+    color: rgb(255, 1, 1);
 }
