@@ -11,7 +11,6 @@ const AdminLogin = () => {
   const [mobile,setmobile]=useState('');
   const [password,setpassword]=useState('');
   const [showPassword,setShowPassword]=useState(false);
-
   const {loading,error}=useSelector((state)=>state.admin);
 
 
@@ -35,6 +34,10 @@ const AdminLogin = () => {
         setpassword('');
         navigate('/adminpage');
       }
+    })
+    .catch((error)=>{
+      console.log(error);
+      
     })
   
   }

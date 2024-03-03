@@ -7,15 +7,14 @@ import AdminPage from './components/admin/AdminPage';
 import PatientDetails from './components/admin/PatientDetails';
 import { Provider } from 'react-redux';
 import Store from './redux/stores/Store';
-import AdminPageSlice from './redux/reducers/AdminPageSlice';
+//import AdminPageSlice from './redux/reducers/AdminPageSlice';
 
 
 const App = () => {
   return (
     
-     <Provider store={Store}>
-      <adminPageSliceProvider adminPageReducer={AdminPageSlice}>
-     <BrowserRouter>
+    <Provider store={Store}>
+   <BrowserRouter>
    <Routes>
     <Route path='/' element={<HomePage/>}/>
     <Route path='/userpage' element={<UserPage/>}/>
@@ -24,7 +23,6 @@ const App = () => {
     <Route path='/patientDeatils'element={<PatientDetails/>}/>
    </Routes>
    </BrowserRouter>
-   </adminPageSliceProvider>
    </Provider>
  
   )

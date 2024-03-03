@@ -2,7 +2,7 @@ import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 
 export const fetchRecords = createAsyncThunk(
-    'admin/fetchRecords',
+    'adminrecords/fetchRecords',
     async(_, {getstate})=>
     {
         const token =getstate().auth.token;
@@ -22,11 +22,11 @@ const AdminPageSlice = createSlice({
     name: 'adminrecords',
     initialState :
     {
-        loading : false,
-        records :[],
-        error :null,
-        currentPage:1,
-        recordsPerPage:10,
+        loading: false,
+        records: [],
+        error: null,
+        currentPage: 1,
+        recordsPerPage: 10,
     },
     reducers:
     {

@@ -96,23 +96,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchRecords, setCurrentPage } from '../../redux/reducers/AdminPageSlice';
@@ -120,7 +103,7 @@ import { fetchRecords, setCurrentPage } from '../../redux/reducers/AdminPageSlic
 const AdminPage = () => {
   const dispatch = useDispatch();
 
-  // Destructure the state directly in the selector
+  
   const { records, loading, error, currentPage, recordsPerPage } = useSelector((state) => state.adminrecords);
 
   useEffect(() => {

@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import  AdminPageReducer from '../reducers/AdminPageSlice'
+import  adminPageReducer from '../reducers/AdminPageSlice'
 
 
-const  adminPageReducer= configureStore({
+const  store= configureStore({
     reducer:{
         
-        admin:AdminPageReducer
+        adminrecords:adminPageReducer
     }
 
 });
 
-export default adminPageReducer;
+export default store;
