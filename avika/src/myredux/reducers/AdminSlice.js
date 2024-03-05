@@ -8,8 +8,8 @@ export const loginAdmin = createAsyncThunk(
       "https://med.test.avika.ai/auth/admin-login",
       adminCredentails
     );
-    const response = await request.data.data;
-    localStorage.setItem("admin", JSON.stringify(response));
+    const response = await request.data.data.token;
+    localStorage.setItem("admin", response);
     return response;
   }
 );
@@ -23,11 +23,10 @@ const AdminSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(loginAdmin.pending, (state)=>
-      {
-        state.loading=true;
-        state.admin=null;
-        state.error=null;
+      .addCase(loginAdmin.pending, (state) => {
+        state.loading = true;
+        state.admin = null;
+        state.error = null;
       })
       .addCase(loginAdmin.fulfilled, (state, action) => {
         state.loading = false;
@@ -38,7 +37,6 @@ const AdminSlice = createSlice({
         state.loading = false;
         state.admin = null;
         state.error = action.error.message;
-        console.log(action.error.message);
         if (action.error.message === "Request failed with status code 401") {
           state.error = "Invalid Credentials";
         } else {

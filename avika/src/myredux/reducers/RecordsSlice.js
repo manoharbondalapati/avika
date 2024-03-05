@@ -1,7 +1,6 @@
 // import { createSlice } from "@reduxjs/toolkit";
 // import {FetchRecords} from '../actions/FetchRecords';
 
-
 // const RecordsSlice = createSlice({
 //     name:"allrecords",
 //     initialState:{
@@ -31,47 +30,48 @@
 
 // export default RecordsSlice.reducer;
 
-
-
-import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+export const fetchrecords = createAsyncThunk("fetchrecord", async () => {
+  try {
+    const token = localStorage.getItem("admin");
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
 
-export const fetchrecord = createAsyncThunk("fetchrecord",async()=>{
-
-    const data = await axios.get('https://med.test.avika.ai/admin/records')
-    return data.json()
-
-})
-
+    const response = await axios.get(
+      "https://med.test.avika.ai/admin/records",
+      { headers }
+    );
+    console.log(response);
+    return response.data;
+    
+  } catch (error) {
+    console.error("Error fetching records:", error);
+    throw error; 
+  }
+});
 
 const RecordsSlice = createSlice({
-
-    name : 'fetchrecords',
-    initialState :
-    {
-        isLoading:false,
-        data:[],
-        error:false
-    },
-    extraReducers : (builder)=>
-    {
-        builder.addCase(fetchrecord.pending,(state,action)=>
-        {
-            state.isLoading=true
-        });
-        builder.addCase(fetchrecord.fulfilled,(state,action)=>
-        {
-            state.isLoading=false;
-            state.data=action.payload
-        });
-        builder.addCase(fetchrecord.rejected,(state,action)=>
-        {
-               state.error=true;
-        })
-    }
-
-})
+  name: "fetchrecords",
+  initialState: {
+    isLoading: false,
+    data: [],
+    error: false,
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchrecords.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(fetchrecords.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.data = action.payload;
+    });
+    builder.addCase(fetchrecords.rejected, (state, action) => {
+      state.error = true;
+    });
+  },
+});
 
 export default RecordsSlice.reducer;
-// jgkj

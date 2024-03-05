@@ -389,8 +389,6 @@
 //   const dispatch = useDispatch();
 //   const data= useSelector((state)=>state.fetchrecords);
 //   const Loading=useSelector((state)=>state.fetchrecords)
- 
-  
 
 //   useEffect(() => {
 //     dispatch(fetchrecords());
@@ -400,8 +398,6 @@
 //     return <h1>Loading...</h1>;
 //   }
 
-
-  
 //   return (
 //     <div>
 //       <table>
@@ -443,9 +439,6 @@
 // };
 // export default AdminPage;
 
-
-
-
 // AdminPage.js
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -454,13 +447,14 @@ import { fetchrecords } from "../../myredux/reducers/RecordsSlice";
 const AdminPage = () => {
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.records);
-  const { loading} = useSelector((state) => state.records);
+  const { loading } = useSelector((state) => state.records);
   const { error } = useSelector((state) => state.records);
 
   useEffect(() => {
-    dispatch(fetchrecords());
+    dispatch(fetchrecords);
   }, [dispatch]);
 
+ 
   if (loading) {
     return <h1>Loading...</h1>;
   }
@@ -474,21 +468,27 @@ const AdminPage = () => {
       <table>
         <thead>
           <tr>
-            <th>OP Number</th>
-            <th>IP Number</th>
-            <th>Patient Name</th>
-            <th>Age</th>
-            <th>Gender</th>
-            <th>Place</th>
+            <th>id</th>
+            <th>OP_Number</th>
+            <th>IP_Number</th>
+            <th>Patient_name</th>
+            <th>age</th>
+            <th>gender</th>
+            <th>place</th>
             <th>Date of Registration</th>
             <th>Reference By</th>
-            <th>Patient ID</th>
+            <th>file_path</th>
+            <th>created_at</th>
+            <th>Patient_id</th>
+            <th>verified</th>
+            <th>uploaded_by</th>
+            <th>uploaded_by_id</th>
             <th>Details</th>
           </tr>
         </thead>
         <tbody>
           {data.map((record) => (
-            <tr key={record.patient_id}>
+            <tr key={record.id}>
               <td>{record.op_number}</td>
               <td>{record.ip_number}</td>
               <td>{record.patient_name}</td>
@@ -497,7 +497,12 @@ const AdminPage = () => {
               <td>{record.place}</td>
               <td>{record.Date_of_registration}</td>
               <td>{record.referrence_by}</td>
+              <td>{record.file_path}</td>
+              <td>{record.created_at}</td>
               <td>{record.patient_id}</td>
+              <td>{record.verified}</td>
+              <td>{record.uploaded_by}</td>
+              <td>{record.uploaded_by_id}</td>
               <td>
                 <button className="btn btn-success">Details</button>
               </td>
@@ -510,4 +515,3 @@ const AdminPage = () => {
 };
 
 export default AdminPage;
-// njj

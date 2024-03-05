@@ -42,6 +42,7 @@ const AdminLogin = () => {
                 type="text"
                 name="mobile"
                 id="mobile"
+                placeholder="9964517148"
                 className="form-control"
                 value={mobile}
                 onChange={(e) => setmobile(e.target.value)}
@@ -55,6 +56,7 @@ const AdminLogin = () => {
                 type={showPassword ? "text" : "password"}
                 name="password"
                 id="password"
+                placeholder=" harish_med@123"
                 className="form-control"
                 value={password}
                 onChange={(e) => setpassword(e.target.value)}
