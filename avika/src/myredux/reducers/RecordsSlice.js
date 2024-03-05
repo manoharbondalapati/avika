@@ -33,19 +33,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchrecords = createAsyncThunk("fetchrecord", async () => {
+export const fetchRecords = createAsyncThunk("records/fetchRecords", async () => {
   try {
-    const token = localStorage.getItem("admin");
+    const token = localStorage.getItem("userToken");
     const headers = {
       Authorization: `Bearer ${token}`,
     };
 
     const response = await axios.get(
       "https://med.test.avika.ai/admin/records",
-      { headers }
+     {headers}  
     );
-    console.log(response);
-    return response.data;
+     return response.data;
     
   } catch (error) {
     console.error("Error fetching records:", error);
@@ -54,22 +53,24 @@ export const fetchrecords = createAsyncThunk("fetchrecord", async () => {
 });
 
 const RecordsSlice = createSlice({
-  name: "fetchrecords",
+  name: "records",
   initialState: {
     isLoading: false,
     data: [],
     error: false,
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchrecords.pending, (state, action) => {
+    builder.addCase(fetchRecords.pending, (state, action) => {
       state.isLoading = true;
     });
-    builder.addCase(fetchrecords.fulfilled, (state, action) => {
+    builder.addCase(fetchRecords.fulfilled, (state, action) => {
       state.isLoading = false;
       state.data = action.payload;
+      state.error=null;
     });
-    builder.addCase(fetchrecords.rejected, (state, action) => {
-      state.error = true;
+    builder.addCase(fetchRecords.rejected, (state, action) => {
+      state.isLoading=false;
+      state.error=action.error.message;
     });
   },
 });

@@ -440,21 +440,31 @@
 // export default AdminPage;
 
 // AdminPage.js
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchrecords } from "../../myredux/reducers/RecordsSlice";
+import { fetchRecords } from "../../myredux/reducers/RecordsSlice";
 
 const AdminPage = () => {
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.records);
-  const { loading } = useSelector((state) => state.records);
-  const { error } = useSelector((state) => state.records);
+  const { loading, data, error } = useSelector((state) => state.records);
+
+  
+   
+   const fetchrecords =useCallback(()=>
+   {
+    if(data && data.status ===200)
+    {
+      dispatch(fetchrecords());
+      return ()=>{};
+    }
+   },[data, dispatch])
+
+console.log(data);
 
   useEffect(() => {
-    dispatch(fetchrecords);
+    dispatch(fetchRecords());
   }, [dispatch]);
 
- 
   if (loading) {
     return <h1>Loading...</h1>;
   }
@@ -465,51 +475,56 @@ const AdminPage = () => {
 
   return (
     <div>
-      <table>
-        <thead>
-          <tr>
-            <th>id</th>
-            <th>OP_Number</th>
-            <th>IP_Number</th>
-            <th>Patient_name</th>
-            <th>age</th>
-            <th>gender</th>
-            <th>place</th>
-            <th>Date of Registration</th>
-            <th>Reference By</th>
-            <th>file_path</th>
-            <th>created_at</th>
-            <th>Patient_id</th>
-            <th>verified</th>
-            <th>uploaded_by</th>
-            <th>uploaded_by_id</th>
-            <th>Details</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((record) => (
-            <tr key={record.id}>
-              <td>{record.op_number}</td>
-              <td>{record.ip_number}</td>
-              <td>{record.patient_name}</td>
-              <td>{record.age}</td>
-              <td>{record.gender}</td>
-              <td>{record.place}</td>
-              <td>{record.Date_of_registration}</td>
-              <td>{record.referrence_by}</td>
-              <td>{record.file_path}</td>
-              <td>{record.created_at}</td>
-              <td>{record.patient_id}</td>
-              <td>{record.verified}</td>
-              <td>{record.uploaded_by}</td>
-              <td>{record.uploaded_by_id}</td>
-              <td>
-                <button className="btn btn-success">Details</button>
-              </td>
+      {data && data.status ===200 ? (
+        <table>
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>OP_Number</th>
+              <th>IP_Number</th>
+              <th>Patient_name</th>
+              <th>age</th>
+              <th>gender</th>
+              <th>place</th>
+              <th>Date of Registration</th>
+              <th>Reference By</th>
+              <th>file_path</th>
+              <th>created_at</th>
+              <th>Patient_id</th>
+              <th>verified</th>
+              <th>uploaded_by</th>
+              <th>uploaded_by_id</th>
+              <th>Details</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {data.map((record) => (
+              <tr key={record.id}>
+                <td>{record.id}</td>
+                <td>{record.op_number}</td>
+                <td>{record.ip_number}</td>
+                <td>{record.patient_name}</td>
+                <td>{record.age}</td>
+                <td>{record.gender}</td>
+                <td>{record.place}</td>
+                <td>{record.Date_of_registration}</td>
+                <td>{record.referrence_by}</td>
+                <td>{record.file_path}</td>
+                <td>{record.created_at}</td>
+                <td>{record.patient_id}</td>
+                <td>{record.verified}</td>
+                <td>{record.uploaded_by}</td>
+                <td>{record.uploaded_by_id}</td>
+                <td>
+                  <button className="btn btn-success">Details</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p>No records found.</p>
+      )}
     </div>
   );
 };

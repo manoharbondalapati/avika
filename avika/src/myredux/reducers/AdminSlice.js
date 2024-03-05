@@ -3,14 +3,21 @@ import axios from "axios";
 
 export const loginAdmin = createAsyncThunk(
   "admin/loginAdmin",
-  async (adminCredentails) => {
-    const request = await axios.post(
+  async (adminCredentails,{rejectWithValue}) => {
+   try
+   {
+    const response = await axios.post(
       "https://med.test.avika.ai/auth/admin-login",
       adminCredentails
     );
-    const response = await request.data.data.token;
-    localStorage.setItem("admin", response);
-    return response;
+    // const response = await request.data.data.token;
+    // localStorage.setItem("admin", response);
+    console.log(response);
+    return response.data;
+   }catch (error)
+   {
+    return rejectWithValue(error.response.data)
+   }
   }
 );
 
@@ -37,13 +44,17 @@ const AdminSlice = createSlice({
         state.loading = false;
         state.admin = null;
         state.error = action.error.message;
-        if (action.error.message === "Request failed with status code 401") {
-          state.error = "Invalid Credentials";
-        } else {
-          state.error = action.error.message;
-        }
+       if(action.payload)
+       {
+        state.error =action.payload.message;
+       }
+       else
+       {
+        state.error ='Invalid Credentails'
+       }
+      
       });
   },
 });
-
+export const{ clearError}=AdminSlice.actions;
 export default AdminSlice.reducer;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAdmin } from "../../myredux/reducers/AdminSlice";
 import { useNavigate } from "react-router-dom";
@@ -12,17 +12,26 @@ const AdminLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const loading = useSelector((state) => state.admin.loading);
   const error = useSelector((state) => state.admin.error);
+  const response = useSelector((state) => state.admin.admin);
 
-  const handleSubmit = async (event) => {
+  const fetchData = useCallback(() => {
+    if (response && response.status === 200) {
+      const {  token } = response.data;
+
+      localStorage.setItem("userToken", token);
+      navigate("/adminPage");
+    }
+  }, [navigate, response]);
+
+  useEffect(() => {
+    fetchData();
+    return () => {};
+  }, [fetchData, response]);
+
+  const handleSubmit = (event) => {
     event.preventDefault();
     let adminCredentials = { mobile, password };
-    dispatch(loginAdmin(adminCredentials)).then((result) => {
-      if (result.payload) {
-        setmobile("");
-        setpassword("");
-        navigate("/adminpage");
-      }
-    });
+    dispatch(loginAdmin(adminCredentials));
   };
 
   return (
@@ -65,7 +74,7 @@ const AdminLogin = () => {
                 id="showPassword"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                Show
+               {showPassword ?"hide":"show"}
               </span>
             </div>
             <button id="loginbutton" type="submit">
