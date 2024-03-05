@@ -1,25 +1,28 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginAdmin } from "../../myredux/actions/AuthActions";
+import { loginAdmin } from "../../myredux/reducers/AdminSlice";
 import { useNavigate } from "react-router-dom";
 import "./AdminLogin.css";
 
 const AdminLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [mobile, setMobile] = useState("");
-  const [password, setPassword] = useState("");
+  const [mobile, setmobile] = useState("");
+  const [password, setpassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const error = useSelector((state) => console.log(state));
+  const loading = useSelector((state) => state.admin.loading);
+  const error = useSelector((state) => state.admin.error);
 
-  const handleLoginform = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      await dispatch(loginAdmin({ mobile, password }));
-      navigate("/adminpage"); // Navigate only after successful login
-    } catch (error) {
-      console.error("Login failed:", error);
-    }
+    let adminCredentials = { mobile, password };
+    dispatch(loginAdmin(adminCredentials)).then((result) => {
+      if (result.payload) {
+        setmobile("");
+        setpassword("");
+        navigate("/adminpage");
+      }
+    });
   };
 
   return (
@@ -28,9 +31,9 @@ const AdminLogin = () => {
         <h1>
           Admin<span id="login">Login</span>
         </h1>
-        <hr></hr>
+        <hr />
         <div className="login-form">
-          <form onSubmit={handleLoginform}>
+          <form onSubmit={handleSubmit}>
             <div className="mobile_no-container">
               <label htmlFor="mobile">
                 Mobile<sup className="astrick">&#42;</sup>
@@ -41,12 +44,12 @@ const AdminLogin = () => {
                 id="mobile"
                 className="form-control"
                 value={mobile}
-                onChange={(event) => setMobile(event.target.value)}
+                onChange={(e) => setmobile(e.target.value)}
               />
             </div>
             <div className="password-container">
               <label htmlFor="password">
-                password<sup className="astrick">&#42;</sup>
+                Password<sup className="astrick">&#42;</sup>
               </label>
               <input
                 type={showPassword ? "text" : "password"}
@@ -54,7 +57,7 @@ const AdminLogin = () => {
                 id="password"
                 className="form-control"
                 value={password}
-                onChange={(event) => setPassword(event.target.value)}
+                onChange={(e) => setpassword(e.target.value)}
               />
               <span
                 id="showPassword"
@@ -64,14 +67,18 @@ const AdminLogin = () => {
               </span>
             </div>
             <button id="loginbutton" type="submit">
-              Login
+              {loading ? "Logging in..." : "Login"}
             </button>
             <p id="credentials">
               <span id="note">Note:</span>
-              <span>Mobile:</span>9964517148 and <span>password:</span>
+              <span>Mobile:</span>9964517148 and <span>Password:</span>
               harish_med@123
             </p>
-            {error && <p style={{ color: "red" }}>!Invalid Credentials</p>}
+            {error && (
+              <div className="alert alert-danger" role="alert">
+                {error}
+              </div>
+            )}
           </form>
         </div>
       </div>

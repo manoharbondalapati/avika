@@ -8,17 +8,15 @@
 
 // const {records ,loading, error,currentPage,recordsPerPage}=useSelector((state)=>{state.adminrecords})
 
-
 // useEffect(()=>
 // {
 //     dispatch(fetchRecords());
 // },[dispatch]);
 
-
 //   const indexOfLastRecord = currentPage * recordsPerPage;
 //   const indexOfFirstRecord =indexOfLastRecord-recordsPerPage;
 //   const currentRecords = records.slice(indexOfFirstRecord,indexOfLastRecord);
-  
+
 //   const totalPages =Math.ceil(records.length/recordsPerPage);
 
 //   const paginate =(pageNumber)=>
@@ -40,7 +38,7 @@
 //   }
 
 //   return (
-    
+
 //      <div>
 //      <h1>All Patient Details</h1>
 //      {loading && <p>Loading..</p>}
@@ -89,13 +87,6 @@
 
 // export default AdminPage;
 
-
-
-
-
-
-
-
 // import React, { useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { fetchRecords, setCurrentPage } from '../../redux/reducers/AdminPageSlice';
@@ -131,11 +122,6 @@
 //     return pageNumbers;
 //   };
 
- 
-
-  
-
-  
 //   return (
 //     <div>
 //       <h1>All Patient Details</h1>
@@ -189,8 +175,6 @@
 // };
 //export default AdminPage;
 
-
-
 // import React, { useEffect, useState } from 'react';
 // import axios from 'axios';
 
@@ -205,7 +189,7 @@
 //     const fetchRecords = async () => {
 //       setLoading(true);
 //       try {
-//         const token = localStorage.getItem('token'); 
+//         const token = localStorage.getItem('token');
 //         const response = await axios.get('https://med.test.avika.ai/admin/records', {
 //           headers: {
 //             Authorization: `Bearer ${token}`,
@@ -218,7 +202,7 @@
 //       }
 //       setLoading(false);
 //     };
-  
+
 //     fetchRecords();
 //   }, []);
 //   const indexOfLastRecord = currentPage * recordsPerPage;
@@ -296,45 +280,201 @@
 
 // export default AdminPage;
 
-
-
 // RecordsPage.js
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchrecord } from "../../myredux/reducers/RecordsSlice";
-//import { FetchRecords } from "../../myredux/actions/FetchRecords";
+// import React, { useEffect, useState } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { fetchrecord } from "../../myredux/reducers/RecordsSlice";
+// //import { FetchRecords } from "../../myredux/actions/FetchRecords";
 
-const RecordsPage = () => {
-  const dispatch = useDispatch();
-  //const { records, loading, error } = useSelector((state) =>state.RecordsSliceReducer.allrecords);
-  //const {records} =useSelector((state)=>state.RecordsSliceReducer.records)
- // const {loading} =useSelector((state)=>state.RecordsSliceReducer.loading);
-  //const {error} =useSelector((state)=>state.RecordsSliceReducer.error);
-   const data = useSelector(state=>state)
+// const RecordsPage = () => {
+//   const dispatch = useDispatch();
+//   //const { records, loading, error } = useSelector((state) =>state.RecordsSliceReducer.allrecords);
+//   //const {records} =useSelector((state)=>state.RecordsSliceReducer.records)
+//  // const {loading} =useSelector((state)=>state.RecordsSliceReducer.loading);
+//   //const {error} =useSelector((state)=>state.RecordsSliceReducer.error);
+//    const data = useSelector(state=>state)
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [recordsPerPage] = useState(10);
+//   const [currentPage, setCurrentPage] = useState(1);
+//   const [recordsPerPage] = useState(10);
 
-  useEffect(() => {
-    dispatch(fetchrecord());
-  }, [dispatch]);
+//   useEffect(() => {
+//     dispatch(fetchrecord());
+//   }, [dispatch]);
 
-  const allrecords = data || [];
+//   const allrecords = data || [];
 
-  const indexOfLastRecord = currentPage * recordsPerPage;
-  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  const currentRecords = data.allrecords.slice(indexOfFirstRecord, indexOfLastRecord);
+//   const indexOfLastRecord = currentPage * recordsPerPage;
+//   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+//   const currentRecords = data.allrecords.slice(indexOfFirstRecord, indexOfLastRecord);
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+//   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+//   return (
+//     <div>
+//      {data.isLoading?<h1>Loading....</h1>:( <div>
+//       <table>
+//         <thead>
+//           <tr>
+//           <th>OP Number</th>
+//             <th>IP Number</th>
+//             <th>Patient Name</th>
+//             <th>Age</th>
+//             <th>Gender</th>
+//             <th>Place</th>
+//             <th>Date of Registration</th>
+//             <th>Reference By</th>
+//             <th>Patient ID</th>
+//             <th>Details</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {currentRecords.map((record) => (
+//             <tr key={record.patient_id}>
+//              <td>{record.op_number}</td>
+//               <td>{record.ip_number}</td>
+//               <td>{record.patient_name}</td>
+//               <td>{record.age}</td>
+//               <td>{record.gender}</td>
+//               <td>{record.place}</td>
+//               <td>{record.Date_of_registration}</td>
+//               <td>{record.referrence_by}</td>
+//               <td>{record.patient_id}</td>
+//               <td><button className="btn btn-success">Details</button></td>
+//             </tr>
+//           ))}
+//         </tbody>
+//       </table>
+//       <Pagination
+//         recordsPerPage={recordsPerPage}
+//         totalRecords={allrecords.length}
+//         paginate={paginate}
+//         currentPage={currentPage}
+//       />
+//       </div>)}
+//     </div>
+//   );
+// };
+
+// const Pagination = ({ recordsPerPage, totalRecords, paginate, currentPage }) => {
+//   const pageNumbers = [];
+
+//   for (let i = 1; i <= Math.ceil(totalRecords / recordsPerPage); i++) {
+//     pageNumbers.push(i);
+//   }
+
+//   return (
+//     <ul className="pagination">
+//       <li>
+//         <button onClick={() => paginate(1)}>&laquo;</button>
+//       </li>
+//       {pageNumbers.map((number) => (
+//         <li key={number} className={number === currentPage ? "active" : null}>
+//           <button onClick={() => paginate(number)}>{number}</button>
+//         </li>
+//       ))}
+//       <li>
+//         <button onClick={() => paginate(pageNumbers.length)}>&raquo;</button>
+//       </li>
+//     </ul>
+//   );
+// };
+
+// export default RecordsPage;
+
+// import React, { useEffect } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { fetchrecords } from "../../myredux/reducers/RecordsSlice";
+
+// const AdminPage = () => {
+//   const dispatch = useDispatch();
+//   const data= useSelector((state)=>state.fetchrecords);
+//   const Loading=useSelector((state)=>state.fetchrecords)
+ 
+  
+
+//   useEffect(() => {
+//     dispatch(fetchrecords());
+//   }, [dispatch]);
+
+//   if (Loading || !data) {
+//     return <h1>Loading...</h1>;
+//   }
+
 
   
+//   return (
+//     <div>
+//       <table>
+//         <thead>
+//           <tr>
+//             <th>OP Number</th>
+//             <th>IP Number</th>
+//             <th>Patient Name</th>
+//             <th>Age</th>
+//             <th>Gender</th>
+//             <th>Place</th>
+//             <th>Date of Registration</th>
+//             <th>Reference By</th>
+//             <th>Patient ID</th>
+//             <th>Details</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//         {data.map((record) => (
+//     <tr key={record.patient_id}>
+//     <td>{record.op_number}</td>
+//     <td>{record.ip_number}</td>
+//     <td>{record.patient_name}</td>
+//     <td>{record.age}</td>
+//     <td>{record.gender}</td>
+//     <td>{record.place}</td>
+//     <td>{record.Date_of_registration}</td>
+//     <td>{record.referrence_by}</td>
+//     <td>{record.patient_id}</td>
+//     <td>
+//       <button className="btn btn-success">Details</button>
+//     </td>
+//   </tr>
+// ))}
+//         </tbody>
+//       </table>
+//     </div>
+//   );
+// };
+// export default AdminPage;
+
+
+
+
+// AdminPage.js
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchrecords } from "../../myredux/reducers/RecordsSlice";
+
+const AdminPage = () => {
+  const dispatch = useDispatch();
+  const { data } = useSelector((state) => state.records);
+  const { loading} = useSelector((state) => state.records);
+  const { error } = useSelector((state) => state.records);
+
+  useEffect(() => {
+    dispatch(fetchrecords());
+  }, [dispatch]);
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (error) {
+    return <h1>Error: {error}</h1>;
+  }
+
   return (
     <div>
-     {data.isLoading?<h1>Loading....</h1>:( <div>
       <table>
         <thead>
           <tr>
-          <th>OP Number</th>
+            <th>OP Number</th>
             <th>IP Number</th>
             <th>Patient Name</th>
             <th>Age</th>
@@ -347,9 +487,9 @@ const RecordsPage = () => {
           </tr>
         </thead>
         <tbody>
-          {currentRecords.map((record) => (
+          {data.map((record) => (
             <tr key={record.patient_id}>
-             <td>{record.op_number}</td>
+              <td>{record.op_number}</td>
               <td>{record.ip_number}</td>
               <td>{record.patient_name}</td>
               <td>{record.age}</td>
@@ -358,49 +498,16 @@ const RecordsPage = () => {
               <td>{record.Date_of_registration}</td>
               <td>{record.referrence_by}</td>
               <td>{record.patient_id}</td>
-              <td><button className="btn btn-success">Details</button></td>
+              <td>
+                <button className="btn btn-success">Details</button>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <Pagination
-        recordsPerPage={recordsPerPage}
-        totalRecords={allrecords.length}
-        paginate={paginate}
-        currentPage={currentPage}
-      />
-      </div>)}
     </div>
   );
 };
 
-const Pagination = ({ recordsPerPage, totalRecords, paginate, currentPage }) => {
-  const pageNumbers = [];
-
-  for (let i = 1; i <= Math.ceil(totalRecords / recordsPerPage); i++) {
-    pageNumbers.push(i);
-  }
-
-  return (
-    <ul className="pagination">
-      <li>
-        <button onClick={() => paginate(1)}>&laquo;</button>
-      </li>
-      {pageNumbers.map((number) => (
-        <li key={number} className={number === currentPage ? "active" : null}>
-          <button onClick={() => paginate(number)}>{number}</button>
-        </li>
-      ))}
-      <li>
-        <button onClick={() => paginate(pageNumbers.length)}>&raquo;</button>
-      </li>
-    </ul>
-  );
-};
-
-export default RecordsPage;
-
-
-
-
-
+export default AdminPage;
+// njj
