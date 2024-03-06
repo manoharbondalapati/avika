@@ -1,463 +1,36 @@
-// import React,{useEffect} from 'react';
-// import {useDispatch, useSelector} from 'react-redux';
-// import { fetchRecords,setCurrentPage } from '../../redux/reducers/AdminPageSlice';
-
-// const AdminPage = () => {
-
-//   const dispatch = useDispatch();
-
-// const {records ,loading, error,currentPage,recordsPerPage}=useSelector((state)=>{state.adminrecords})
-
-// useEffect(()=>
-// {
-//     dispatch(fetchRecords());
-// },[dispatch]);
-
-//   const indexOfLastRecord = currentPage * recordsPerPage;
-//   const indexOfFirstRecord =indexOfLastRecord-recordsPerPage;
-//   const currentRecords = records.slice(indexOfFirstRecord,indexOfLastRecord);
-
-//   const totalPages =Math.ceil(records.length/recordsPerPage);
-
-//   const paginate =(pageNumber)=>
-//   {
-//     if(pageNumber<1 || pageNumber>totalPages)
-//     return;
-//    dispatch(setCurrentPage(pageNumber));
-
-//   };
-//   const renderPageNumbers=()=>
-//   {
-//     const pageNumbers=[];
-//     for(let i=1;i<=totalPages;i++)
-//     {
-//       pageNumbers.push(
-//       <button key={i} onClick={()=>paginate(i)} className={i===currentPage ? 'active':''}>{i}</button>);
-//     }
-//   return pageNumbers;
-//   }
-
-//   return (
-
-//      <div>
-//      <h1>All Patient Details</h1>
-//      {loading && <p>Loading..</p>}
-//      {error && <p>Error:{error}</p>}
-//      <table>
-//       <thead>
-//         <tr>
-//           <th>ID</th>
-//           <th>Op_number</th>
-//           <th>Ip_number</th>
-//           <th>Name</th>
-//           <th>age</th>
-//           <th>gender</th>
-//           <th>palce</th>
-//           <th>Registration_Date</th>
-//           <th>reference_by</th>
-//           <th>Details</th>
-//         </tr>
-//       </thead>
-//       <tbody>
-//         {currentRecords.map((record)=>
-//         (
-//           <tr key={record.id}>
-//             <td>{record.id}</td>
-//             <td>{record.op_number}</td>
-//             <td>{record.ip_number}</td>
-//             <td>{record.patient_name}</td>
-//             <td>{record.age}</td>
-//             <td>{record.gender}</td>
-//             <td>{record.place}</td>
-//             <td>{record.Date_of_registration}</td>
-//             <td>{record.reference_by}</td>
-//             <td><button className='btn btn-success'>details</button></td>
-//           </tr>
-//         ))}
-//       </tbody>
-//      </table>
-//      <div className='pagination'>
-//       <button onClick={()=>paginate(currentPage-1)} disabled={currentPage===1}>prev</button>
-//       {renderPageNumbers()}
-//       <button onClick={()=>paginate(currentPage+1)} disabled={currentPage===totalPages}>next</button>
-//      </div>
-//     </div>
-//   )
-// }
-
-// export default AdminPage;
-
-// import React, { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { fetchRecords, setCurrentPage } from '../../redux/reducers/AdminPageSlice';
-
-// const AdminPage = () => {
-//   const dispatch = useDispatch();
-//   const { records, loading, error, currentPage, recordsPerPage } = useSelector((state) => state.adminrecords) ||{};
-
-//   useEffect(() => {
-//     dispatch(fetchRecords());
-//   }, [dispatch]);
-
-//   const currentRecords = records || [];
-//   const indexOfLastRecord = currentPage * recordsPerPage;
-//   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-//   //const currentRecords =records? records.slice(indexOfFirstRecord, indexOfLastRecord):[];
-//   const totalPages = Math.ceil(records.length / recordsPerPage);
-
-//   const paginate = (pageNumber) => {
-//     if (pageNumber < 1 || pageNumber > totalPages) return;
-//     dispatch(setCurrentPage(pageNumber));
-//   };
-
-//   const renderPageNumbers = () => {
-//     const pageNumbers = [];
-//     for (let i = 1; i <= totalPages; i++) {
-//       pageNumbers.push(
-//         <button key={i} onClick={() => paginate(i)} className={i === currentPage ? 'active' : ''}>
-//           {i}
-//         </button>
-//       );
-//     }
-//     return pageNumbers;
-//   };
-
-//   return (
-//     <div>
-//       <h1>All Patient Details</h1>
-//       {loading && <p>Loading..</p>}
-//       {error && <p>Error: {error}</p>}
-//       <table>
-//         <thead>
-//           <tr>
-//             <th>ID</th>
-//             <th>Op_number</th>
-//             <th>Ip_number</th>
-//             <th>Name</th>
-//             <th>age</th>
-//             <th>gender</th>
-//             <th>place</th>
-//             <th>Registration_Date</th>
-//             <th>reference_by</th>
-//             <th>Details</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {currentRecords.map((record) => (
-//             <tr key={record.id}>
-//               <td>{record.id}</td>
-//               <td>{record.op_number}</td>
-//               <td>{record.ip_number}</td>
-//               <td>{record.patient_name}</td>
-//               <td>{record.age}</td>
-//               <td>{record.gender}</td>
-//               <td>{record.place}</td>
-//               <td>{record.Date_of_registration}</td>
-//               <td>{record.reference_by}</td>
-//               <td>
-//                 <button className='btn btn-success'>details</button>
-//               </td>
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>
-//       <div className='pagination'>
-//         <button onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1}>
-//           prev
-//         </button>
-//         {renderPageNumbers()}
-//         <button onClick={() => paginate(currentPage + 1)} disabled={currentPage === totalPages}>
-//           next
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
-//export default AdminPage;
-
-// import React, { useEffect, useState } from 'react';
-// import axios from 'axios';
-
-// const AdminPage = () => {
-//   const [loading, setLoading] = useState(false);
-//   const [records, setRecords] = useState([]);
-//   const [error, setError] = useState(null);
-//   const [currentPage, setCurrentPage] = useState(1);
-//   const [recordsPerPage] = useState(10);
-
-//   useEffect(() => {
-//     const fetchRecords = async () => {
-//       setLoading(true);
-//       try {
-//         const token = localStorage.getItem('token');
-//         const response = await axios.get('https://med.test.avika.ai/admin/records', {
-//           headers: {
-//             Authorization: `Bearer ${token}`,
-//           },
-//         });
-//         setRecords(response.data);
-//         setError(null);
-//       } catch (error) {
-//         setError(error.message);
-//       }
-//       setLoading(false);
-//     };
-
-//     fetchRecords();
-//   }, []);
-//   const indexOfLastRecord = currentPage * recordsPerPage;
-//   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-//   const currentRecords = records.slice(indexOfFirstRecord, indexOfLastRecord);
-//   const totalPages = Math.ceil(records.length / recordsPerPage);
-
-//   const paginate = (pageNumber) => {
-//     setCurrentPage(pageNumber);
-//   };
-
-//   const renderPageNumbers = () => {
-//     const pageNumbers = [];
-//     for (let i = 1; i <= totalPages; i++) {
-//       pageNumbers.push(
-//         <button key={i} onClick={() => paginate(i)} className={i === currentPage ? 'active' : ''}>
-//           {i}
-//         </button>
-//       );
-//     }
-//     return pageNumbers;
-//   };
-
-//   return (
-//     <div>
-//       <h1>All Patient Details</h1>
-//       {loading && <p>Loading..</p>}
-//       {error && <p>Error: {error}</p>}
-//       <table>
-//         <thead>
-//           <tr>
-//             <th>ID</th>
-//             <th>Op_number</th>
-//             <th>Ip_number</th>
-//             <th>Name</th>
-//             <th>age</th>
-//             <th>gender</th>
-//             <th>place</th>
-//             <th>Registration_Date</th>
-//             <th>reference_by</th>
-//             <th>Details</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {currentRecords.map((record) => (
-//             <tr key={record.id}>
-//               <td>{record.id}</td>
-//               <td>{record.op_number}</td>
-//               <td>{record.ip_number}</td>
-//               <td>{record.patient_name}</td>
-//               <td>{record.age}</td>
-//               <td>{record.gender}</td>
-//               <td>{record.place}</td>
-//               <td>{record.Date_of_registration}</td>
-//               <td>{record.reference_by}</td>
-//               <td>
-//                 <button className='btn btn-success'>details</button>
-//               </td>
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>
-//       <div className='pagination'>
-//         <button onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1}>
-//           prev
-//         </button>
-//         {renderPageNumbers()}
-//         <button onClick={() => paginate(currentPage + 1)} disabled={currentPage === totalPages}>
-//           next
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default AdminPage;
-
-// RecordsPage.js
-// import React, { useEffect, useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { fetchrecord } from "../../myredux/reducers/RecordsSlice";
-// //import { FetchRecords } from "../../myredux/actions/FetchRecords";
-
-// const RecordsPage = () => {
-//   const dispatch = useDispatch();
-//   //const { records, loading, error } = useSelector((state) =>state.RecordsSliceReducer.allrecords);
-//   //const {records} =useSelector((state)=>state.RecordsSliceReducer.records)
-//  // const {loading} =useSelector((state)=>state.RecordsSliceReducer.loading);
-//   //const {error} =useSelector((state)=>state.RecordsSliceReducer.error);
-//    const data = useSelector(state=>state)
-
-//   const [currentPage, setCurrentPage] = useState(1);
-//   const [recordsPerPage] = useState(10);
-
-//   useEffect(() => {
-//     dispatch(fetchrecord());
-//   }, [dispatch]);
-
-//   const allrecords = data || [];
-
-//   const indexOfLastRecord = currentPage * recordsPerPage;
-//   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-//   const currentRecords = data.allrecords.slice(indexOfFirstRecord, indexOfLastRecord);
-
-//   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-//   return (
-//     <div>
-//      {data.isLoading?<h1>Loading....</h1>:( <div>
-//       <table>
-//         <thead>
-//           <tr>
-//           <th>OP Number</th>
-//             <th>IP Number</th>
-//             <th>Patient Name</th>
-//             <th>Age</th>
-//             <th>Gender</th>
-//             <th>Place</th>
-//             <th>Date of Registration</th>
-//             <th>Reference By</th>
-//             <th>Patient ID</th>
-//             <th>Details</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {currentRecords.map((record) => (
-//             <tr key={record.patient_id}>
-//              <td>{record.op_number}</td>
-//               <td>{record.ip_number}</td>
-//               <td>{record.patient_name}</td>
-//               <td>{record.age}</td>
-//               <td>{record.gender}</td>
-//               <td>{record.place}</td>
-//               <td>{record.Date_of_registration}</td>
-//               <td>{record.referrence_by}</td>
-//               <td>{record.patient_id}</td>
-//               <td><button className="btn btn-success">Details</button></td>
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>
-//       <Pagination
-//         recordsPerPage={recordsPerPage}
-//         totalRecords={allrecords.length}
-//         paginate={paginate}
-//         currentPage={currentPage}
-//       />
-//       </div>)}
-//     </div>
-//   );
-// };
-
-// const Pagination = ({ recordsPerPage, totalRecords, paginate, currentPage }) => {
-//   const pageNumbers = [];
-
-//   for (let i = 1; i <= Math.ceil(totalRecords / recordsPerPage); i++) {
-//     pageNumbers.push(i);
-//   }
-
-//   return (
-//     <ul className="pagination">
-//       <li>
-//         <button onClick={() => paginate(1)}>&laquo;</button>
-//       </li>
-//       {pageNumbers.map((number) => (
-//         <li key={number} className={number === currentPage ? "active" : null}>
-//           <button onClick={() => paginate(number)}>{number}</button>
-//         </li>
-//       ))}
-//       <li>
-//         <button onClick={() => paginate(pageNumbers.length)}>&raquo;</button>
-//       </li>
-//     </ul>
-//   );
-// };
-
-// export default RecordsPage;
-
-// import React, { useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { fetchrecords } from "../../myredux/reducers/RecordsSlice";
-
-// const AdminPage = () => {
-//   const dispatch = useDispatch();
-//   const data= useSelector((state)=>state.fetchrecords);
-//   const Loading=useSelector((state)=>state.fetchrecords)
-
-//   useEffect(() => {
-//     dispatch(fetchrecords());
-//   }, [dispatch]);
-
-//   if (Loading || !data) {
-//     return <h1>Loading...</h1>;
-//   }
-
-//   return (
-//     <div>
-//       <table>
-//         <thead>
-//           <tr>
-//             <th>OP Number</th>
-//             <th>IP Number</th>
-//             <th>Patient Name</th>
-//             <th>Age</th>
-//             <th>Gender</th>
-//             <th>Place</th>
-//             <th>Date of Registration</th>
-//             <th>Reference By</th>
-//             <th>Patient ID</th>
-//             <th>Details</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//         {data.map((record) => (
-//     <tr key={record.patient_id}>
-//     <td>{record.op_number}</td>
-//     <td>{record.ip_number}</td>
-//     <td>{record.patient_name}</td>
-//     <td>{record.age}</td>
-//     <td>{record.gender}</td>
-//     <td>{record.place}</td>
-//     <td>{record.Date_of_registration}</td>
-//     <td>{record.referrence_by}</td>
-//     <td>{record.patient_id}</td>
-//     <td>
-//       <button className="btn btn-success">Details</button>
-//     </td>
-//   </tr>
-// ))}
-//         </tbody>
-//       </table>
-//     </div>
-//   );
-// };
-// export default AdminPage;
-
-// AdminPage.js
-// AdminPage.js
-import React,{use} from "react";
-import { useSelector,useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchRecords } from "../../myredux/reducers/RecordsSlice";
+import { Table, Pagination, Dropdown, DropdownButton } from "react-bootstrap";
+import { CiUser } from "react-icons/ci";
+import {  useNavigate } from "react-router-dom";
+import "./AdminPage.css";
 
 const AdminPage = () => {
   const dispatch = useDispatch();
- // const token = localStorage.getItem('token');
-  const { records, loading, error } = useSelector(state => state.records);
+  const token = localStorage.getItem("token");
+  const { records, loading, error } = useSelector((state) => state.records);
+  const navigate = useNavigate();
 
-     //dispatch(fetchRecords());
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const [recordsPerPage] = useState(10);
 
   useEffect(() => {
-    
-      dispatch(fetchRecords());
-    
-  }, [dispatch]);
+    dispatch(fetchRecords());
+  }, [dispatch, token]);
+
+  // Pagination logic
+  const indexOfLastRecord = currentPage * recordsPerPage;
+  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+  const currentRecords = records.slice(indexOfFirstRecord, indexOfLastRecord);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const handleLogout = () => {
+    // Clear token and navigate to home page
+    localStorage.removeItem("token");
+    navigate("/adminlogin");
+  };
 
   if (loading) {
     return <h1>Loading...</h1>;
@@ -468,53 +41,107 @@ const AdminPage = () => {
   }
 
   return (
-    <div>
-      <table>
-        <thead>
+    <div className="container">
+      <div id="headline">
+        <div>
+          <img
+            src="https://res.cloudinary.com/dpfnyv0ut/image/upload/v1709751594/avika-img_msxfud.png"
+            alt=""
+          ></img>
+        </div>
+        <div id="lengthpart">
+          <DropdownButton
+            id="dropdown-basic-button"
+            title={<CiUser id="icon" />}
+            variant="light"
+          >
+            <Dropdown.Item disabled>Harish</Dropdown.Item>
+            <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+          </DropdownButton>
+        </div>
+      </div>
+      <div id="headline">
+        <div>
+          <h3>All Documents</h3>
+        </div>
+        <div id="lengthpart">
+          <p className="ml-2 length">All Documents: {records.length}</p>
+        </div>
+      </div>
+
+      <Table striped bordered >
+        <thead id="heads">
           <tr>
-            <th>id</th>
-            <th>OP_Number</th>
-            <th>IP_Number</th>
-            <th>Patient_name</th>
-            <th>age</th>
-            <th>gender</th>
-            <th>place</th>
+            <th>S_NO</th>
+            <th>Patient Name</th>
+            <th>Age</th>
+            <th>Gender</th>
             <th>Date of Registration</th>
-            <th>Reference By</th>
-            <th>file_path</th>
-            <th>created_at</th>
-            <th>Patient_id</th>
-            <th>verified</th>
-            <th>uploaded_by</th>
-            <th>uploaded_by_id</th>
-            <th>Details</th>
+            <th>Place</th>
+            <th>Uploaded Date</th>
+            <th>OP Number</th>
+            <th>IP Number</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {records && records.map((record) => (
+          {currentRecords.map((record, index) => (
             <tr key={record.id}>
-              <td>{record.id}</td>
-              <td>{record.op_number}</td>
-              <td>{record.ip_number}</td>
+              <td>{indexOfFirstRecord + index + 1}</td>
               <td>{record.patient_name}</td>
               <td>{record.age}</td>
               <td>{record.gender}</td>
-              <td>{record.place}</td>
               <td>{record.Date_of_registration}</td>
-              <td>{record.referrence_by}</td>
-              <td>{record.file_path}</td>
+              <td>{record.place}</td>
               <td>{record.created_at}</td>
-              <td>{record.patient_id}</td>
-              <td>{record.verified}</td>
-              <td>{record.uploaded_by}</td>
-              <td>{record.uploaded_by_id}</td>
+              <td>{record.op_number}</td>
+              <td>{record.ip_number}</td>
               <td>
-                <button className="btn btn-success">Details</button>
+                <button className="btn">Details</button>
               </td>
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
+      <div className="pagination-container">
+        <Pagination className="pagination">
+          <Pagination.First
+            onClick={() => paginate(1)}
+            disabled={currentPage === 1}
+          />
+          <Pagination.Prev
+            onClick={() => paginate(currentPage - 1)}
+            disabled={currentPage === 1}
+          />
+          {Array.from(
+            { length: Math.ceil(records.length / recordsPerPage) },
+            (_, i) =>
+              i >= currentPage - 3 &&
+              i < currentPage + 3 && (
+                <Pagination.Item
+                  id="numbers"
+                  key={i}
+                  onClick={() => paginate(i + 1)}
+                  active={i + 1 === currentPage}
+                >
+                  {i + 1}
+                </Pagination.Item>
+              )
+          )}
+          <Pagination.Next
+            onClick={() => paginate(currentPage + 1)}
+            disabled={
+              currentPage === Math.ceil(records.length / recordsPerPage)
+            }
+          />
+          <Pagination.Last
+            onClick={() => paginate(Math.ceil(records.length / recordsPerPage))}
+            disabled={
+              currentPage === Math.ceil(records.length / recordsPerPage)
+            }
+          />
+        </Pagination>
+      </div>
     </div>
   );
 };
