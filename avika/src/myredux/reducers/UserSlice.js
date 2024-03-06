@@ -1,4 +1,5 @@
 // slices/userSlice.js
+// slices/userSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 export const userSlice = createSlice({
@@ -14,45 +15,21 @@ export const userSlice = createSlice({
       Date_of_registration: '',
       referrence_by: '',
       patient_id: '',
-      file_path: null 
+      file_path:'',
     },
     error: null,
   },
   reducers: {
     updateUserData: (state, action) => {
-      state.userData = action.payload;
+      state.userData = { ...state.userData, ...action.payload }; // Merge updated data into userData
     },
     uploadFileSuccess: (state) => {
-      state.userData = {
-        op_number: '',
-        ip_number: '',
-        patient_name: '',
-        age: '',
-        gender: '', 
-        place: '',
-        Date_of_registration: '',
-        referrence_by: '',
-        patient_id: '',
-        file_path: null 
-      };
-      state.error = null;
+      state.userData.file_path = ''; // Reset file_path to an empty string
+      state.error = null; // Reset error
     },
     uploadFileFailure: (state, action) => {
-      state.error = action.payload;
+      state.error = action.payload; // Set error message
     },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(updateUserData, (state, action) => {
-        state.userData = action.payload;
-      })
-      .addCase(uploadFileSuccess, (state) => {
-        state.userData.file_path = null; // Reset file path after successful upload
-        state.error = null;
-      })
-      .addCase(uploadFileFailure, (state, action) => {
-        state.error = action.payload;
-      });
   },
 });
 

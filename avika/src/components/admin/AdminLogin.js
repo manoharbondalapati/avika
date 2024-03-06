@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAdmin } from "../../myredux/reducers/AdminSlice";
 import { useNavigate } from "react-router-dom";
+import { MdAdminPanelSettings } from "react-icons/md";
 import "./AdminLogin.css";
 
 const AdminLogin = () => {
@@ -12,33 +13,37 @@ const AdminLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const loading = useSelector((state) => state.admin.loading);
   const error = useSelector((state) => state.admin.error);
-  const response = useSelector((state) => state.admin.admin);
+ // const response = useSelector((state) => state.admin.admin);
 
-  const fetchData = useCallback(() => {
-    if (response && response.status === 200) {
-      const {  token } = response.data;
+  // const fetchData = useCallback(() => {
+  //   if (response && response.status === 200) {
+  //     const {  token } = response.data;
 
-      localStorage.setItem("userToken", token);
-      navigate("/adminPage");
-    }
-  }, [navigate, response]);
+  //     localStorage.setItem("adminToken", token);
+  //     navigate("/adminPage");
+  //   }
+  // }, [navigate, response]);
 
-  useEffect(() => {
-    fetchData();
-    return () => {};
-  }, [fetchData, response]);
-
+  // useEffect(() => {
+  //   fetchData();
+  //   return () => {};
+  // }, [fetchData, response]);
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     let adminCredentials = { mobile, password };
     dispatch(loginAdmin(adminCredentials));
+    navigate('/adminpage');
   };
+
+ 
+
 
   return (
     <div id="adminlogin">
       <div id="loginform">
         <h1>
-          Admin<span id="login">Login</span>
+          Admin<span id="login">Login</span><span id="admin-icon"><MdAdminPanelSettings /></span>
         </h1>
         <hr />
         <div className="login-form">

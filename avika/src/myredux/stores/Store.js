@@ -25,12 +25,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import adminReducer from "../reducers/AdminSlice";
 import recordsReducer from "../reducers/RecordsSlice";
 import  userReducer  from "../reducers/UserSlice";
+import userLoginReducer from '../reducers/UserLoginSlice';
 
 const store = configureStore({
   reducer: {
     admin: adminReducer,
     records: recordsReducer,
     user:userReducer,
+    userlogin:userLoginReducer,
   },
 });
 

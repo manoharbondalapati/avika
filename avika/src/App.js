@@ -8,6 +8,7 @@ import PatientDetails from "./components/admin/PatientDetails";
 import { Provider} from "react-redux";
 //import { Provider as ALLRecordsProvider } from "react-redux";
 import Store from '../src/myredux/stores/Store';
+//import UserLogin from "./components/user/UserLogin";
 //import RecordStore from "../src/myredux/stores/RecordStore";
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/userpage" element={<UserPage />} />
+          {/* <Route path="/userlogin" element={<UserLogin/>}/> */}
           <Route path="/adminlogin" element={<AdminLogin />} />
           <Route path="/adminpage" element={<AdminPage />} />
           <Route path="/patientDeatils" element={<PatientDetails />} />

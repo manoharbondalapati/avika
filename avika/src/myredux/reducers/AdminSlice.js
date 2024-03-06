@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const loginAdmin = createAsyncThunk(
@@ -6,13 +6,17 @@ export const loginAdmin = createAsyncThunk(
   async (adminCredentails,{rejectWithValue}) => {
    try
    {
+    
     const response = await axios.post(
       "https://med.test.avika.ai/auth/admin-login",
       adminCredentails
     );
+       localStorage.setItem('token',response.data.data.token);
+
     // const response = await request.data.data.token;
     // localStorage.setItem("admin", response);
-    console.log(response);
+   
+   
     return response.data;
    }catch (error)
    {
@@ -56,5 +60,11 @@ const AdminSlice = createSlice({
       });
   },
 });
+
+export const setToken = createAction("admin/setToken");
 export const{ clearError}=AdminSlice.actions;
 export default AdminSlice.reducer;
+
+
+
+//changingg at lines 6,15,16,52
