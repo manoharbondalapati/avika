@@ -1,7 +1,4 @@
-* {
-  margin: 0px;
-  padding: 0px;
-}
+
 #body {
   height: 100vh;
   background-image: url("../assets/background-img1.jpg");
@@ -15,14 +12,14 @@ h2 {
   color: white;
   text-shadow: 3px 6px 4px black;
 }
-.cards {
+/* .cards {
   display: flex;
   flex-wrap: wrap;
   flex-grow: 1;
   align-items: center;
   justify-content: space-evenly;
   margin-top: 5%;
-}
+} */
 #user {
   background-color: rgb(30, 27, 27);
   text-align: center;
@@ -61,6 +58,11 @@ h2 {
   #admindiv {
     margin-top: 7%;
   }
+  #homeheadings
+  {
+    display: flex;
+    flex-direction: column;
+  }
 }
 @keyframes floatUpDown {
   0%,
@@ -89,3 +91,4 @@ h2 {
 #admindiv {
   animation: floatUpDown 3s ease-in-out infinite;
 }
+

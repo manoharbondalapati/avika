@@ -15,19 +15,22 @@ const AdminPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(10);
 
+
+
+  
   useEffect(() => {
     dispatch(fetchRecords());
   }, [dispatch, token]);
 
-  // Pagination logic
+  
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  const currentRecords = records.slice(indexOfFirstRecord, indexOfLastRecord);
+  const currentRecords = records?.slice(indexOfFirstRecord, indexOfLastRecord);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleLogout = () => {
-    // Clear token and navigate to home page
+    
     localStorage.removeItem("token");
     navigate("/adminlogin");
   };
@@ -41,7 +44,8 @@ const AdminPage = () => {
   }
 
   return (
-    <div className="container">
+    <div id="allrecords">
+      <div id="container table-responsive" >
       <div id="headline">
         <div>
           <img
@@ -65,11 +69,11 @@ const AdminPage = () => {
           <h3>All Documents</h3>
         </div>
         <div id="lengthpart">
-          <p className="ml-2 length">All Documents: {records.length}</p>
+          <p className="ml-2 length">All Documents: {records?.length}</p>
         </div>
       </div>
 
-      <Table striped bordered >
+      <Table striped bordered id="tabledata" >
         <thead id="heads">
           <tr>
             <th>S_NO</th>
@@ -85,8 +89,8 @@ const AdminPage = () => {
           </tr>
         </thead>
         <tbody>
-          {currentRecords.map((record, index) => (
-            <tr key={record.id}>
+          {currentRecords?.map((record, index) => (
+            <tr key={record.id} style={{backgroundColor:"gray"}}>
               <td>{indexOfFirstRecord + index + 1}</td>
               <td>{record.patient_name}</td>
               <td>{record.age}</td>
@@ -114,7 +118,7 @@ const AdminPage = () => {
             disabled={currentPage === 1}
           />
           {Array.from(
-            { length: Math.ceil(records.length / recordsPerPage) },
+            { length: Math.ceil(records?.length / recordsPerPage) },
             (_, i) =>
               i >= currentPage - 3 &&
               i < currentPage + 3 && (
@@ -131,17 +135,18 @@ const AdminPage = () => {
           <Pagination.Next
             onClick={() => paginate(currentPage + 1)}
             disabled={
-              currentPage === Math.ceil(records.length / recordsPerPage)
+              currentPage === Math.ceil(records?.length / recordsPerPage)
             }
           />
           <Pagination.Last
-            onClick={() => paginate(Math.ceil(records.length / recordsPerPage))}
+            onClick={() => paginate(Math.ceil(records?.length / recordsPerPage))}
             disabled={
-              currentPage === Math.ceil(records.length / recordsPerPage)
+              currentPage === Math.ceil(records?.length / recordsPerPage)
             }
           />
         </Pagination>
       </div>
+    </div>
     </div>
   );
 };

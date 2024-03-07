@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const loginUser = createAsyncThunk(
@@ -11,8 +11,8 @@ export const loginUser = createAsyncThunk(
       userCredentails
     );
     // const response = await request.data.data.token;
-    // localStorage.setItem("admin", response);
-    console.log(response);
+     localStorage.setItem("user", response.data.data.token);
+    console.log(response.data.data.token);
     return response.data;
    }catch (error)
    {
@@ -56,5 +56,6 @@ const UserLoginSlice = createSlice({
       });
   },
 });
+export const setToken = createAction('userlogin/setToken')
 export const{ clearError}=UserLoginSlice.actions;
 export default UserLoginSlice.reducer;

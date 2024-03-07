@@ -1,38 +1,54 @@
-// slices/userSlice.js
-// slices/userSlice.js
-import { createSlice } from '@reduxjs/toolkit';
 
-export const userSlice = createSlice({
-  name: 'user',
-  initialState: {
-    userData: {
-      op_number: '',
-      ip_number: '',
-      patient_name: '',
-      age: '',
-      gender: '', 
-      place: '',
-      Date_of_registration: '',
-      referrence_by: '',
-      patient_id: '',
-      file_path:'',
-    },
+import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+
+export const fileUpload =(formData)=>async(dispatch)=>
+  {
+    dispatch(uploadFileRequest());
+    try {
+      const token = localStorage.getItem('user');
+     
+      const headers = {
+        Authorization : `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      };
+      const response = await axios.post('https://med.test.avika.ai/api/file_upload',formData,{headers});
+      console.log(response);
+     
+      // if (!response.ok) {
+      //   throw new Error('Failed to upload file');
+      // }
+      dispatch(uploadFileSuccess(response.data.data));
+      alert('Document uploaded successfully');
+     
+
+    } catch (error) {
+      dispatch(uploadFileFailure(error.message));
+    }
+  };
+  
+const UserSlice = createSlice({
+  name: 'fileUploading',
+  initialState : {
+    isLoading: false,
     error: null,
   },
   reducers: {
-    updateUserData: (state, action) => {
-      state.userData = { ...state.userData, ...action.payload }; // Merge updated data into userData
+    uploadFileRequest(state) {
+      state.isLoading = true;
+      state.error = null;
     },
-    uploadFileSuccess: (state) => {
-      state.userData.file_path = ''; // Reset file_path to an empty string
-      state.error = null; // Reset error
+    uploadFileSuccess(state) {
+      state.isLoading = false;
     },
-    uploadFileFailure: (state, action) => {
-      state.error = action.payload; // Set error message
+    uploadFileFailure(state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
     },
   },
 });
 
-export const { updateUserData, uploadFileSuccess, uploadFileFailure } = userSlice.actions;
+export const { uploadFileRequest, uploadFileSuccess, uploadFileFailure } = UserSlice.actions;
 
-export default userSlice.reducer;
+export default UserSlice.reducer;

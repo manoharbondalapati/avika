@@ -1,27 +1,13 @@
-*
-{
-    margin: 0;
-    padding: 0;
-}
-#heads th
-{
-    background-color: rgb(16, 27, 58);
-    color: white;
-}
+
 .pagination
 {
     margin-right: 10px;
 }
-#numbers
-{
-    background-color: white;
-    color: black;
-    border-radius: 5px;
-}
+
 .pagination-container {
     display: flex;
     justify-content: flex-end;
-    margin-top: 10px; /* Adjust margin as needed */
+    margin-top: 10px; 
   }
   
   .pagination {
@@ -62,8 +48,7 @@ img
 }
 .length
 {
-    background-color: gold;
-    color: black;
+  
     border-radius: 5px;
     padding: 2px;
 }
@@ -71,8 +56,139 @@ table tr:hover
 {
     background-color:rgb(66, 64, 64);
 }
+
+@media(max-width:1000px){
+   
+
+    
+    #tabledata table 
+    {  width: 300px;
+       overflow: scroll;
+       overflow-x: scroll;
+       overflow-y: scroll;
+    }
+   .allrecords
+   {
+    margin-top: 10px;
+   }
+    
+}
+#heads th
+{
+    background-color: rgb(16, 27, 58);
+    color: white;
+}
+#allrecords {
+  padding: 20px;
+  background-color: rgb(244, 239, 239);
+  margin: 35px 35px;
+}
+#tabledata {
+  width: 100%;
+}
 .btn
 {
     background-color: rgb(28, 40, 71);
     color: white;
 }
+#container {
+  overflow-x: auto;
+}
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination {
+  margin-bottom: 0;
+}
+#dropdown-basic-button {
+  display: flex;
+  align-items: center;
+}
+#numbers
+{
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+}
+/* 
+
+
+
+
+  
+  
+  
+  
+  #headline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  #headline img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  
+  #lengthpart {
+    display: flex;
+    align-items: center;
+  }
+  
+  #dropdown-basic-button {
+    display: flex;
+    align-items: center;
+  }
+  
+  #icon {
+    margin-right: 5px;
+    color: rgb(253, 199, 4);
+  }
+  
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pagination {
+    margin-bottom: 0;
+  }
+  
+  #table-responsive {
+    overflow-x: auto;
+  }
+  
+.length
+{
+    background-color: gold;
+    color: black;
+    border-radius: 5px;
+}
+tbody tr:hover {
+    background-color: #888585 !important; 
+    cursor: pointer; 
+  }
+
+  @media(max-width:1000px){
+   
+
+    
+    #tabledata 
+    {  width: 300px;
+       overflow: scroll;
+       overflow-x: scroll;
+       overflow-y: scroll;
+    }
+   .allrecords
+   {
+    margin-top: 10px;
+   }
+    
+} 
+ */

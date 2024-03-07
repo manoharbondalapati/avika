@@ -1,10 +1,10 @@
-// import React, { useState } from 'react';
-// import './UserPage.css';
-// import axios from 'axios';
+// import React, { useState } from "react";
+// import "./UserPage.css";
+// import { useDispatch, useSelector } from "react-redux";
+// import { fileUpload } from "../../myredux/reducers/UserSlice";
 
 // const UserPage = () => {
-
-//   const [userData, setUserData] = useState({
+//   const [formData, setFormData] = useState({
 //     op_number: '',
 //     ip_number: '',
 //     patient_name: '',
@@ -14,107 +14,154 @@
 //     Date_of_registration: '',
 //     referrence_by: '',
 //     patient_id: '',
-//     file_path: null
+//     file_path: null,
 //   });
+   
+//   const dispatch = useDispatch();
+//   const token =localStorage.getItem("user");
+//   console.log(token)
+//   const isLoading = useSelector((state) => state.fileUploading);
+//   const error = useSelector((state) => state.fileUploading);
 
-//   const handleChange = e => {
-//     const { name, value } = e.target;
-//     setUserData(prevUserData => ({
-//       ...prevUserData,
-//       [name]: value
-//     }));
+//   const handleChange = (event) => {
+//     const { name, value } = event.target;
+//     setFormData({ ...formData, [name]: value });
 //   };
 
-//   const handleFileChange = e => {
-//     setUserData(prevUserData => ({
-//       ...prevUserData,
-//       file_path: e.target.files[0]
-//     }));
+//   const handleFileChange = (event) => {
+//     const file = event.target.files[0];
+//     setFormData({ ...formData, file_path: file });
 //   };
 
-// const handleSubmit = e => {
-//   e.preventDefault();
-
-//   const formData = new FormData();
-//   Object.entries(userData).forEach(([key, value]) => {
-//     formData.append(key, value);
-//   });
-
-//   axios.post('', formData)
-//     .then(response => {
-//       console.log(response.data);
-//       setUserData({
-//         op_number: '',
-//         ip_number: '',
-//         patient_name: '',
-//         age: '',
-//         gender: '',
-//         place: '',
-//         Date_of_registration: '',
-//         referrence_by: '',
-//         patient_id: '',
-//         file_path: null,
-//         phoneNumber: ''
-//       });
-//     })
-//     .catch(error => {
-//       console.error('Error uploading file:', error);
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+//     dispatch(fileUpload(formData ,token));
+//     setFormData({
+//       op_number: '',
+//       ip_number: '',
+//       patient_name: '',
+//       age: '',
+//       gender: '',
+//       place: '',
+//       Date_of_registration: '',
+//       referrence_by: '',
+//       patient_id: '',
+//       file_path: '',
 //     });
-// };
+//   };
 
 //   return (
-//     <div className='container' >
-//       <form onSubmit={handleSubmit} className='userform'>
+//     <div id="container">
+//       {error && <div>Error: {error}</div>}
+//       <form onSubmit={handleSubmit} className="userform">
 //         <div>
 //           <label>OP Number:</label>
-//           <input type="text" name="op_number" value={userData.op_number} onChange={handleChange} />
+//           <input
+//             type="text"
+//             name="op_number"
+//             value={formData.op_number}
+//             onChange={handleChange}
+//           />
 //         </div>
 //         <div>
 //           <label>IP Number:</label>
-//           <input type="text" name="ip_number" value={userData.ip_number} onChange={handleChange} />
+//           <input
+//             type="text"
+//             name="ip_number"
+//             value={formData.ip_number}
+//             onChange={handleChange}
+//           />
 //         </div>
 //         <div>
 //           <label>Name:</label>
-//           <input type="text" name="patient_name" value={userData.patient_name} onChange={handleChange} />
+//           <input
+//             type="text"
+//             name="patient_name"
+//             value={formData.patient_name}
+//             onChange={handleChange}
+//           />
 //         </div>
 //         <div>
 //           <label>Age:</label>
-//           <input type="text" name="age" value={userData.age} onChange={handleChange} />
+//           <input
+//             type="text"
+//             name="age"
+//             value={formData.age}
+//             onChange={handleChange}
+//           />
 //         </div>
 //         <div>
 //           <label>Gender:</label>
 //           <div>
 //             <label>
-//               <input type="radio" name="gender" value="Male" checked={userData.gender === 'Male'} onChange={handleChange} />
+//               <input
+//                 type="radio"
+//                 name="gender"
+//                 value="Male"
+//                 checked={formData.gender === "Male"}
+//                 onChange={handleChange}
+//               />
 //               Male
 //             </label>
 //             <label>
-//               <input type="radio" name="gender" value="Female" checked={userData.gender === 'Female'} onChange={handleChange} />
+//               <input
+//                 type="radio"
+//                 name="gender"
+//                 value="Female"
+//                 checked={formData.gender === "Female"}
+//                 onChange={handleChange}
+//               />
 //               Female
 //             </label>
 //           </div>
 //         </div>
 //         <div>
 //           <label>Place:</label>
-//           <input type="text" name="place" value={userData.place} onChange={handleChange} />
+//           <input
+//             type="text"
+//             name="place"
+//             value={formData.place}
+//             onChange={handleChange}
+//           />
 //         </div>
 //         <div>
 //           <label>Date of Registration:</label>
-//           <input type="date" name="Date_of_registration" value={userData.Date_of_registration} onChange={handleChange} />
+//           <input
+//             type="date"
+//             name="Date_of_registration"
+//             value={formData.Date_of_registration}
+//             onChange={handleChange}
+//           />
 //         </div>
 //         <div>
 //           <label>Reference By:</label>
-//           <input type="text" name="referrence_by" value={userData.referrence_by} onChange={handleChange} />
+//           <input
+//             type="text"
+//             name="referrence_by"
+//             value={formData.referrence_by}
+//             onChange={handleChange}
+//           />
 //         </div>
 //         <div>
 //           <label>Patient ID:</label>
-//           <input type="text" name="patient_id" value={userData.patient_id} onChange={handleChange} />
+//           <input
+//             type="text"
+//             name="patient_id"
+//             value={formData.patient_id}
+//             onChange={handleChange}
+//           />
 //         </div>
 //         <div>
 //           <label>File Path:</label>
-//           <input type="file" name="file_path" onChange={handleFileChange} />
+//           <input
+//             type="file"
+//             name="file_path"
+//             onChange={handleFileChange}
+//           />
 //         </div>
-//         <button type="submit">Submit</button>
+//         <button type="submit" disabled={isLoading}>
+//           {isLoading ? 'Uploading...' : 'Submit'}
+//         </button>
 //       </form>
 //     </div>
 //   );
@@ -122,74 +169,108 @@
 
 // export default UserPage;
 
-// UserPage.js
+
+
+
+
 import React, { useState } from "react";
 import "./UserPage.css";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  updateUserData,
-  uploadFileSuccess,
-  uploadFileFailure,
-} from "../../myredux/reducers/UserSlice"; 
-import axios from "axios";
+import { fileUpload } from "../../myredux/reducers/UserSlice";
+import { FaCircleUser } from "react-icons/fa6";
+import { NavLink } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const UserPage = () => {
-  const [file_path,setFilePath] = useState(null); 
+  const [formData, setFormData] = useState({
+    op_number: "",
+    ip_number: "",
+    patient_name: "",
+    age: "",
+    gender: "",
+    place: "",
+    Date_of_registration: "",
+    referrence_by: "",
+    patient_id: "",
+    file_path: null,
+  });
+
   const dispatch = useDispatch();
-  const userData = useSelector((state) => state.user.userData);
-  const token = localStorage.getItem("userToken");
+  const token = localStorage.getItem("user");
+  const isLoading = useSelector((state) => state.fileUploading);
+  const error = useSelector((state) => state.fileUploading);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    dispatch(updateUserData({ ...userData, [name]: value }));
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file && file.type === "application/pdf") {
-      setFilePath(file); 
-      dispatch(updateUserData({ ...userData, file_path: file.name }));
-    } else {
-      console.error("Invalid file format. Please select a PDF file.");
-    }
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setFormData({ ...formData, file_path: file });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    Object.entries(userData).forEach(([key, value]) => {
-      formData.append(key, value);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(fileUpload(formData, token));
+    setFormData({
+      op_number: "",
+      ip_number: "",
+      patient_name: "",
+      age: "",
+      gender: "",
+      place: "",
+      Date_of_registration: "",
+      referrence_by: "",
+      patient_id: "",
+      file_path: "",
     });
-   formData.append('file',file_path);
-    axios
-      .post("https://med.test.avika.ai/api/file_upload", formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type':'multipart/form-data'
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-
-        if ( token && response.status === 200) {
-          dispatch(uploadFileSuccess());
-        }
-      })
-      .catch((error) => {
-        console.error("Error uploading file:", error);
-        dispatch(uploadFileFailure(error.message));
-      });
   };
+
+  const [showDropdown, setShowDropdown] = useState(false);
+  
+ const navigate = useNavigate();
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
+
+  const handleLogout = () => {
+   
+   localStorage.removeItem('user');
+    navigate('/homepage')
+  };
+
+  const todayDate = new Date().toISOString().split("T")[0];
 
   return (
-    <div className="container">
+    <div id="container">
+     
+      {error && <div>Error: {error}</div>}
       <form onSubmit={handleSubmit} className="userform">
+      <div id="forlogout">
+          <div>
+            <p id="para">Find! Treatment</p>
+          </div>
+          <div>
+            {/* Correct the button tag here */}
+            <button onClick={toggleDropdown}>
+              <FaCircleUser />
+            </button>
+            {showDropdown && (
+              <div className="dropdown-menu">
+                <NavLink to="#">Hi Saharth</NavLink>
+                <NavLink to="#" onClick={handleLogout}>Logout</NavLink>
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="userpagegroup">
         <div>
           <label>OP Number:</label>
           <input
             type="text"
             name="op_number"
-            value={userData.op_number}
+            value={formData.op_number}
             onChange={handleChange}
           />
         </div>
@@ -198,16 +279,18 @@ const UserPage = () => {
           <input
             type="text"
             name="ip_number"
-            value={userData.ip_number}
+            value={formData.ip_number}
             onChange={handleChange}
           />
         </div>
+        </div>
+        <div className="userpagegroup">
         <div>
           <label>Name:</label>
           <input
             type="text"
             name="patient_name"
-            value={userData.patient_name}
+            value={formData.patient_name}
             onChange={handleChange}
           />
         </div>
@@ -216,51 +299,42 @@ const UserPage = () => {
           <input
             type="text"
             name="age"
-            value={userData.age}
+            value={formData.age}
             onChange={handleChange}
           />
         </div>
-        <div>
+        </div>
+       <div className="userpagegroup">
+       <div>
           <label>Gender:</label>
-          <div>
-            <label>
-              <input
-                type="radio"
-                name="gender"
-                value="Male"
-                checked={userData.gender === "Male"}
-                onChange={handleChange}
-              />
-              Male
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="gender"
-                value="Female"
-                checked={userData.gender === "Female"}
-                onChange={handleChange}
-              />
-              Female
-            </label>
-          </div>
+          <select
+            name="gender"
+            value={formData.gender}
+            onChange={handleChange}
+          >
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
         </div>
         <div>
           <label>Place:</label>
           <input
             type="text"
             name="place"
-            value={userData.place}
+            value={formData.place}
             onChange={handleChange}
           />
         </div>
+       </div>
+        <div className="userpagegroup">
         <div>
           <label>Date of Registration:</label>
           <input
             type="date"
             name="Date_of_registration"
-            value={userData.Date_of_registration}
+            value={formData.Date_of_registration}
             onChange={handleChange}
+            max={todayDate}
           />
         </div>
         <div>
@@ -268,28 +342,29 @@ const UserPage = () => {
           <input
             type="text"
             name="referrence_by"
-            value={userData.referrence_by}
+            value={formData.referrence_by}
             onChange={handleChange}
           />
         </div>
+        </div>
+        <div className="userpagegroup">
         <div>
           <label>Patient ID:</label>
           <input
             type="text"
             name="patient_id"
+            value={formData.patient_id}
             onChange={handleChange}
           />
         </div>
         <div>
           <label>File Path:</label>
-          <input
-            type="file"
-            name="file_path"
-           
-            onChange={handleFileChange}
-          />
+          <input type="file" name="file_path" onChange={handleFileChange} />
         </div>
-        <button type="submit">Submit</button>
+        </div>
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? "Uploading..." : "Submit"}
+        </button>
       </form>
     </div>
   );

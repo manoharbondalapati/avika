@@ -1,15 +1,181 @@
-*
-{
-    margin: 0px;
-    padding: 0px;
-}
-body
-{ 
-      background-color: white;
-}
-.userform
-{
-    width: 500px;
-    margin-left: 30%;
-}
+/* UserPage.css
+.userform {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  .userform > div {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .userform label {
+    margin-bottom: 5px;
+  }
+  
+  .userform input,
+  .userform select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .userform button {
+    grid-column: 1 / -1;
+    justify-self: center;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .userform button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+   */
 
+
+
+/* UserPage.css */
+/* .container {
+    display: flex;
+    justify-content: center;
+  } */
+  
+  /* .userform {
+    width: 600px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: absolute;
+    top: 20%;
+    left: 30%;
+  } */
+  
+  /* .form-group {
+    margin-bottom: 15px;
+  } */
+  
+  /* .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  } */
+  
+  /* .form-group input,
+  .form-group select {
+    width: calc(100% - 10px);
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  } */
+  
+  /* button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .userpagegroup
+  {
+    display: flex;
+    justify-content: space-around;
+  }
+  */
+
+
+  /* UserPage.css */
+#forlogout
+{
+    display: flex;
+    justify-content: space-between;
+}
+#para
+{
+    color: #636848;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.userform {
+    width: 500px;
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+  }
+  
+  .userpagegroup {
+    grid-column: span 2;
+    margin-bottom: 20px;
+  }
+  
+  .userpagegroup label {
+    font-weight: bold;
+  }
+  
+  .userpagegroup input,
+  .userpagegroup select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  button[type="submit"] {
+    grid-column: span 2;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  .error-message {
+    color: red;
+    grid-column: span 2;
+    margin-top: 10px;
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    z-index: 1;
+  }
+  
+  .dropdown-menu a {
+    display: block;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+  }
+  
+  .dropdown-menu a:hover {
+    background-color: #f1f1f1;
+  }
