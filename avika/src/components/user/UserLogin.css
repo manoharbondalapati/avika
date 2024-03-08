@@ -1,109 +1,3 @@
-/* 
-#loginform {
-    position: absolute;
-    top: 5%;
-    left: 42%;
-    justify-content: center;
-    height: 450px;
-    width: 300px;
-    background-color: rgb(252, 245, 245);
-    box-sizing: border-box;
-    box-shadow: 2px 7px 7px 2px black;
-    padding: 5px;
-  }
-  .mobile_no-container,
-  .password-container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 25px;
-    margin-left: 40px;
-    outline: none;
-  }
-  
-  .password-container {
-    position: relative;
-  }
-  .password-container input {
-    width: 75%;
-  }
-  .mobile_no-container input {
-    width: 75%;
-  }
-  
-  .password-container span {
-    position: absolute;
-    top: 70%;
-    right: 80px;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: rgb(82, 82, 173);
-  }
-  input {
-    width: 75%;
-    height: 40px;
-    outline: none;
-    border-radius: 5px;
-  }
-  #loginbutton {
-    margin-top: 40px;
-    margin-left: 70px;
-    width: 50%;
-    background-color: royalblue;
-    color: white;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-  }
-  
-  @media (max-width: 320px) {
-    #loginform {
-      left: 3%;
-      top: 15%;
-      bottom: 0%;
-    }
-  }
-  @media (min-width: 325px) and (max-width: 450px) {
-    #loginform {
-      left: 10%;
-      top: 15%;
-      bottom: 0%;
-    }
-  }
-  @media (min-width: 455px) and (max-width: 790px) {
-    #loginform {
-      left: 32%;
-      top: 15%;
-      bottom: 0%;
-    }
-  }
-  
-  #user-icon {
-    color: rgb(223, 182, 19);
-  }
-  
-  label {
-    color: rgb(114, 114, 162);
-  }
-  .astrick {
-    color: rgb(223, 182, 19);
-    font-size: 17px;
-  }
-  #credentials {
-    margin-top: 15px;
-  }
-  #credentials span {
-    color: rgb(68, 68, 147);
-  }
-  #credentials #note {
-    color: rgb(255, 1, 1);
-  }
-  #loginform input::placeholder {
-    font-size: 14px; 
-  }
-   */
-
-
-
 
    #userlogin {
     width: 300px;
@@ -152,7 +46,7 @@
   .show-password {
     position: absolute;
     right: 655px; 
-    top: 53%; 
+    top: 54%; 
     transform: translateY(-50%);
     cursor: pointer;
     background-color: transparent;

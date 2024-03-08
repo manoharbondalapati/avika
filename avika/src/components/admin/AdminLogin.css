@@ -150,7 +150,7 @@ label {
 .shows-password {
   position: absolute;
   right: 655px;
-  top: 57%;
+  top: 57.5%;
   transform: translateY(-50%);
   cursor: pointer;
   background-color: transparent;

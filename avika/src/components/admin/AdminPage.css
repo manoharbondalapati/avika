@@ -56,6 +56,10 @@ img
     font-size: 20px;
    
 }
+#recordsh3
+{
+  color: rgb(236, 187, 10);
+}
 .length
 {
   
@@ -109,5 +113,22 @@ table tr:hover
  
   
 }
+#adminpagebtn:hover
+{
+  background-color: white;
+  border: solid 1px #0F2027;
+}
 
-
+.headerbar
+{
+  display: flex;
+}
+.headerbar select 
+{
+  width: 150px;
+  height: 35px;
+}
+.headerbar input 
+{
+  height: 35px;
+}

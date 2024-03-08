@@ -24,7 +24,7 @@ const App = () => {
           <Route path="/adminlogin" element={<AdminLogin />} />
           <Route path="/userpage" element={<UserPage />} />
           <Route path="/adminpage" element={<AdminPage />} />
-          <Route path="/patientDeatils" element={<PatientDetails />} />
+          <Route path="/patientdeatils/:recordId" element={<PatientDetails />} />
         </Routes>
       </BrowserRouter>
       </Provider>

@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchRecords } from "../../myredux/reducers/RecordsSlice";
-import { Table, Pagination, Dropdown, DropdownButton } from "react-bootstrap";
+
+// eslint-disable-next-line no-unused-vars
+import { fetchRecords,filterRecords } from "../../myredux/reducers/RecordsSlice";
+
+import { Table, Pagination, Dropdown, DropdownButton} from "react-bootstrap";
 import { CiUser } from "react-icons/ci";
 import {  useNavigate } from "react-router-dom";
 import "./AdminPage.css";
@@ -11,17 +14,33 @@ const AdminPage = () => {
   const token = localStorage.getItem("token");
   const { records, loading, error } = useSelector((state) => state.records);
   const navigate = useNavigate();
-
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(10);
+  const [searchQuery,setSearchQuery]=useState('');
+  const [genderFilter, setGenderFilter] = useState(null);
 
-  useEffect(() => {
+
+   useEffect(() => {
     dispatch(fetchRecords());
   }, [dispatch, token]);
 
+
+  
+  
+  
+  
+
+
+   const filterRecords = records.filter
+   (record=>record?.patient_name.toLowerCase().includes(searchQuery.toLowerCase()) &&
+    (!genderFilter || record.gender.toLowerCase() === genderFilter.toLowerCase()));
+ 
+   
+
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  const currentRecords = records?.slice(indexOfFirstRecord, indexOfLastRecord);
+  const currentRecords =  filterRecords?.slice(indexOfFirstRecord,indexOfLastRecord);
+
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -30,6 +49,8 @@ const AdminPage = () => {
     navigate("/");
   };
 
+
+ 
   if (loading) {
     return <h1>Loading...</h1>;
   }
@@ -38,7 +59,17 @@ const AdminPage = () => {
     return <h1>Error: {error}</h1>;
   }
 
-  return (
+// patiendtailspage
+
+// const handlePatienDetails =(recordId)=>
+// {
+//     const token = localStorage.getItem('token');
+//     if(!token ===null);
+//     navigate(`/patientdeatils/${recordId}`)
+// }
+
+
+return (
     <div id="allrecords">
       <div id="container" className="table-responsive">
         <div id="headline">
@@ -61,11 +92,19 @@ const AdminPage = () => {
         </div>
         <div id="headline">
           <div>
-            <h3>All Documents</h3>
+            <h3 id="recordsh3">All Documents</h3>
           </div>
           <div id="lengthpart">
             <p className="ml-2 length">All Documents: {records?.length}</p>
           </div>
+        </div>
+        <div className="headerbar">
+          <input type="search" placeholder="Search Patient name" value={searchQuery} onChange={(e)=>setSearchQuery(e.target.value)} />
+          <select class="form-select" aria-label="Default select example" onChange={(e)=>setGenderFilter(e.target.value ==="all"? null: e.target.value)}>
+          <option value="all" selected>select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          </select>
         </div>
         <div className="table-container">
           <Table striped bordered id="tabledata">
@@ -96,7 +135,7 @@ const AdminPage = () => {
                   <td>{record.op_number}</td>
                   <td>{record.ip_number}</td>
                   <td>
-                    <button className="btn">Details</button>
+                    <button className="btn" id="adminpagebtn">Details</button>
                   </td>
                 </tr>
               ))}
