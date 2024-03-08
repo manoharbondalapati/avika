@@ -172,13 +172,14 @@
 
 
 
+// UserPage.js
 
 import React, { useState } from "react";
 import "./UserPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fileUpload } from "../../myredux/reducers/UserSlice";
 import { FaCircleUser } from "react-icons/fa6";
-import { NavLink } from "react-bootstrap";
+import { NavDropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const UserPage = () => {
@@ -227,45 +228,33 @@ const UserPage = () => {
     });
   };
 
-  const [showDropdown, setShowDropdown] = useState(false);
+  const navigate = useNavigate();
+
   
- const navigate = useNavigate();
-  const toggleDropdown = () => {
-    setShowDropdown(!showDropdown);
-  };
 
   const handleLogout = () => {
-   
-   localStorage.removeItem('user');
-    navigate('/homepage')
+    localStorage.removeItem('user');
+    navigate('/')
   };
 
   const todayDate = new Date().toISOString().split("T")[0];
 
   return (
-    <div id="container">
-     
+    <div id="containers">
       {error && <div>Error: {error}</div>}
       <form onSubmit={handleSubmit} className="userform">
-      <div id="forlogout">
+        <div id="forlogout">
           <div>
             <p id="para">Find! Treatment</p>
           </div>
           <div>
-            {/* Correct the button tag here */}
-            <button onClick={toggleDropdown}>
-              <FaCircleUser />
-            </button>
-            {showDropdown && (
-              <div className="dropdown-menu">
-                <NavLink to="#">Hi Saharth</NavLink>
-                <NavLink to="#" onClick={handleLogout}>Logout</NavLink>
-              </div>
-            )}
+            <NavDropdown title={<FaCircleUser />} id="basic-nav-dropdown">
+              <NavDropdown.Item>Hello Saharth</NavDropdown.Item>
+              <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+            </NavDropdown>
           </div>
         </div>
         <div className="userpagegroup">
-        <div>
           <label>OP Number:</label>
           <input
             type="text"
@@ -273,8 +262,6 @@ const UserPage = () => {
             value={formData.op_number}
             onChange={handleChange}
           />
-        </div>
-        <div>
           <label>IP Number:</label>
           <input
             type="text"
@@ -282,10 +269,6 @@ const UserPage = () => {
             value={formData.ip_number}
             onChange={handleChange}
           />
-        </div>
-        </div>
-        <div className="userpagegroup">
-        <div>
           <label>Name:</label>
           <input
             type="text"
@@ -293,8 +276,6 @@ const UserPage = () => {
             value={formData.patient_name}
             onChange={handleChange}
           />
-        </div>
-        <div>
           <label>Age:</label>
           <input
             type="text"
@@ -302,10 +283,6 @@ const UserPage = () => {
             value={formData.age}
             onChange={handleChange}
           />
-        </div>
-        </div>
-       <div className="userpagegroup">
-       <div>
           <label>Gender:</label>
           <select
             name="gender"
@@ -315,8 +292,6 @@ const UserPage = () => {
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
-        </div>
-        <div>
           <label>Place:</label>
           <input
             type="text"
@@ -324,10 +299,6 @@ const UserPage = () => {
             value={formData.place}
             onChange={handleChange}
           />
-        </div>
-       </div>
-        <div className="userpagegroup">
-        <div>
           <label>Date of Registration:</label>
           <input
             type="date"
@@ -336,8 +307,6 @@ const UserPage = () => {
             onChange={handleChange}
             max={todayDate}
           />
-        </div>
-        <div>
           <label>Reference By:</label>
           <input
             type="text"
@@ -345,10 +314,6 @@ const UserPage = () => {
             value={formData.referrence_by}
             onChange={handleChange}
           />
-        </div>
-        </div>
-        <div className="userpagegroup">
-        <div>
           <label>Patient ID:</label>
           <input
             type="text"
@@ -356,11 +321,8 @@ const UserPage = () => {
             value={formData.patient_id}
             onChange={handleChange}
           />
-        </div>
-        <div>
           <label>File Path:</label>
           <input type="file" name="file_path" onChange={handleFileChange} />
-        </div>
         </div>
         <button type="submit" disabled={isLoading}>
           {isLoading ? "Uploading..." : "Submit"}

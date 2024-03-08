@@ -150,7 +150,7 @@ label {
 .shows-password {
   position: absolute;
   right: 655px;
-  top: 58%;
+  top: 57%;
   transform: translateY(-50%);
   cursor: pointer;
   background-color: transparent;
@@ -181,11 +181,23 @@ label {
   .shows-password {
     position: absolute;
     right: 47px;
-    top: 54%;
+    top: 52%;
     transform: translateY(-50%);
     cursor: pointer;
     background-color: transparent;
     border: none;
     color: rgb(255, 34, 0);
   }
+}
+#loginbtn
+{
+  background-color:#333 ;
+  width: 100%;
+  text-transform: uppercase;
+}
+#loginbtn:hover
+{
+  background-color: white;
+  color: black;
+  border: solid 1px #333;
 }

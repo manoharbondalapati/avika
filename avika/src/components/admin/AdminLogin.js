@@ -209,7 +209,7 @@ const AdminLogin = () => {
                 {showPassword ? "Hide" : "Show"}
               </span>
             </div>
-            <button className="btn btn-primary" type="submit" disabled={loading}>
+            <button className="btn" id="loginbtn" type="submit" disabled={loading}>
               {loading ? "Logging in..." : "Login"}
             </button>
             <p id="credentials">

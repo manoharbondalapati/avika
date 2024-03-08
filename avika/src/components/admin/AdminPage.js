@@ -15,14 +15,10 @@ const AdminPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(10);
 
-
-
-  
   useEffect(() => {
     dispatch(fetchRecords());
   }, [dispatch, token]);
 
-  
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
   const currentRecords = records?.slice(indexOfFirstRecord, indexOfLastRecord);
@@ -30,9 +26,8 @@ const AdminPage = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleLogout = () => {
-    
     localStorage.removeItem("token");
-    navigate("/adminlogin");
+    navigate("/");
   };
 
   if (loading) {
@@ -45,68 +40,70 @@ const AdminPage = () => {
 
   return (
     <div id="allrecords">
-      <div id="container table-responsive" >
-      <div id="headline">
-        <div>
-          <img
-            src="https://res.cloudinary.com/dpfnyv0ut/image/upload/v1709751594/avika-img_msxfud.png"
-            alt=""
-          ></img>
+      <div id="container" className="table-responsive">
+        <div id="headline">
+          <div>
+            <img
+              src="https://res.cloudinary.com/dpfnyv0ut/image/upload/v1709751594/avika-img_msxfud.png"
+              alt=""
+            ></img>
+          </div>
+          <div id="lengthpart">
+            <DropdownButton
+              id="dropdown-basic-button"
+              title={<CiUser id="icon" />}
+              variant="light"
+            >
+              <Dropdown.Item disabled>Harish</Dropdown.Item>
+              <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+            </DropdownButton>
+          </div>
         </div>
-        <div id="lengthpart">
-          <DropdownButton
-            id="dropdown-basic-button"
-            title={<CiUser id="icon" />}
-            variant="light"
-          >
-            <Dropdown.Item disabled>Harish</Dropdown.Item>
-            <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
-          </DropdownButton>
+        <div id="headline">
+          <div>
+            <h3>All Documents</h3>
+          </div>
+          <div id="lengthpart">
+            <p className="ml-2 length">All Documents: {records?.length}</p>
+          </div>
+        </div>
+        <div className="table-container">
+          <Table striped bordered id="tabledata">
+            <thead id="heads">
+              <tr>
+                <th>S_NO</th>
+                <th>Patient Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Date of Registration</th>
+                <th>Place</th>
+                <th>Uploaded Date</th>
+                <th>OP Number</th>
+                <th>IP Number</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {currentRecords?.map((record, index) => (
+                <tr key={record.id} style={{backgroundColor:"gray"}}>
+                  <td>{indexOfFirstRecord + index + 1}</td>
+                  <td>{record.patient_name}</td>
+                  <td>{record.age}</td>
+                  <td>{record.gender}</td>
+                  <td>{record.Date_of_registration}</td>
+                  <td>{record.place}</td>
+                  <td>{record.created_at}</td>
+                  <td>{record.op_number}</td>
+                  <td>{record.ip_number}</td>
+                  <td>
+                    <button className="btn">Details</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
         </div>
       </div>
-      <div id="headline">
-        <div>
-          <h3>All Documents</h3>
-        </div>
-        <div id="lengthpart">
-          <p className="ml-2 length">All Documents: {records?.length}</p>
-        </div>
-      </div>
-
-      <Table striped bordered id="tabledata" >
-        <thead id="heads">
-          <tr>
-            <th>S_NO</th>
-            <th>Patient Name</th>
-            <th>Age</th>
-            <th>Gender</th>
-            <th>Date of Registration</th>
-            <th>Place</th>
-            <th>Uploaded Date</th>
-            <th>OP Number</th>
-            <th>IP Number</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentRecords?.map((record, index) => (
-            <tr key={record.id} style={{backgroundColor:"gray"}}>
-              <td>{indexOfFirstRecord + index + 1}</td>
-              <td>{record.patient_name}</td>
-              <td>{record.age}</td>
-              <td>{record.gender}</td>
-              <td>{record.Date_of_registration}</td>
-              <td>{record.place}</td>
-              <td>{record.created_at}</td>
-              <td>{record.op_number}</td>
-              <td>{record.ip_number}</td>
-              <td>
-                <button className="btn">Details</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
       <div className="pagination-container">
         <Pagination className="pagination">
           <Pagination.First
@@ -146,7 +143,6 @@ const AdminPage = () => {
           />
         </Pagination>
       </div>
-    </div>
     </div>
   );
 };

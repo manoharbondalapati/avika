@@ -185,7 +185,7 @@ const UserLogin = () => {
                 {showPassword ? "Hide" : "Show"}
               </span>
             </div>
-            <button className="btn btn-primary" type="submit" disabled={loading}>
+            <button className="btn" id="userloginbtn" type="submit" disabled={loading}>
               {loading ? "Logging in..." : "Login"}
             </button>
             <p id="credentials">

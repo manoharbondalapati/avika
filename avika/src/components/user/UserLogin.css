@@ -152,7 +152,7 @@
   .show-password {
     position: absolute;
     right: 655px; 
-    top: 55%; 
+    top: 53%; 
     transform: translateY(-50%);
     cursor: pointer;
     background-color: transparent;
@@ -181,7 +181,7 @@
     .show-password {
       position: absolute;
       right: 47px;
-      top: 54%;
+      top: 52%;
       transform: translateY(-50%);
       cursor: pointer;
       background-color: transparent;
@@ -189,8 +189,15 @@
       color: red;
     }
   }
- .btn:hover
+ #userloginbtn
  {
+  background-color:#333 ;
+  width: 100%;
+  text-transform: uppercase;
+}
+#userloginbtn:hover
+{
   background-color: white;
-  color: rgb(14, 100, 230);
- }
+  color: black;
+  border: solid 1px #333;
+}
