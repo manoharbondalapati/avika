@@ -1,96 +1,93 @@
+#userlogin {
+  width: 300px;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-   #userlogin {
-    width: 300px;
-    height: 100vh;
-    margin: 0 auto;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  fieldset {
-    border: 2px solid #ddd;
-    padding: 20px;
-    border-radius: 10px;
-  }
-  
-  legend {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .login-form {
-    margin-top: 20px;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  label {
-    display: block;
-    font-weight: bold;
-  }
-  
-  .input-group {
-    position: relative;
-  }
-  
-  .input-group .form-control {
-    padding-right: 40px;
-  }
-  
+fieldset {
+  border: 2px solid #ddd;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+legend {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.login-form {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+.input-group {
+  position: relative;
+}
+
+.input-group .form-control {
+  padding-right: 40px;
+}
+
+.show-password {
+  position: absolute;
+  right: 655px;
+  top: 54%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: red;
+}
+
+.show-password:focus {
+  outline: none;
+}
+
+#credentials {
+  margin-top: 20px;
+}
+
+#note {
+  font-weight: bold;
+  color: red;
+}
+
+.astrick {
+  color: red;
+}
+
+@media (max-width: 1000px) {
   .show-password {
     position: absolute;
-    right: 655px; 
-    top: 54%; 
+    right: 47px;
+    top: 52%;
     transform: translateY(-50%);
     cursor: pointer;
     background-color: transparent;
     border: none;
     color: red;
   }
-  
-  .show-password:focus {
-    outline: none;
-  }
-  
-  #credentials {
-    margin-top: 20px;
-  }
-  
-  #note {
-    font-weight: bold;
-    color: red;
-  }
-  
-  .astrick {
-    color: red;
-  }
-  
-  @media (max-width: 1000px) {
-    .show-password {
-      position: absolute;
-      right: 47px;
-      top: 52%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      background-color: transparent;
-      border: none;
-      color: red;
-    }
-  }
- #userloginbtn
- {
-  background-color:#333 ;
+}
+#userloginbtn {
+  background-color: #333;
   width: 100%;
   text-transform: uppercase;
 }
-#userloginbtn:hover
-{
+#userloginbtn:hover {
   background-color: white;
   color: black;
   border: solid 1px #333;

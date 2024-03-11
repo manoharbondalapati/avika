@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // eslint-disable-next-line no-unused-vars
-import { fetchRecords,filterRecords } from "../../myredux/reducers/RecordsSlice";
+import { fetchRecords } from "../../myredux/reducers/RecordsSlice";
 
-import { Table, Pagination, Dropdown, DropdownButton} from "react-bootstrap";
+import { Table, Pagination, Dropdown, DropdownButton } from "react-bootstrap";
 import { CiUser } from "react-icons/ci";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./AdminPage.css";
 
 const AdminPage = () => {
@@ -16,31 +16,26 @@ const AdminPage = () => {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(10);
-  const [searchQuery,setSearchQuery]=useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [genderFilter, setGenderFilter] = useState(null);
 
-
-   useEffect(() => {
+  useEffect(() => {
     dispatch(fetchRecords());
   }, [dispatch, token]);
 
-
-  
-  
-  
-  
-
-
-   const filterRecords = records.filter
-   (record=>record?.patient_name.toLowerCase().includes(searchQuery.toLowerCase()) &&
-    (!genderFilter || record.gender.toLowerCase() === genderFilter.toLowerCase()));
- 
-   
+  const filterRecords = records.filter(
+    (record) =>
+      record?.patient_name.toLowerCase().includes(searchQuery.toLowerCase()) &&
+      (!genderFilter ||
+        record.gender.toLowerCase() === genderFilter.toLowerCase())
+  );
 
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  const currentRecords =  filterRecords?.slice(indexOfFirstRecord,indexOfLastRecord);
-
+  const currentRecords = filterRecords?.slice(
+    indexOfFirstRecord,
+    indexOfLastRecord
+  );
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -49,8 +44,6 @@ const AdminPage = () => {
     navigate("/");
   };
 
-
- 
   if (loading) {
     return <h1>Loading...</h1>;
   }
@@ -59,17 +52,16 @@ const AdminPage = () => {
     return <h1>Error: {error}</h1>;
   }
 
-// patiendtailspage
+  // patiendtailspage
 
-// const handlePatienDetails =(recordId)=>
-// {
-//     const token = localStorage.getItem('token');
-//     if(!token ===null);
-//     navigate(`/patientdeatils/${recordId}`)
-// }
+  // const handlePatienDetails =(recordId)=>
+  // {
+  //     const token = localStorage.getItem('token');
+  //     if(!token ===null);
+  //     navigate(`/patientdeatils/${recordId}`)
+  // }
 
-
-return (
+  return (
     <div id="allrecords">
       <div id="container" className="table-responsive">
         <div id="headline">
@@ -99,11 +91,24 @@ return (
           </div>
         </div>
         <div className="headerbar">
-          <input type="search" placeholder="Search Patient name" value={searchQuery} onChange={(e)=>setSearchQuery(e.target.value)} />
-          <select class="form-select" aria-label="Default select example" onChange={(e)=>setGenderFilter(e.target.value ==="all"? null: e.target.value)}>
-          <option value="all" selected>select Gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
+          <input
+            type="search"
+            placeholder="Search Patient name"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            onChange={(e) =>
+              setGenderFilter(e.target.value === "all" ? null : e.target.value)
+            }
+          >
+            <option value="all" selected>
+              select Gender
+            </option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
           </select>
         </div>
         <div className="table-container">
@@ -124,7 +129,7 @@ return (
             </thead>
             <tbody>
               {currentRecords?.map((record, index) => (
-                <tr key={record.id} style={{backgroundColor:"gray"}}>
+                <tr key={record.id} style={{ backgroundColor: "gray" }}>
                   <td>{indexOfFirstRecord + index + 1}</td>
                   <td>{record.patient_name}</td>
                   <td>{record.age}</td>
@@ -135,7 +140,9 @@ return (
                   <td>{record.op_number}</td>
                   <td>{record.ip_number}</td>
                   <td>
-                    <button className="btn" id="adminpagebtn">Details</button>
+                    <button className="btn" id="adminpagebtn">
+                      Details
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -175,7 +182,9 @@ return (
             }
           />
           <Pagination.Last
-            onClick={() => paginate(Math.ceil(records?.length / recordsPerPage))}
+            onClick={() =>
+              paginate(Math.ceil(records?.length / recordsPerPage))
+            }
             disabled={
               currentPage === Math.ceil(records?.length / recordsPerPage)
             }

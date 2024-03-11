@@ -5,10 +5,10 @@ import UserPage from "./components/user/UserPage";
 import AdminLogin from "./components/admin/AdminLogin";
 import AdminPage from "./components/admin/AdminPage";
 import PatientDetails from "./components/admin/PatientDetails";
-import { Provider} from "react-redux";
+import { Provider } from "react-redux";
 //import { Provider as ALLRecordsProvider } from "react-redux";
-import Store from '../src/myredux/stores/Store';
-import './App.css';
+import Store from "../src/myredux/stores/Store";
+import "./App.css";
 import UserLogin from "./components/user/UserLogin";
 //import RecordStore from "../src/myredux/stores/RecordStore";
 
@@ -17,17 +17,20 @@ const App = () => {
     // <AuthProvider store={Store}>
     //  <ALLRecordsProvider recordstore={RecordStore}>
     <Provider store={Store}>
-     <BrowserRouter>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/userlogin" element={<UserLogin/>}/>
+          <Route path="/userlogin" element={<UserLogin />} />
           <Route path="/adminlogin" element={<AdminLogin />} />
           <Route path="/userpage" element={<UserPage />} />
           <Route path="/adminpage" element={<AdminPage />} />
-          <Route path="/patientdeatils/:recordId" element={<PatientDetails />} />
+          <Route
+            path="/patientdeatils/:recordId"
+            element={<PatientDetails />}
+          />
         </Routes>
       </BrowserRouter>
-      </Provider>
+    </Provider>
     //  </ALLRecordsProvider>
     // </AuthProvider>
   );

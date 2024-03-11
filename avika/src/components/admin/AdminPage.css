@@ -1,134 +1,104 @@
-
-#allrecords
-{
+#allrecords {
   height: 100%;
   padding: 20px;
-  background-image:linear-gradient(#0F2027,#203a43,#2c5364);
+  background-image: linear-gradient(#0f2027, #203a43, #2c5364);
   margin: 35px 35px;
 }
-.pagination
-{
-    margin-right: 10px;
+.pagination {
+  margin-right: 10px;
 }
 
 .pagination-container {
-    display: flex;
-    justify-content:center;
-    margin-top: 10px; 
-   
-    
-  }
-  
-  .pagination {
-    margin-bottom: 0;
-    background-color: #484848;
-  }
-#headline
-{
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
 
+.pagination {
+  margin-bottom: 0;
+  background-color: #484848;
 }
-  
-#lengthpart
-{
-    display: flex;
+#headline {
+  display: flex;
+  justify-content: space-between;
 }
-img
-{
-    height: 40px;
-    width: 60px;
+
+#lengthpart {
+  display: flex;
 }
-#usericon
-{
-    height: 25px;
-    width: 25px;
-   text-align: center;
-   border: none;
-   outline: none;
-   
+img {
+  height: 40px;
+  width: 60px;
 }
-#icon
-{
-    padding: 0px;
-    margin-top: -4px;
-    color: rgb(236, 187, 10);
-    font-size: 20px;
-   
+#usericon {
+  height: 25px;
+  width: 25px;
+  text-align: center;
+  border: none;
+  outline: none;
 }
-#recordsh3
-{
+#icon {
+  padding: 0px;
+  margin-top: -4px;
+  color: rgb(236, 187, 10);
+  font-size: 20px;
+}
+#recordsh3 {
   color: rgb(236, 187, 10);
 }
-.length
-{
-  
-    border-radius: 5px;
-    padding: 2px;
-    background-color: goldenrod;
+.length {
+  border-radius: 5px;
+  padding: 2px;
+  background-color: goldenrod;
 }
-table tr:hover
-{
-    background-color:rgb(66, 64, 64);
+table tr:hover {
+  background-color: rgb(66, 64, 64);
 }
 
-
-#heads th
-{
-    background-color: rgb(16, 27, 58);
-    color: white;
+#heads th {
+  background-color: rgb(16, 27, 58);
+  color: white;
 }
 
-.btn
-{
-    background-color: rgb(28, 40, 71);
-    color: white;
+.btn {
+  background-color: rgb(28, 40, 71);
+  color: white;
 }
 
 #dropdown-basic-button {
   display: flex;
   align-items: center;
 }
-#numbers
-{
-    background-color: white;
-    color: black;
-    border-radius: 5px;
+#numbers {
+  background-color: white;
+  color: black;
+  border-radius: 5px;
 }
 
 .table-container {
   overflow-x: auto;
 }
 
-
 @media (max-width: 768px) {
- 
   .table-container {
     max-width: 350px;
   }
-#allrecords
-{
-  margin: auto;
+  #allrecords {
+    margin: auto;
+  }
 }
- 
-  
-}
-#adminpagebtn:hover
-{
+#adminpagebtn:hover {
   background-color: white;
-  border: solid 1px #0F2027;
+  border: solid 1px #0f2027;
 }
 
-.headerbar
-{
+.headerbar {
   display: flex;
 }
-.headerbar select 
-{
+.headerbar select {
   width: 150px;
   height: 35px;
 }
-.headerbar input 
-{
+.headerbar input {
   height: 35px;
 }
