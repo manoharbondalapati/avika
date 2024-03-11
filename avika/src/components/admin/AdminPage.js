@@ -8,6 +8,7 @@ import { Table, Pagination, Dropdown, DropdownButton } from "react-bootstrap";
 import { CiUser } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import "./AdminPage.css";
+import { all } from "axios";
 
 const AdminPage = () => {
   const dispatch = useDispatch();
@@ -54,12 +55,14 @@ const AdminPage = () => {
 
   // patiendtailspage
 
-  // const handlePatienDetails =(recordId)=>
-  // {
-  //     const token = localStorage.getItem('token');
-  //     if(!token ===null);
-  //     navigate(`/patientdeatils/${recordId}`)
-  // }
+  const handlePatienDetails =(recordId)=>
+  {
+    console.log(recordId);
+      const token = localStorage.getItem('token');
+      if(token !==null);
+
+      navigate(`/patientdeatils/${recordId}`);
+  }
 
   return (
     <div id="allrecords">
@@ -104,7 +107,7 @@ const AdminPage = () => {
               setGenderFilter(e.target.value === "all" ? null : e.target.value)
             }
           >
-            <option value="all" selected>
+            <option value="all" defaultValue={all}>
               select Gender
             </option>
             <option value="male">Male</option>
@@ -127,6 +130,7 @@ const AdminPage = () => {
                 <th>Actions</th>
               </tr>
             </thead>
+
             <tbody>
               {currentRecords?.map((record, index) => (
                 <tr key={record.id} style={{ backgroundColor: "gray" }}>
@@ -140,8 +144,8 @@ const AdminPage = () => {
                   <td>{record.op_number}</td>
                   <td>{record.ip_number}</td>
                   <td>
-                    <button className="btn" id="adminpagebtn">
-                      Details
+                    <button className="btn" id="adminpagebtn" onClick={()=>handlePatienDetails(record.id)}>
+                      Details 
                     </button>
                   </td>
                 </tr>

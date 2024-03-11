@@ -36,7 +36,7 @@ export const fetchRecordById = (recordId) => async (dispatch) => {
     );
     dispatch(fetchDetailsSuccess(response.data.data));
   } catch (error) {
-    dispatch(fetchDetailsFailure(error));
+    dispatch(fetchDetailsFailure({ message: error.message }));
   }
 };
 

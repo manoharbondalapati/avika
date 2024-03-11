@@ -3,11 +3,15 @@ import { IoChevronBackCircleOutline } from "react-icons/io5";
 import { FaRegUserCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRecordById } from "../../myredux/reducers/PatientSlice";
+import { useParams } from "react-router-dom";
 
-const PatientDetails = ({ recordId }) => {
+const PatientDetails = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const { details, loading, error } = useSelector((state) => state.details);
   const dispatch = useDispatch();
+
+  const {recordId}= useParams();
+  console.log(recordId);
 
   useEffect(() => {
     dispatch(fetchRecordById(recordId));
