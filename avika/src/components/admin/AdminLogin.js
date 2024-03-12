@@ -91,7 +91,7 @@ const AdminLogin = () => {
               className="btn"
               id="loginbtn"
               type="submit"
-              disabled={loading}
+             
             >
               {loading ? "Logging in..." : "Login"}
             </button>

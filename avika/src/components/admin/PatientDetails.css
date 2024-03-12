@@ -1,0 +1,131 @@
+/* #headerbar
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+#backbutton
+{
+    border-radius: 100px;
+    height: 50px;
+    width: 50px;
+    padding: 5px;
+    background-color: white;
+    color: black;
+}
+#patientlogout
+{
+    margin-left: 10px;
+    background-color: white;
+    color: black;
+    color: goldenrod;
+}
+.dropdown-content
+{
+   z-index: 1;
+}
+.headerbar2
+{
+    display: flex;
+    justify-content: space-between;
+} */
+
+
+
+
+
+
+
+/* PatientDetails.css */
+/* PatientDetails.css */
+
+.container {
+    margin: 0 auto;
+    padding: 20px;
+    
+  }
+  
+  #headerbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  #backbutton,
+  #patientlogout {
+    border-radius: 100px;
+    height: 50px;
+    width: 50px;
+    padding: 5px;
+    background-color: white;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+  }
+  
+  #patientlogout {
+    margin-left: 10px;
+    color: goldenrod;
+  }
+  
+  .dropdown-content {
+    position: absolute;
+    top: 100%; /* Adjust top position as needed */
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   
+  }
+  
+  .dropdown-content p {
+    margin: 0;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .headerbar2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  #view-file {
+    background-color: #244848;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  #details {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+  }
+  
+  #details h3 {
+    margin-top: 0;
+  }
+  
+  .detail-item {
+    margin-bottom: 10px;
+  }
+  
+  .detail-item p {
+   margin-left: 10px;
+
+  }
+  
+  .detail-item span {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  

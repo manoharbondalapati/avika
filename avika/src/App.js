@@ -6,16 +6,12 @@ import AdminLogin from "./components/admin/AdminLogin";
 import AdminPage from "./components/admin/AdminPage";
 import PatientDetails from "./components/admin/PatientDetails";
 import { Provider } from "react-redux";
-//import { Provider as ALLRecordsProvider } from "react-redux";
 import Store from "../src/myredux/stores/Store";
 import "./App.css";
 import UserLogin from "./components/user/UserLogin";
-//import RecordStore from "../src/myredux/stores/RecordStore";
 
 const App = () => {
   return (
-    // <AuthProvider store={Store}>
-    //  <ALLRecordsProvider recordstore={RecordStore}>
     <Provider store={Store}>
       <BrowserRouter>
         <Routes>
@@ -31,8 +27,6 @@ const App = () => {
         </Routes>
       </BrowserRouter>
     </Provider>
-    //  </ALLRecordsProvider>
-    // </AuthProvider>
   );
 };
 
