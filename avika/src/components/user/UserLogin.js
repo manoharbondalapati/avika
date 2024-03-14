@@ -82,7 +82,7 @@ const UserLogin = () => {
                 required
               />
               <span
-                className="show-password"
+                id="show-password"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? "Hide" : "Show"}

@@ -82,3 +82,28 @@ h2 {
 #admindiv {
   animation: floatUpDown 3s ease-in-out infinite;
 }
+
+
+@media(max-width:760px)
+{
+  #userdiv
+  {
+    box-sizing: border-box;
+   box-shadow: 2px 1px 4px 5px black;
+    display: inline-block;
+  height: 70px;
+  padding: 5%;
+  margin-left: 25%;
+  margin-top: 5%;
+  }
+  #admindiv {
+    box-sizing: border-box;
+    box-shadow: 2px 1px 4px 5px black;
+    display: inline-block;
+    height: 70px;
+    padding: 5%;
+    margin-left: 20px;
+    margin-top: 5%;
+   
+  }
+}
