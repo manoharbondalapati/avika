@@ -1,3 +1,11 @@
+#patientDetailsPage
+{
+  background-color: #244848;
+  height: 100vh;
+}
+
+
+
 .container {
   margin: 0 auto;
   padding: 20px;
@@ -16,8 +24,8 @@
   height: 50px;
   width: 50px;
   padding: 5px;
-  background-color: white;
-  color: black;
+  /* background-color: white; */
+  color: rgb(238, 181, 9);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,8 +62,8 @@
 }
 
 #view-file {
-  background-color: #244848;
-  color: white;
+  background-color: rgb(15, 44, 49);
+  color:white;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;

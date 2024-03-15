@@ -40,7 +40,8 @@ const PatientDetails = () => {
   };
 
   return (
-    <div className="container" id="patientDetailsPage">
+    <div id="patientDetailsPage">
+    <div className="container" >
       <div id="headerbar">
         <div>
           <img
@@ -114,6 +115,7 @@ const PatientDetails = () => {
           </p>
         </div>
       </div>
+    </div>
     </div>
   );
 };

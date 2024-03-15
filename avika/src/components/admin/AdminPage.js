@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchRecords } from "../../myredux/reducers/RecordsSlice";
-import { Table, Pagination, Dropdown, DropdownButton } from "react-bootstrap";
+import { Table, Pagination } from "react-bootstrap";
 import { CiUser } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import "./AdminPage.css";
@@ -16,6 +16,7 @@ const AdminPage = () => {
   const [recordsPerPage] = useState(10);
   const [searchQuery, setSearchQuery] = useState("");
   const [genderFilter, setGenderFilter] = useState(null);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
 
   useEffect(() => {
     dispatch(fetchRecords());
@@ -40,6 +41,10 @@ const AdminPage = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/");
+  };
+
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
   };
 
   if (loading) {
@@ -67,18 +72,19 @@ const AdminPage = () => {
               alt=""
             ></img>
           </div>
-          <div id="lengthpart">
-            <DropdownButton
-              id="dropdown-basic-button"
-              title={<CiUser id="icon" />}
-              variant="light"
-            >
-              <Dropdown.Item disabled>Harish</Dropdown.Item>
-              <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
-            </DropdownButton>
+          <div id="lengthpart" className="dropdown">
+            <button id="adminlogout" onClick={toggleDropdown}>
+              <CiUser size={30} />
+            </button>
+            {dropdownVisible && (
+              <div className="dropdown-contents">
+                <p>Harish</p>
+                <p onClick={handleLogout}>Logout</p>
+              </div>
+            )}
           </div>
         </div>
-        <div id="headline">
+          <div id="headline">
           <div>
             <h3 id="recordsh3">All Documents</h3>
           </div>

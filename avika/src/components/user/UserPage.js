@@ -3,7 +3,7 @@ import "./UserPage.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fileUpload } from "../../myredux/reducers/UserSlice";
 import { FaCircleUser } from "react-icons/fa6";
-import { NavDropdown } from "react-bootstrap";
+
 import { useNavigate } from "react-router-dom";
 
 const UserPage = () => {
@@ -19,11 +19,13 @@ const UserPage = () => {
     patient_id: "",
     file_path: null,
   });
+  const [dropdownVisible, setDropdownVisible] = useState(false);
 
   const dispatch = useDispatch();
   const token = localStorage.getItem("user");
   const isLoading = useSelector((state) => state.fileUploading);
   const error = useSelector((state) => state.fileUploading);
+  
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -34,6 +36,9 @@ const UserPage = () => {
     const file = event.target.files[0];
     setFormData({ ...formData, file_path: file });
   };
+
+
+ 
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -52,7 +57,17 @@ const UserPage = () => {
     });
   };
 
+
   const navigate = useNavigate();
+
+
+
+
+   
+  const toggleDropdown =()=>
+  {
+    setDropdownVisible(!dropdownVisible);
+  }
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -69,11 +84,16 @@ const UserPage = () => {
           <div>
             <p id="para">Find! Treatment</p>
           </div>
-          <div>
-            <NavDropdown title={<FaCircleUser />} id="basic-nav-dropdown">
-              <NavDropdown.Item>Hello Saharth</NavDropdown.Item>
-              <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
-            </NavDropdown>
+          <div className="dropdown">
+          <button id="userlogout" type="button" onClick={toggleDropdown}>
+          <FaCircleUser size={30} />
+          </button>
+          {dropdownVisible && (
+            <div className="dropdown-contentss">
+              <p>Sharath</p>
+              <p onClick={handleLogout}>Logout</p>
+            </div>
+          )}
           </div>
         </div>
         <div className="userpagegroup">
@@ -151,3 +171,6 @@ const UserPage = () => {
 };
 
 export default UserPage;
+
+
+
