@@ -25,7 +25,6 @@ const UserPage = () => {
   const token = localStorage.getItem("user");
   const isLoading = useSelector((state) => state.fileUploading);
   const error = useSelector((state) => state.fileUploading);
-  
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -36,9 +35,6 @@ const UserPage = () => {
     const file = event.target.files[0];
     setFormData({ ...formData, file_path: file });
   };
-
-
- 
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -57,17 +53,11 @@ const UserPage = () => {
     });
   };
 
-
   const navigate = useNavigate();
 
-
-
-
-   
-  const toggleDropdown =()=>
-  {
+  const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
-  }
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -85,15 +75,15 @@ const UserPage = () => {
             <p id="para">Find! Treatment</p>
           </div>
           <div className="dropdown">
-          <button id="userlogout" type="button" onClick={toggleDropdown}>
-          <FaCircleUser size={30} />
-          </button>
-          {dropdownVisible && (
-            <div className="dropdown-contentss">
-              <p>Sharath</p>
-              <p onClick={handleLogout}>Logout</p>
-            </div>
-          )}
+            <button id="userlogout" type="button" onClick={toggleDropdown}>
+              <FaCircleUser size={30} />
+            </button>
+            {dropdownVisible && (
+              <div className="dropdown-contentss">
+                <p>Sharath</p>
+                <p onClick={handleLogout}>Logout</p>
+              </div>
+            )}
           </div>
         </div>
         <div className="userpagegroup">
@@ -171,6 +161,3 @@ const UserPage = () => {
 };
 
 export default UserPage;
-
-
-

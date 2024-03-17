@@ -1,10 +1,7 @@
-#patientDetailsPage
-{
+#patientDetailsPage {
   background-color: #244848;
   height: 100vh;
 }
-
-
 
 .container {
   margin: 0 auto;
@@ -63,7 +60,7 @@
 
 #view-file {
   background-color: rgb(15, 44, 49);
-  color:white;
+  color: white;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;

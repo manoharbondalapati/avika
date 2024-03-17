@@ -1,4 +1,4 @@
- #allrecords {
+#allrecords {
   height: 100%;
   padding: 20px;
   background-color: #333637;
@@ -101,22 +101,17 @@ table tr:hover {
   border-radius: 5px;
 }
 
-@media (max-width:1000px) 
-{
-
-  .headerbar select {
-  width: auto;
-  
-}
-.headerbar input {
- 
-  width: auto;
- 
-}
+@media (max-width: 1000px) {
+  .headerbar {
+    display: flex;
+  }
+  #namesearch {
+    margin-right: -50px;
+  }
 }
 .dropdown-contents {
   position: absolute;
-  top: 100%; 
+  top: 100%;
   right: 0;
   background-color: white;
   border: 1px solid #ccc;
@@ -130,10 +125,18 @@ table tr:hover {
   padding: 5px;
   cursor: pointer;
 }
-#adminlogout
-{
+#adminlogout {
   border-radius: 200px;
   color: goldenrod;
   background-color: rgb(34, 47, 47);
 }
- 
+#datepicker {
+  color: rgb(217, 214, 214);
+  margin-left: 250px;
+}
+#genderselect {
+  margin-left: 60px;
+}
+#namesearch {
+  margin-left: 50px;
+}
