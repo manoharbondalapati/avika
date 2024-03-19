@@ -98,6 +98,7 @@ const AdminPage = () => {
           </div>
         </div>
         <div className="headerbar">
+          <div>
           <input
             id="namesearch"
             type="search"
@@ -105,7 +106,9 @@ const AdminPage = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <select
+          </div>
+         <div>
+         <select
             id="genderselect"
             className="form-select"
             aria-label="Default select example"
@@ -117,7 +120,9 @@ const AdminPage = () => {
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>
-          <span id="datepicker">Date_of_registration </span>
+         </div>
+         <div>
+         <span id="datepicker">Date_of_registration </span>
           <DatePicker
             selected={startDate}
             onChange={(date) => setStartDate(date)}
@@ -135,6 +140,7 @@ const AdminPage = () => {
             minDate={startDate}
             placeholderText="To Date"
           />
+         </div>
         </div>
         <div className="table-container">
           <Table striped bordered id="tabledata">
