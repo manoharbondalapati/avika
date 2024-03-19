@@ -60,12 +60,7 @@ const AdminLogin = () => {
                 placeholder="Enter your mobile number"
                 required
               />
-              {mobile.length < 10 && mobile.length > 0 && (
-                <small className="text-danger">
-                  Enter valid 10 digit mobile number.
-                </small>
-              )}
-            </div>
+             </div>
             <div className="form-group">
               <label htmlFor="password">
                 Password<sup className="astrick">&#42;</sup>

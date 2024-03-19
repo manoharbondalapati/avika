@@ -61,11 +61,6 @@ const UserLogin = () => {
                 maxLength={10}
                 onChange={(e) => setMobile(e.target.value)}
               />
-              {mobile.length < 10 && mobile.length > 0 && (
-                <small className="text-danger">
-                  Enter valid 10 digit mobile number.
-                </small>
-              )}
             </div>
             <div className="form-group">
               <label htmlFor="password">
