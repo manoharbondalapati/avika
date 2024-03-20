@@ -6,7 +6,7 @@
   object-fit: cover;
   background-attachment: fixed;
 }
-.container h1,
+.containers h1,
 h2 {
   color: white;
   text-shadow: 3px 6px 4px black;

@@ -70,7 +70,7 @@ const AdminPage = () => {
   return (
     <div id="allrecords">
       <div id="container" className="table-responsive">
-        <div id="headline">
+        <div id="headline1">
           <div>
             <img
               src="https://res.cloudinary.com/dpfnyv0ut/image/upload/v1709751594/avika-img_msxfud.png"
@@ -89,7 +89,7 @@ const AdminPage = () => {
             )}
           </div>
         </div>
-        <div id="headline">
+        <div id="headline2">
           <div>
             <h3 id="recordsh3">All Documents</h3>
           </div>
@@ -121,8 +121,9 @@ const AdminPage = () => {
             <option value="female">Female</option>
           </select>
          </div>
-         <div>
+         <div id="datefilter">
          <span id="datepicker">Date_of_registration </span>
+          <div className="dates">
           <DatePicker
             selected={startDate}
             onChange={(date) => setStartDate(date)}
@@ -140,6 +141,7 @@ const AdminPage = () => {
             minDate={startDate}
             placeholderText="To Date"
           />
+          </div>
          </div>
         </div>
         <div className="table-container">

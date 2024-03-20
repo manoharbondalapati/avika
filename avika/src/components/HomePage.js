@@ -7,7 +7,7 @@ import "./HomePage.css";
 const HomePage = () => {
   return (
     <div id="body">
-      <div className="container" id="homeheadings">
+      <div className="containers" id="homeheadings">
         <h1>
           Welcome!!<span id="plus">&#43;</span>
         </h1>

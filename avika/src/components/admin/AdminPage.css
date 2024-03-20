@@ -18,9 +18,16 @@
   margin-bottom: 0;
   background-color: #484848;
 }
-#headline {
+#headline1
+{
   display: flex;
   justify-content: space-between;
+}
+#headline2 {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+ 
 }
 
 #lengthpart {
@@ -73,6 +80,7 @@ table tr:hover {
 
 .table-container {
   overflow-x: auto;
+  margin-top: 10px;
 }
 
 @media (max-width: 768px) {
@@ -90,7 +98,7 @@ table tr:hover {
 
 .headerbar {
   display: flex;
-  justify-content: space-around;
+ justify-content: space-around;
 }
 .headerbar select 
 {
@@ -105,6 +113,16 @@ table tr:hover {
 #datepicker
 {
   color: wheat;
+}
+#datefilter
+{
+  width: 550px;
+  display: flex;
+  /* border: solid 1px black; */
+}
+.dates
+{
+  display: flex;
 }
 
 
@@ -144,8 +162,10 @@ table tr:hover {
 }
 #adminlogout {
   border-radius: 200px;
-  color: goldenrod;
-  background-color: rgb(34, 47, 47);
+  border: none;
+  outline: none;
+  color: rgb(35, 85, 116);
+  background-color: rgb(186, 158, 17);
 }
 /* #datepicker {
   color: rgb(217, 214, 214);
@@ -169,5 +189,19 @@ table tr:hover {
   {
     width: 190px;
   }
+  .dates
+{
+  display: flex;
+  flex-direction: column;
+}
+#datefilter
+{
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  /* border: solid 1px black; */
+}
+  
   
 }
+

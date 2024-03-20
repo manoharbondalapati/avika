@@ -41,7 +41,7 @@ const PatientDetails = () => {
 
   return (
     <div id="patientDetailsPage">
-      <div className="container">
+      <div className="patientcontainers">
         <div id="headerbar">
           <div>
             <img

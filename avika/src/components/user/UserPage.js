@@ -49,7 +49,7 @@ const UserPage = () => {
       Date_of_registration: "",
       referrence_by: "",
       patient_id: "",
-      file_path: "",
+      file_path: null,
     });
   };
 
@@ -68,94 +68,129 @@ const UserPage = () => {
 
   return (
     <div id="containers">
-      {error && <div>Error: {error}</div>}
+     <div className="container">
+     {error && <div>Error: {error}</div>}
+      <div id="forlogout">
+        <div>
+          <p id="para">Find! Treatment</p>
+        </div>
+        <div className="dropdown">
+          <button id="userlogout" type="button" onClick={toggleDropdown}>
+            <FaCircleUser size={30} />
+          </button>
+          {dropdownVisible && (
+            <div className="dropdown-contentss">
+              <p>Sharath</p>
+              <p onClick={handleLogout}>Logout</p>
+            </div>
+          )}
+        </div>
+      </div>
+      <hr></hr>
       <form onSubmit={handleSubmit} className="userform">
-        <div id="forlogout">
-          <div>
-            <p id="para">Find! Treatment</p>
+        <div className="form-row">
+          <div className="input-data">
+            <input type="text" name="op_number" value={formData.op_number}  onChange={handleChange} />
+            <div className="underline"></div>
+            <label>OP Number:</label>
           </div>
-          <div className="dropdown">
-            <button id="userlogout" type="button" onClick={toggleDropdown}>
-              <FaCircleUser size={30} />
-            </button>
-            {dropdownVisible && (
-              <div className="dropdown-contentss">
-                <p>Sharath</p>
-                <p onClick={handleLogout}>Logout</p>
-              </div>
-            )}
+          <div className="input-data">
+            <input
+              type="text"
+              name="ip_number"
+              value={formData.ip_number}
+              onChange={handleChange} />
+            <div className="underline"></div>
+            <label>IP Number:</label>
           </div>
         </div>
-        <div className="userpagegroup">
-          <label>OP Number:</label>
-          <input
-            type="text"
-            name="op_number"
-            value={formData.op_number}
-            onChange={handleChange}
-          />
-          <label>IP Number:</label>
-          <input
-            type="text"
-            name="ip_number"
-            value={formData.ip_number}
-            onChange={handleChange}
-          />
-          <label>Name:</label>
+        <div className="form-row">
+        <div className="input-data">
           <input
             type="text"
             name="patient_name"
             value={formData.patient_name}
-            onChange={handleChange}
-          />
-          <label>Age:</label>
+            onChange={handleChange} />
+          <div className="underline"></div>
+          <label>Name:</label>
+          </div>
+          <div className="input-data">
           <input
             type="text"
             name="age"
             value={formData.age}
-            onChange={handleChange}
-          />
-          <label>Gender:</label>
+            onChange={handleChange} />
+          <div className="underline"></div>
+          <label>Age:</label>
+        </div>
+        </div>
+        <div className="form-row">
+        <div className="input-data">
           <select name="gender" value={formData.gender} onChange={handleChange}>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
           </select>
-          <label>Place:</label>
-          <input
-            type="text"
-            name="place"
-            value={formData.place}
-            onChange={handleChange}
-          />
-          <label>Date of Registration:</label>
-          <input
-            type="date"
-            name="Date_of_registration"
-            value={formData.Date_of_registration}
-            onChange={handleChange}
-            max={todayDate}
-          />
-          <label>Reference By:</label>
-          <input
-            type="text"
-            name="referrence_by"
-            value={formData.referrence_by}
-            onChange={handleChange}
-          />
-          <label>Patient ID:</label>
-          <input
-            type="text"
-            name="patient_id"
-            value={formData.patient_id}
-            onChange={handleChange}
-          />
-          <label>File Path:</label>
-          <input type="file" name="file_path" onChange={handleFileChange} />
+          <div className="underline"></div>
+          <label>Gender:</label>
         </div>
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? "Uploading..." : "Submit"}
-        </button>
+      <div className="input-data">
+       <input
+          type="text"
+          name="place"
+          value={formData.place}
+          onChange={handleChange} />
+          <div className="underline"></div>
+          <label>Place:</label>
+        </div>
+        </div>
+        <div className="form-row">
+       <div className="input-data datefunction">
+      <input
+          type="date"
+          name="Date_of_registration"
+          value={formData.Date_of_registration}
+          onChange={handleChange}
+          max={todayDate} />
+          <div className="underline"></div>
+          <label>Date of Registration:</label>
+       </div>
+       <div className="input-data">
+       <input
+          type="text"
+          name="referrence_by"
+          value={formData.referrence_by}
+          onChange={handleChange} />
+          <div className="underline"></div>
+          <label>Reference By:</label>
+        </div>
+        </div>
+        <div className="form-row">
+        <div className="input-data">
+        <input
+          type="text"
+          name="patient_id"
+          value={formData.patient_id}
+          onChange={handleChange} />
+          <div className="underline"></div>
+          <label>Patient ID:</label>
+        </div>
+      <div className="input-data">
+       <input type="file" name="file_path" onChange={handleFileChange} />
+        <div className="underline"></div>
+        <label>File Path:</label>
+        </div>
+        </div>
+        <div className="form-row submit-btn">
+          <div className="input-data">
+         <div className="inner">
+         <button type="submit" disabled={isLoading}>
+        {isLoading ? "Uploading..." : "Submit"}
+      </button>
+         </div>
+          </div>
+        </div>
       </form>
+     </div>
     </div>
   );
 };
