@@ -10,9 +10,10 @@ import Store from "../src/myredux/stores/Store";
 import "./App.css";
 import UserLogin from "./components/user/UserLogin";
 
+
 const App = () => {
   return (
-    <Provider store={Store}>
+   <Provider store={Store}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -22,8 +23,8 @@ const App = () => {
           <Route path="/adminpage" element={<AdminPage />} />
           <Route
             path="/patientdeatils/:recordId"
-            element={<PatientDetails />}
-          />
+            element={<PatientDetails />} />
+
         </Routes>
       </BrowserRouter>
     </Provider>

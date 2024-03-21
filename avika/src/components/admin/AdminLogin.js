@@ -110,18 +110,14 @@
 
 // export default AdminLogin;
 
-
-
-
-
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAdmin } from "../../myredux/reducers/AdminSlice";
 import { useNavigate } from "react-router-dom";
 import { MdAdminPanelSettings } from "react-icons/md";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import "./AdminLogin.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AdminLogin = () => {
   const dispatch = useDispatch();
@@ -132,42 +128,37 @@ const AdminLogin = () => {
   const loading = useSelector((state) => state.admin.loading);
   const error = useSelector((state) => state.admin.error);
 
-  const handleSuccess = () => {
-    toast.success("Login successful!", {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
+  const showToastMessage = (message) => {
+    console.log(message);
+    toast.success(message, {
+      position: "top-center",
     });
   };
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
     let adminCredentials = { mobile, password };
-  if (mobile !== "9964517148" || password !== "harish_med@123") {
-      alert('Invalid mobile number or password.');
+    if (mobile !== "9964517148" || password !== "harish_med@123") {
+      alert("Invalid mobile number or password.");
       return;
     }
     dispatch(loginAdmin(adminCredentials))
       .then(() => {
-        const token = localStorage.getItem("token");
-        if (token) {
-          handleSuccess();
-          navigate("/adminpage");
-        }
+        showToastMessage("Login successful!");
+        navigate("/adminpage");
       })
-      .catch(() => {
-        console.error("Login failed");
+      .catch((error) => {
+        console.error("Login failed:", error.message);
+        showToastMessage("Login failed. Please try again.");
         setMobile("");
         setPassword("");
       });
   };
-
+  
   return (
     <div id="adminlogin">
+       <ToastContainer />
       <fieldset>
         <legend>
           <h1>
@@ -195,7 +186,7 @@ const AdminLogin = () => {
                 placeholder="Enter your mobile number"
                 required
               />
-             </div>
+            </div>
             <div className="form-group">
               <label htmlFor="password">
                 Password<sup className="astrick">&#42;</sup>
@@ -229,14 +220,12 @@ const AdminLogin = () => {
                 {error}
               </div>
             )}
-            <ToastContainer />
           </form>
         </div>
       </fieldset>
+     
     </div>
   );
 };
 
 export default AdminLogin;
-
-
