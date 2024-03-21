@@ -70,7 +70,7 @@ label {
   color: red;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 500px) {
   #show-password {
     position: absolute;
     right: 47px;
@@ -82,6 +82,23 @@ label {
     color: red;
   }
 }
+@media screen and (min-width:600px) and (max-width:768px) 
+{
+  #show-password
+  {
+    position: absolute;
+    right: 500px;
+    top: 53%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: red;
+  }
+  
+}
+
+
 #userloginbtn {
   background-color: #333;
   width: 100%;

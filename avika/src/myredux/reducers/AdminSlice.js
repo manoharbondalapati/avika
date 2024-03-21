@@ -1,6 +1,6 @@
 import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { toast } from "react-toastify";
+//import { toast } from "react-toastify";
 
 export const loginAdmin = createAsyncThunk(
   "admin/loginAdmin",
@@ -12,12 +12,8 @@ export const loginAdmin = createAsyncThunk(
       );
       console.log(response);
       localStorage.setItem("token", response.data.data.token);
-
-      if(response.data.data.status===200) toast.success('login Success');
-      
-        
-      
-      console.log(response.data.data.token);
+     //if(response.data.status===200) toast.success('login Success');
+      //console.log(response.data.data.token);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
