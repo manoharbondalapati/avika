@@ -4,13 +4,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 100vh;
+  background-color: #193e27;
 }
 
 .container {
   margin-top: 40px;
   width: 800px;
-  background-color: #f0f0f0;
+  background-color: #cdcbcb;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -148,6 +149,10 @@
    .container
    {
     margin-top: 0px;
+   }
+   #containers
+   {
+    height: 100%;
    }
   
 }
