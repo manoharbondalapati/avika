@@ -16,14 +16,16 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/userlogin" element={<UserLogin />} />
           <Route path="/adminlogin" element={<AdminLogin />} />
-          <Route path="/userpage" element={<UserPage />} />
           <Route path="/adminpage" element={<AdminPage />} />
           <Route
             path="/patientdetails/:recordId"
             element={<PatientDetails />}
           />
+          <Route path="/userlogin" element={<UserLogin />} />
+          <Route path="/userpage" element={<UserPage />} />
+         
+         
         </Routes>
       </BrowserRouter>
     </Provider>

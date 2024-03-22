@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAdmin } from "../../myredux/reducers/AdminSlice";
-import { useNavigate } from "react-router-dom";
 import { MdAdminPanelSettings } from "react-icons/md";
 import "./AdminLogin.css";
-
-import { message } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const AdminLogin = () => {
   const dispatch = useDispatch();
@@ -13,25 +11,12 @@ const AdminLogin = () => {
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const loading = useSelector((state) => state.admin.loading);
-  const error = useSelector((state) => state.admin.error);
-  const handleSubmit = (event) => {
+  const loading = useSelector((state) => state.adminlogin.loading);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    let adminCredentials = { mobile, password };
-    if (mobile !== "9964517148" || password !== "harish_med@123") {
-      alert("Invalid mobile number or password.");
-      return;
-    }
-    dispatch(loginAdmin(adminCredentials))
-      .then(() => {
-        message.success("Login Success");
-        navigate("/adminpage");
-      })
-      .catch((error) => {
-        console.error("Login failed:", error.message);
-        setMobile("");
-        setPassword("");
-      });
+    const adminCredentials = { mobile, password };
+    dispatch(loginAdmin(adminCredentials, navigate));
   };
 
   return (
@@ -92,11 +77,6 @@ const AdminLogin = () => {
               <span id="note">Note:</span> Mobile: 9964517148 and Password:
               harish_med@123
             </p>
-            {error && (
-              <div className="alert alert-danger" role="alert">
-                {error}
-              </div>
-            )}
           </form>
         </div>
       </fieldset>

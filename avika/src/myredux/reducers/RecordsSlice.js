@@ -43,7 +43,7 @@ export const {
 
 export const fetchRecords = () => async (dispatch) => {
   try {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("adminToken");
     const headers = { Authorization: `Bearer ${token}` };
     const response = await axios.get(
       `https://med.test.avika.ai/admin/records`,
@@ -56,3 +56,11 @@ export const fetchRecords = () => async (dispatch) => {
 };
 
 export default RecordsSlice.reducer;
+
+
+
+
+
+
+
+

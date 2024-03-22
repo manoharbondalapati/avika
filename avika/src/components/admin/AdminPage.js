@@ -10,8 +10,8 @@ import "./AdminPage.css";
 
 const AdminPage = () => {
   const dispatch = useDispatch();
-  const token = localStorage.getItem("token");
-  const { records, loading, error } = useSelector((state) => state.records);
+  const token = localStorage.getItem("adminToken");
+  const { records } = useSelector((state) => state.records);
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(10);
@@ -20,11 +20,13 @@ const AdminPage = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-
   useEffect(() => {
-    dispatch(fetchRecords());
-  }, [dispatch, token]);
-
+    if (!token) {
+      navigate("/adminlogin");
+    } else {
+      dispatch(fetchRecords());
+    }
+  }, [dispatch, token, navigate]);
   const filterRecords = records.filter(
     (record) =>
       record?.patient_name.toLowerCase().includes(searchQuery.toLowerCase()) &&
@@ -44,7 +46,7 @@ const AdminPage = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("adminToken");
     navigate("/");
   };
 
@@ -54,18 +56,13 @@ const AdminPage = () => {
 
   const handlePatientDetails = (recordId) => {
     console.log(recordId);
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("adminToken");
     if (token !== null);
     navigate(`/patientdetails/${recordId}`);
   };
 
-  if (loading) {
-    return <h1>Loading...</h1>;
-  }
 
-  if (error) {
-    return <h1>Error: {error}</h1>;
-  }
+  
 
   return (
     <div id="allrecords">

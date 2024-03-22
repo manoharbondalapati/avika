@@ -23,7 +23,7 @@ const PatientDetails = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("adminToken");
     navigate("/");
   };
 

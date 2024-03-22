@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../myredux/reducers/UserLoginSlice";
-import { useNavigate } from "react-router-dom";
+import { loginUser } from "../../myredux/reducers/UserSlice";
 import { FaUser } from "react-icons/fa";
 import "./UserLogin.css";
-import { message } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const UserLogin = () => {
   const dispatch = useDispatch();
@@ -13,28 +12,12 @@ const UserLogin = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const loading = useSelector((state) => state.userlogin.loading);
-  const error = useSelector((state) => state.userlogin.error);
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    let userCredentials = { mobile, password };
-    if (mobile !== "7702145910" || password !== "sharath_med@123") {
-      alert("Invalid mobile number or password.");
-      return;
-    }
-    dispatch(loginUser(userCredentials))
-      .then(() => {
-        const token = localStorage.getItem("user");
-        if (token) {
-          message.success("Login Success");
-          navigate("/userpage");
-        }
-      })
-      .catch(() => {
-        console.error("Login failed");
-        setMobile("");
-        setPassword("");
-      });
+    const userCredentials = { mobile, password };
+    dispatch(loginUser(userCredentials, navigate));
   };
 
   return (
@@ -62,9 +45,9 @@ const UserLogin = () => {
                 placeholder="Enter your mobile number"
                 className="form-control"
                 value={mobile}
-                required
                 maxLength={10}
                 onChange={(e) => setMobile(e.target.value)}
+                required
               />
             </div>
             <div className="form-group">
@@ -82,8 +65,9 @@ const UserLogin = () => {
                 required
               />
               <span
-                id="show-password"
+               
                 onClick={() => setShowPassword(!showPassword)}
+                id="show-password"
               >
                 {showPassword ? "Hide" : "Show"}
               </span>
@@ -95,11 +79,6 @@ const UserLogin = () => {
               <span id="note">Note:</span> Mobile: 7702145910 and Password:
               sharath_med@123
             </p>
-            {error && (
-              <div className="alert alert-danger" role="alert">
-                {error}
-              </div>
-            )}
           </form>
         </div>
       </fieldset>

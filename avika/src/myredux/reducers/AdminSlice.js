@@ -1,55 +1,49 @@
-import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { message } from "antd";
 
-export const loginAdmin = createAsyncThunk(
-  "admin/loginAdmin",
-  async (adminCredentials, { rejectWithValue }) => {
-    try {
-      const response = await axios.post(
-        "https://med.test.avika.ai/auth/admin-login",
-        adminCredentials
-      );
+export const loginAdmin = (adminCredentials, navigate) => async (dispatch) => {
+  dispatch(AdminLoginStarted());
+  try {
+    const response = await axios.post(
+      "https://med.test.avika.ai/auth/admin-login",
+      adminCredentials
+    );
 
-      localStorage.setItem("token", response.data.data.token);
-
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.response.data);
-    }
+    localStorage.setItem("adminToken", response.data.data.token);
+    dispatch(AdminLoginSuccess(response.data));
+    message.success("Login Success");
+    navigate('/adminpage'); 
+  } catch (error) {
+    dispatch(AdminLoginFailed("Invalid Credentials"));
+    message.error("Invalid Credentials");
   }
-);
+};
 
-const AdminSlice = createSlice({
-  name: "admin",
+const adminSlice = createSlice({
+  name: "adminlogin",
   initialState: {
     loading: false,
     admin: null,
     error: null,
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(loginAdmin.pending, (state) => {
-        state.loading = true;
-        state.admin = null;
-        state.error = null;
-      })
-      .addCase(loginAdmin.fulfilled, (state, action) => {
-        state.loading = false;
-        state.admin = action.payload;
-        state.error = null;
-      })
-      .addCase(loginAdmin.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message;
-        if (action.payload) {
-          state.error = action.payload.message;
-        } else {
-          state.error = "Invalid Credentials";
-        }
-      });
+  reducers: {
+    AdminLoginStarted: (state) => {
+      state.loading = true;
+      state.admin = null;
+      state.error = null;
+    },
+    AdminLoginSuccess: (state, action) => {
+      state.loading = false;
+      state.admin = action.payload;
+      state.error = null;
+    },
+    AdminLoginFailed: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
   },
 });
 
-export const setToken = createAction("admin/setToken");
-export const { clearError } = AdminSlice.actions;
-export default AdminSlice.reducer;
+export const { AdminLoginStarted, AdminLoginSuccess, AdminLoginFailed } = adminSlice.actions;
+export default adminSlice.reducer;

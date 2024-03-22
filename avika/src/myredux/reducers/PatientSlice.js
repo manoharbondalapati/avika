@@ -27,7 +27,7 @@ export const { fetchDetailsSuccess, fetchDetailsFailure } =
 
 export const fetchRecordById = (recordId) => async (dispatch) => {
   try {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("adminToken");
     const headers = { Authorization: `Bearer ${token}` };
     const response = await axios.get(
       `https://med.test.avika.ai/admin/getMedicalRecord/${recordId}`,

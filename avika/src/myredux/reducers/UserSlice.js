@@ -1,51 +1,50 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { message } from "antd";
+import {message } from 'antd';
 
-export const fileUpload = (formData) => async (dispatch) => {
-  dispatch(uploadFileRequest());
-  try {
-    const token = localStorage.getItem("user");
+export const loginUser = ( userCredentails,navigate) =>async(dispatch)=> {
+  dispatch(UserLoginStarted());
+    try {
+      const response = await axios.post(
+        "https://med.test.avika.ai/auth/login",
+        userCredentails
+      );
 
-    const headers = {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "multipart/form-data",
-    };
-    const response = await axios.post(
-      "https://med.test.avika.ai/api/file_upload",
-      formData,
-      { headers }
-    );
-
-    dispatch(uploadFileSuccess(response.data.data));
-    message.success("File uploaded successfully");
-  } catch (error) {
-    dispatch(uploadFileFailure(error.message));
+      localStorage.setItem("userToken", response.data.data.token);
+      dispatch(UserLoginSuccess(response.data));
+      message.success("Login Success");
+      navigate('/userpage')
+    } catch (error) {
+       dispatch(UserLoginFailed("Invalid Credentials"));
+       message.error("Invalid Credentails");
+    }
   }
-};
 
-const UserSlice = createSlice({
-  name: "fileUploading",
+
+const userSlice = createSlice({
+  name: "userlogin",
   initialState: {
-    isLoading: false,
+    loading: false,
+    user: null,
     error: null,
   },
-  reducers: {
-    uploadFileRequest(state) {
-      state.isLoading = true;
+  reducers:  {
+    UserLoginStarted: (state) => {
+      state.loading = true;
+      state.user = null;
       state.error = null;
     },
-    uploadFileSuccess(state) {
-      state.isLoading = false;
+    UserLoginSuccess: (state, action) => {
+      state.loading = false;
+      state.user = action.payload;
+      state.error = null;
     },
-    uploadFileFailure(state, action) {
-      state.isLoading = false;
+    UserLoginFailed: (state, action) => {
+      state.loading = false;
       state.error = action.payload;
     },
   },
+   
 });
-
-export const { uploadFileRequest, uploadFileSuccess, uploadFileFailure } =
-  UserSlice.actions;
-
-export default UserSlice.reducer;
+export const {UserLoginStarted,UserLoginSuccess,UserLoginFailed}= userSlice.actions;
+export default userSlice.reducer;

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import "./UserPage.css";
 import { useDispatch, useSelector } from "react-redux";
-import { fileUpload } from "../../myredux/reducers/UserSlice";
+import { fileUpload } from "../../myredux/reducers/UploadSlice";
 import { FaCircleUser } from "react-icons/fa6";
-
 import { useNavigate } from "react-router-dom";
 
 const UserPage = () => {
@@ -22,9 +21,11 @@ const UserPage = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
   const dispatch = useDispatch();
-  const token = localStorage.getItem("user");
-  const isLoading = useSelector((state) => state.fileUploading);
-  const error = useSelector((state) => state.fileUploading);
+  const token = localStorage.getItem("userToken");
+  const isLoading = useSelector((state) => state.fileUpload.isLoading);
+
+
+
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -60,16 +61,20 @@ const UserPage = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
+    localStorage.removeItem("userToken");
     navigate("/");
   };
 
   const todayDate = new Date().toISOString().split("T")[0];
 
+
+
+  
+
   return (
     <div id="containers">
       <div className="container">
-        {error && <div>Error: {error}</div>}
+     
         <div id="forlogout">
           <div>
             <p id="para">Find! Treatment</p>
@@ -199,7 +204,7 @@ const UserPage = () => {
           <div className="form-row submit-btn">
             <div className="input-data">
               <div className="inner">
-                <button type="submit" disabled={isLoading}>
+                <button type="submit">
                   {isLoading ? "Uploading..." : "Submit"}
                 </button>
               </div>
