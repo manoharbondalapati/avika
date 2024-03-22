@@ -10,8 +10,9 @@ import "./AdminPage.css";
 
 const AdminPage = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
   const { records, loading, error } = useSelector((state) => state.records);
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(10);
   const [searchQuery, setSearchQuery] = useState("");
@@ -22,24 +23,20 @@ const AdminPage = () => {
 
   useEffect(() => {
     dispatch(fetchRecords());
-  }, [dispatch]);
+  }, [dispatch, token]);
 
-  const filterRecords = () => {
-    return records.filter(
-      (record) =>
-        record?.patient_name
-          .toLowerCase()
-          .includes(searchQuery.toLowerCase()) &&
-        (!genderFilter ||
-          record.gender.toLowerCase() === genderFilter.toLowerCase()) &&
-        (!startDate || new Date(record.Date_of_registration) >= startDate) &&
-        (!endDate || new Date(record.Date_of_registration) <= endDate)
-    );
-  };
+  const filterRecords = records.filter(
+    (record) =>
+      record?.patient_name.toLowerCase().includes(searchQuery.toLowerCase()) &&
+      (!genderFilter ||
+        record.gender.toLowerCase() === genderFilter.toLowerCase()) &&
+      (!startDate || new Date(record.Date_of_registration) >= startDate) &&
+      (!endDate || new Date(record.Date_of_registration) <= endDate)
+  );
 
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  const currentRecords = filterRecords().slice(
+  const currentRecords = filterRecords.slice(
     indexOfFirstRecord,
     indexOfLastRecord
   );
@@ -56,8 +53,10 @@ const AdminPage = () => {
   };
 
   const handlePatientDetails = (recordId) => {
+    console.log(recordId);
     const token = localStorage.getItem("token");
-    if (token !== null) navigate(`/patientdetails/${recordId}`);
+    if (token !== null);
+    navigate(`/patientdetails/${recordId}`);
   };
 
   if (loading) {
@@ -67,6 +66,7 @@ const AdminPage = () => {
   if (error) {
     return <h1>Error: {error}</h1>;
   }
+
   return (
     <div id="allrecords">
       <div id="container" className="table-responsive">
@@ -200,8 +200,9 @@ const AdminPage = () => {
             onClick={() => paginate(currentPage - 1)}
             disabled={currentPage === 1}
           />
-          {Array.from(
-            { length: Math.ceil(filterRecords.length / recordsPerPage) },
+          {Array.from({
+            length: Math.ceil(filterRecords.length / recordsPerPage),
+          }).map(
             (_, i) =>
               i >= currentPage - 3 &&
               i < currentPage + 3 && (

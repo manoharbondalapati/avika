@@ -17,11 +17,29 @@ export const RecordsSlice = createSlice({
       state.loading = false;
       state.error = action.payload.message;
     },
+    filterRecords: (state, action) => {
+      const { searchQuery, genderFilter } = action.payload;
+      state.records = state.records.filter(
+        (record) =>
+          record.patient_name
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()) &&
+          (!genderFilter ||
+            record.gender.toLowerCase() === genderFilter.toLowerCase())
+      );
+    },
+    resetRecords: (state, action) => {
+      state.records = action.payload;
+    },
   },
 });
 
-export const { fetchRecordsSuccess, fetchRecordsFailure } =
-  RecordsSlice.actions;
+export const {
+  fetchRecordsSuccess,
+  fetchRecordsFailure,
+  filterRecords,
+  resetRecords,
+} = RecordsSlice.actions;
 
 export const fetchRecords = () => async (dispatch) => {
   try {
