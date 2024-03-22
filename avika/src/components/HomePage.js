@@ -20,7 +20,7 @@ const HomePage = () => {
       <div className="divs">
         <div id="userdiv">
           <Link to="/userlogin">
-            <Button variant="primary">Book Appointment</Button>
+            <Button variant="primary">Upload Document</Button>
           </Link>
         </div>
         <div id="admindiv">

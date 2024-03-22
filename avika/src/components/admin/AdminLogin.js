@@ -13,7 +13,7 @@ const AdminLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const loading = useSelector((state) => state.adminlogin.loading);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const adminCredentials = { mobile, password };
     dispatch(loginAdmin(adminCredentials, navigate));
@@ -21,17 +21,16 @@ const AdminLogin = () => {
 
   return (
     <div id="adminlogin">
-      <fieldset>
-        <legend>
+      <div className="adminform">
+        <div className="heading">
           <h1>
             Admin<span id="login">Login</span>
             <span id="admin-icon">
               <MdAdminPanelSettings />
             </span>
           </h1>
-        </legend>
-        <hr />
-        <div className="login-form">
+        </div>
+       <div className="login-form">
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="mobile">
@@ -71,7 +70,7 @@ const AdminLogin = () => {
               </span>
             </div>
             <button className="btn" id="loginbtn" type="submit">
-              {loading ? "Logging in..." : "Login"}
+              {loading ? "Logging in..." : "LOGIN"}
             </button>
             <p id="credentials">
               <span id="note">Note:</span> Mobile: 9964517148 and Password:
@@ -79,7 +78,7 @@ const AdminLogin = () => {
             </p>
           </form>
         </div>
-      </fieldset>
+      </div>
     </div>
   );
 };

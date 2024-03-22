@@ -204,7 +204,7 @@ const AdminPage = () => {
               i >= currentPage - 3 &&
               i < currentPage + 3 && (
                 <Pagination.Item
-                  id="numbers"
+                  className="pagination-item"
                   key={i}
                   onClick={() => paginate(i + 1)}
                   active={i + 1 === currentPage}

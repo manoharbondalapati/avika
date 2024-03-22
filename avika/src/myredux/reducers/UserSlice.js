@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import {message } from 'antd';
 
-export const loginUser = ( userCredentails,navigate) =>async(dispatch)=> {
+export const loginUser = ( userCredentails,navigate) => async (dispatch)=> {
   dispatch(UserLoginStarted());
     try {
       const response = await axios.post(

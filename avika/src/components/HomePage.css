@@ -6,6 +6,10 @@
   object-fit: cover;
   background-attachment: fixed;
 }
+.containers
+{
+  margin-left: 20px;
+}
 .containers h1,
 h2 {
   color: white;

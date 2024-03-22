@@ -22,16 +22,16 @@ const UserLogin = () => {
 
   return (
     <div id="userlogin">
-      <fieldset>
-        <legend>
+      <div className="userform">
+        <div className="headings">
           <h1>
             User<span id="login">Login</span>
             <span id="user-icon">
               <FaUser />
             </span>
           </h1>
-        </legend>
-        <hr />
+        </div>
+       
         <div className="login-form">
           <form onSubmit={handleSubmit}>
             <div className="form-group">
@@ -81,7 +81,7 @@ const UserLogin = () => {
             </p>
           </form>
         </div>
-      </fieldset>
+      </div>
     </div>
   );
 };
