@@ -4,7 +4,7 @@ import { loginUser } from "../../myredux/reducers/UserLoginSlice";
 import { useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import "./UserLogin.css";
-import {message} from 'antd';
+import { message } from "antd";
 
 const UserLogin = () => {
   const dispatch = useDispatch();
@@ -14,13 +14,11 @@ const UserLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const loading = useSelector((state) => state.userlogin.loading);
   const error = useSelector((state) => state.userlogin.error);
-  //const response = useSelector((state) => state.userlogin.user);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     let userCredentials = { mobile, password };
-    if(mobile !== "7702145910" || password !== "sharath_med@123")
-    {
+    if (mobile !== "7702145910" || password !== "sharath_med@123") {
       alert("Invalid mobile number or password.");
       return;
     }

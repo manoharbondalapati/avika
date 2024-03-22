@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {message} from 'antd';
+import { message } from "antd";
 
 export const fileUpload = (formData) => async (dispatch) => {
   dispatch(uploadFileRequest());
@@ -16,13 +16,9 @@ export const fileUpload = (formData) => async (dispatch) => {
       formData,
       { headers }
     );
-    console.log(response);
 
-    // if (!response.ok) {
-    //   throw new Error('Failed to upload file');
-    // }
     dispatch(uploadFileSuccess(response.data.data));
-    message.success('File uploaded successfully');
+    message.success("File uploaded successfully");
   } catch (error) {
     dispatch(uploadFileFailure(error.message));
   }

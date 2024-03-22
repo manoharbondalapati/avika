@@ -33,13 +33,9 @@ label {
   display: block;
   font-weight: bold;
 }
-
-.input-group {
-  position: relative;
-}
-
-.input-group .form-control {
+.form-control {
   padding-right: 40px;
+  outline: none;
 }
 
 #show-password {
@@ -82,10 +78,8 @@ label {
     color: red;
   }
 }
-@media screen and (min-width:600px) and (max-width:768px) 
-{
-  #show-password
-  {
+@media screen and (min-width: 600px) and (max-width: 768px) {
+  #show-password {
     position: absolute;
     right: 500px;
     top: 53%;
@@ -95,9 +89,7 @@ label {
     border: none;
     color: red;
   }
-  
 }
-
 
 #userloginbtn {
   background-color: #333;

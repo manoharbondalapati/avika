@@ -4,11 +4,10 @@ import { loginAdmin } from "../../myredux/reducers/AdminSlice";
 import { useNavigate } from "react-router-dom";
 import { MdAdminPanelSettings } from "react-icons/md";
 import "./AdminLogin.css";
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-import {message} from 'antd';
 
-  const AdminLogin = () => {
+import { message } from "antd";
+
+const AdminLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [mobile, setMobile] = useState("");
@@ -16,15 +15,6 @@ import {message} from 'antd';
   const [showPassword, setShowPassword] = useState(false);
   const loading = useSelector((state) => state.admin.loading);
   const error = useSelector((state) => state.admin.error);
-
-  // const showToastMessage = (message) => {
-  //   console.log(message);
-  //   toast.success(message, {
-  //     position: "top-center",
-  //   });
-  // };
-
-
   const handleSubmit = (event) => {
     event.preventDefault();
     let adminCredentials = { mobile, password };
@@ -34,22 +24,18 @@ import {message} from 'antd';
     }
     dispatch(loginAdmin(adminCredentials))
       .then(() => {
-       
-      //  showToastMessage("Login successful!");
-        message.success('Login Success');
+        message.success("Login Success");
         navigate("/adminpage");
       })
       .catch((error) => {
         console.error("Login failed:", error.message);
-        //showToastMessage("Login failed. Please try again.");
         setMobile("");
         setPassword("");
       });
   };
-  
+
   return (
     <div id="adminlogin">
-       {/* <ToastContainer /> */}
       <fieldset>
         <legend>
           <h1>
@@ -114,7 +100,6 @@ import {message} from 'antd';
           </form>
         </div>
       </fieldset>
-     
     </div>
   );
 };

@@ -37,7 +37,7 @@
 
 .dropdown-content {
   position: absolute;
-  top: 100%; /* Adjust top position as needed */
+  top: 100%;
   right: 0;
   background-color: white;
   border: 1px solid #ccc;
@@ -94,11 +94,9 @@
   margin-right: 10px;
   color: rgb(232, 173, 23);
 }
-@media (max-width:600px) 
-{
+@media (max-width: 600px) {
   #patientDetailsPage {
-  background-color: #334833;
-  height: 100%;
-}
-  
+    background-color: #334833;
+    height: 100%;
+  }
 }

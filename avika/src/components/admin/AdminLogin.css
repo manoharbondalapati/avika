@@ -34,12 +34,8 @@ label {
   font-weight: bold;
 }
 
-.input-group {
-  position: relative;
-}
-
-.input-group .form-control {
-  padding-right: 40px;
+.form-control {
+  outline: none;
 }
 
 .shows-password {

@@ -9,9 +9,9 @@ export const loginUser = createAsyncThunk(
         "https://med.test.avika.ai/auth/login",
         userCredentails
       );
-      // const response = await request.data.data.token;
+
       localStorage.setItem("user", response.data.data.token);
-      console.log(response.data.data.token);
+
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);

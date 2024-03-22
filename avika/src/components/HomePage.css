@@ -34,7 +34,6 @@ h2 {
   padding: 5%;
   margin-left: 25%;
   margin-top: 5%;
-  /* background-image: url("../assets/img1.jpg"); */
 }
 #admindiv {
   box-sizing: border-box;
@@ -44,7 +43,6 @@ h2 {
   padding: 5%;
   margin-left: 20px;
   margin-top: 5%;
-  /* background-image: url("../assets/img3.jpg"); */
 }
 @media (max-width: 960px) {
   #admindiv {

@@ -10,9 +10,8 @@ import "./AdminPage.css";
 
 const AdminPage = () => {
   const dispatch = useDispatch();
-  const token = localStorage.getItem("token");
-  const { records, loading, error } = useSelector((state) => state.records);
   const navigate = useNavigate();
+  const { records, loading, error } = useSelector((state) => state.records);
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(10);
   const [searchQuery, setSearchQuery] = useState("");
@@ -23,20 +22,24 @@ const AdminPage = () => {
 
   useEffect(() => {
     dispatch(fetchRecords());
-  }, [dispatch, token]);
+  }, [dispatch]);
 
-  const filterRecords = records.filter(
-    (record) =>
-      record?.patient_name.toLowerCase().includes(searchQuery.toLowerCase()) &&
-      (!genderFilter ||
-        record.gender.toLowerCase() === genderFilter.toLowerCase()) &&
-      (!startDate || new Date(record.Date_of_registration) >= startDate) &&
-      (!endDate || new Date(record.Date_of_registration) <= endDate)
-  );
+  const filterRecords = () => {
+    return records.filter(
+      (record) =>
+        record?.patient_name
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase()) &&
+        (!genderFilter ||
+          record.gender.toLowerCase() === genderFilter.toLowerCase()) &&
+        (!startDate || new Date(record.Date_of_registration) >= startDate) &&
+        (!endDate || new Date(record.Date_of_registration) <= endDate)
+    );
+  };
 
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  const currentRecords = filterRecords.slice(
+  const currentRecords = filterRecords().slice(
     indexOfFirstRecord,
     indexOfLastRecord
   );
@@ -52,11 +55,9 @@ const AdminPage = () => {
     setDropdownVisible(!dropdownVisible);
   };
 
-  const handlePatienDetails = (recordId) => {
-    console.log(recordId);
+  const handlePatientDetails = (recordId) => {
     const token = localStorage.getItem("token");
-    if (token !== null);
-    navigate(`/patientdeatils/${recordId}`);
+    if (token !== null) navigate(`/patientdetails/${recordId}`);
   };
 
   if (loading) {
@@ -66,7 +67,6 @@ const AdminPage = () => {
   if (error) {
     return <h1>Error: {error}</h1>;
   }
-
   return (
     <div id="allrecords">
       <div id="container" className="table-responsive">
@@ -99,50 +99,52 @@ const AdminPage = () => {
         </div>
         <div className="headerbar">
           <div>
-          <input
-            id="namesearch"
-            type="search"
-            placeholder="Search Patient name"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
+            <input
+              id="namesearch"
+              type="search"
+              placeholder="Search Patient name"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
           </div>
-         <div>
-         <select
-            id="genderselect"
-            className="form-select"
-            aria-label="Default select example"
-            onChange={(e) =>
-              setGenderFilter(e.target.value === "all" ? null : e.target.value)
-            }
-          >
-            <option value="all">select Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-         </div>
-         <div id="datefilter">
-         <span id="datepicker">Date_of_registration </span>
-          <div className="dates">
-          <DatePicker
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            selectsStart
-            startDate={startDate}
-            endDate={endDate}
-            placeholderText="From Date"
-          />
-          <DatePicker
-            selected={endDate}
-            onChange={(date) => setEndDate(date)}
-            selectsEnd
-            startDate={startDate}
-            endDate={endDate}
-            minDate={startDate}
-            placeholderText="To Date"
-          />
+          <div>
+            <select
+              id="genderselect"
+              className="form-select"
+              aria-label="Default select example"
+              onChange={(e) =>
+                setGenderFilter(
+                  e.target.value === "all" ? null : e.target.value
+                )
+              }
+            >
+              <option value="all">select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
           </div>
-         </div>
+          <div id="datefilter">
+            <span id="datepicker">Date_of_registration </span>
+            <div className="dates">
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                selectsStart
+                startDate={startDate}
+                endDate={endDate}
+                placeholderText="From Date"
+              />
+              <DatePicker
+                selected={endDate}
+                onChange={(date) => setEndDate(date)}
+                selectsEnd
+                startDate={startDate}
+                endDate={endDate}
+                minDate={startDate}
+                placeholderText="To Date"
+              />
+            </div>
+          </div>
         </div>
         <div className="table-container">
           <Table striped bordered id="tabledata">
@@ -177,7 +179,7 @@ const AdminPage = () => {
                     <button
                       className="btn"
                       id="adminpagebtn"
-                      onClick={() => handlePatienDetails(record.id)}
+                      onClick={() => handlePatientDetails(record.id)}
                     >
                       Details
                     </button>

@@ -25,7 +25,6 @@ const PatientSlice = createSlice({
 export const { fetchDetailsSuccess, fetchDetailsFailure } =
   PatientSlice.actions;
 
-// Modify fetchRecordById to accept recordId as an argument
 export const fetchRecordById = (recordId) => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");

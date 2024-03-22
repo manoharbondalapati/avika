@@ -18,8 +18,7 @@
   margin-bottom: 0;
   background-color: #484848;
 }
-#headline1
-{
+#headline1 {
   display: flex;
   justify-content: space-between;
 }
@@ -27,7 +26,6 @@
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
- 
 }
 
 #lengthpart {
@@ -37,19 +35,7 @@ img {
   height: 40px;
   width: 60px;
 }
-/* #usericon {
-  height: 25px;
-  width: 25px;
-  text-align: center;
-  border: none;
-  outline: none;
-} */
-/* #icon {
-  padding: 0px;
-  margin-top: -4px;
-  color: rgb(236, 187, 10);
-  font-size: 20px;
-} */
+
 #recordsh3 {
   color: rgb(236, 187, 10);
 }
@@ -98,52 +84,27 @@ table tr:hover {
 
 .headerbar {
   display: flex;
- justify-content: space-around;
+  justify-content: space-around;
 }
-.headerbar select 
-{
+.headerbar select {
   height: 34px;
 }
-.headerbar input
-{
+.headerbar input {
   height: 34px;
   border-radius: 5px;
   outline: none;
 }
-#datepicker
-{
+#datepicker {
   color: wheat;
 }
-#datefilter
-{
+#datefilter {
   width: 550px;
   display: flex;
-  /* border: solid 1px black; */
 }
-.dates
-{
+.dates {
   display: flex;
 }
 
-
-/* .headerbar select {
-  width: 150px;
-  height: 34px;
-}
-.headerbar input {
-  height: 35px;
-  width: 170px;
-  border-radius: 5px;
-} */
-
-/* @media (max-width: 1000px) {
-  .headerbar {
-    display: flex;
-  }
-  #namesearch {
-    margin-right: -50px;
-  }
-} */
 .dropdown-contents {
   position: absolute;
   top: 100%;
@@ -167,41 +128,22 @@ table tr:hover {
   color: rgb(35, 85, 116);
   background-color: rgb(186, 158, 17);
 }
-/* #datepicker {
-  color: rgb(217, 214, 214);
-  margin-left: 250px;
-}
-#genderselect {
-  margin-left: 60px;
-}
-#namesearch {
-  margin-left: 50px;
-} */
 
-@media (max-width:600px) 
-{
-  .headerbar
-  {
+@media (max-width: 600px) {
+  .headerbar {
     display: flex;
     flex-direction: column;
   }
-  .headerbar select 
-  {
+  .headerbar select {
     width: 190px;
   }
-  .dates
-{
-  display: flex;
-  flex-direction: column;
+  .dates {
+    display: flex;
+    flex-direction: column;
+  }
+  #datefilter {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+  }
 }
-#datefilter
-{
-  width: auto;
-  display: flex;
-  flex-direction: column;
-  /* border: solid 1px black; */
-}
-  
-  
-}
-
