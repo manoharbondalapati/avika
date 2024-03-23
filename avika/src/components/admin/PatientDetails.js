@@ -11,12 +11,23 @@ const PatientDetails = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const { details, loading, error } = useSelector((state) => state.details);
   const dispatch = useDispatch();
+  const token = localStorage.getItem('adminToken');
 
   const { recordId } = useParams();
 
   useEffect(() => {
-    dispatch(fetchRecordById(recordId));
-  }, [dispatch, recordId]);
+    if(!token)
+    {
+      navigate('/adminlogin');
+    }
+    else
+    {
+      dispatch(fetchRecordById(recordId))
+    }
+    
+  }, [dispatch, token,recordId,navigate]);
+
+
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
@@ -37,6 +48,17 @@ const PatientDetails = () => {
 
   const handeBack = () => {
     navigate("/adminpage");
+  };
+
+
+
+  
+  const handleViewFile = () => {
+    if ( details && details.file_path) {
+      window.open(details.file_path, '_blank');
+    } else {
+      console.error('PDF URL not available');
+    }
   };
 
   return (
@@ -68,7 +90,7 @@ const PatientDetails = () => {
             </button>
           </div>
           <div className="logoutdiv">
-            <button id="view-file">View File</button>
+            <button id="view-file" onClick={handleViewFile}>View File</button>
           </div>
         </div>
         <div id="details">

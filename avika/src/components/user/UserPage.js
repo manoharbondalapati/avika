@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./UserPage.css";
 import { useDispatch, useSelector } from "react-redux"; // Removed unused import
 import { fileUpload } from "../../myredux/reducers/UploadSlice";
@@ -54,6 +54,16 @@ const UserPage = () => {
     });
     setShowForm(false);
   };
+
+
+  useEffect(()=>
+  {
+    if(!token)
+    {
+      navigate('/userlogin');
+    }
+  
+  },[ navigate,token]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;

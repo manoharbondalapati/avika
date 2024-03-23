@@ -55,7 +55,6 @@ const AdminPage = () => {
   };
 
   const handlePatientDetails = (recordId) => {
-    console.log(recordId);
     const token = localStorage.getItem("adminToken");
     if (token !== null);
     navigate(`/patientdetails/${recordId}`);
