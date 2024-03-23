@@ -30,7 +30,7 @@ const AdminLogin = () => {
             </span>
           </h1>
         </div>
-       <div className="login-form">
+        <div className="login-form">
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="mobile">

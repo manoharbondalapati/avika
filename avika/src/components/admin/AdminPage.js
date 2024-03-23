@@ -61,9 +61,6 @@ const AdminPage = () => {
     navigate(`/patientdetails/${recordId}`);
   };
 
-
-  
-
   return (
     <div id="allrecords">
       <div id="container" className="table-responsive">
@@ -74,7 +71,7 @@ const AdminPage = () => {
               alt=""
             ></img>
           </div>
-          <div id="lengthpart" className="dropdown">
+          <div id="logout-icon" className="dropdown">
             <button id="adminlogout" onClick={toggleDropdown}>
               <CiUser size={30} />
             </button>
@@ -86,65 +83,69 @@ const AdminPage = () => {
             )}
           </div>
         </div>
-        <div id="headline2">
-          <div>
-            <h3 id="recordsh3">All Documents</h3>
-          </div>
-          <div id="lengthpart">
-            <p className="ml-2 length">All Documents: {filterRecords.length}</p>
-          </div>
-        </div>
-        <div className="headerbar">
-          <div>
-            <input
-              id="namesearch"
-              type="search"
-              placeholder="Search Patient name"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-          <div>
-            <select
-              id="genderselect"
-              className="form-select"
-              aria-label="Default select example"
-              onChange={(e) =>
-                setGenderFilter(
-                  e.target.value === "all" ? null : e.target.value
-                )
-              }
-            >
-              <option value="all">select Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
-          </div>
-          <div id="datefilter">
-            <span id="datepicker">Date_of_registration </span>
-            <div className="dates">
-              <DatePicker
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
-                selectsStart
-                startDate={startDate}
-                endDate={endDate}
-                placeholderText="From Date"
-              />
-              <DatePicker
-                selected={endDate}
-                onChange={(date) => setEndDate(date)}
-                selectsEnd
-                startDate={startDate}
-                endDate={endDate}
-                minDate={startDate}
-                placeholderText="To Date"
-              />
+        <div className="table-container">
+          <div id="headline2">
+            <div>
+              <h3 id="recordsh3">All Documents</h3>
+            </div>
+            <div id="lengthpart">
+              <p className="ml-2 length">
+                All Documents: {filterRecords.length}
+              </p>
             </div>
           </div>
-        </div>
-        <div className="table-container">
-          <Table striped bordered id="tabledata">
+          <div className="headerbar">
+            <div className="part1">
+              <div>
+                <input
+                  id="namesearch"
+                  type="search"
+                  placeholder="Search Patient name"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
+              <div>
+                <select
+                  id="genderselect"
+                  className="form-select"
+                  aria-label="Default select example"
+                  onChange={(e) =>
+                    setGenderFilter(
+                      e.target.value === "all" ? null : e.target.value
+                    )
+                  }
+                >
+                  <option value="all">select Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+            </div>
+            <div id="datefilter">
+              <span id="datepicker">Date_of_registration </span>
+              <div className="dates">
+                <DatePicker
+                  selected={startDate}
+                  onChange={(date) => setStartDate(date)}
+                  selectsStart
+                  startDate={startDate}
+                  endDate={endDate}
+                  placeholderText="From Date"
+                />
+                <DatePicker
+                  selected={endDate}
+                  onChange={(date) => setEndDate(date)}
+                  selectsEnd
+                  startDate={startDate}
+                  endDate={endDate}
+                  minDate={startDate}
+                  placeholderText="To Date"
+                />
+              </div>
+            </div>
+          </div>
+          <Table bordered hover id="tabledata">
             <thead id="heads">
               <tr>
                 <th>S_NO</th>
@@ -185,49 +186,51 @@ const AdminPage = () => {
               ))}
             </tbody>
           </Table>
+          <div className="pagination-container">
+            <Pagination className="pagination">
+              <Pagination.First
+                onClick={() => paginate(1)}
+                disabled={currentPage === 1}
+              />
+              <Pagination.Prev
+                onClick={() => paginate(currentPage - 1)}
+                disabled={currentPage === 1}
+              />
+              {Array.from({
+                length: Math.ceil(filterRecords.length / recordsPerPage),
+              }).map(
+                (_, i) =>
+                  i >= currentPage - 3 &&
+                  i < currentPage + 3 && (
+                    <Pagination.Item
+                      className="pagination-item"
+                      key={i}
+                      onClick={() => paginate(i + 1)}
+                      active={i + 1 === currentPage}
+                    >
+                      {i + 1}
+                    </Pagination.Item>
+                  )
+              )}
+              <Pagination.Next
+                onClick={() => paginate(currentPage + 1)}
+                disabled={
+                  currentPage ===
+                  Math.ceil(filterRecords.length / recordsPerPage)
+                }
+              />
+              <Pagination.Last
+                onClick={() =>
+                  paginate(Math.ceil(filterRecords.length / recordsPerPage))
+                }
+                disabled={
+                  currentPage ===
+                  Math.ceil(filterRecords.length / recordsPerPage)
+                }
+              />
+            </Pagination>
+          </div>
         </div>
-      </div>
-      <div className="pagination-container">
-        <Pagination className="pagination">
-          <Pagination.First
-            onClick={() => paginate(1)}
-            disabled={currentPage === 1}
-          />
-          <Pagination.Prev
-            onClick={() => paginate(currentPage - 1)}
-            disabled={currentPage === 1}
-          />
-          {Array.from({
-            length: Math.ceil(filterRecords.length / recordsPerPage),
-          }).map(
-            (_, i) =>
-              i >= currentPage - 3 &&
-              i < currentPage + 3 && (
-                <Pagination.Item
-                  className="pagination-item"
-                  key={i}
-                  onClick={() => paginate(i + 1)}
-                  active={i + 1 === currentPage}
-                >
-                  {i + 1}
-                </Pagination.Item>
-              )
-          )}
-          <Pagination.Next
-            onClick={() => paginate(currentPage + 1)}
-            disabled={
-              currentPage === Math.ceil(filterRecords.length / recordsPerPage)
-            }
-          />
-          <Pagination.Last
-            onClick={() =>
-              paginate(Math.ceil(filterRecords.length / recordsPerPage))
-            }
-            disabled={
-              currentPage === Math.ceil(filterRecords.length / recordsPerPage)
-            }
-          />
-        </Pagination>
       </div>
     </div>
   );

@@ -1,78 +1,40 @@
-#containers {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.medical-form {
   height: 100vh;
-  background-color: #193e27;
 }
-
-.container {
-  margin-top: 40px;
-  width: 800px;
-  background-color: #cdcbcb;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-#forlogout {
+.form-headerbar {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  padding: 20px 20px 20px 20px;
+  background-color: rgb(0, 0, 0);
 }
-
-#para {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.dropdown {
-  position: relative;
-}
-
 #userlogout {
-  background-color: transparent;
   border: none;
-  cursor: pointer;
-}
-
-.dropdown-contentss {
-  position: absolute;
-  top: 40px;
-  right: 0;
-  background-color: #2e2937;
-  color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  z-index: 999;
-}
-
-.dropdown-contentss p {
-  margin: 5px 0;
-  cursor: pointer;
-}
-
-.form-row {
-  display: flex;
-  justify-content: space-between;
-  /* margin-top: 5px; */
-  margin-bottom: 20px;
-}
-
-.input-data {
-  width: 45%;
-  position: relative;
-}
-
-.input-data input,
-.input-data select {
-  width: 100%;
-  padding: 10px 0;
-  border: none;
-  border-bottom: 1px solid #888;
   outline: none;
-  background-color: transparent;
+  background-color: black;
+  color: gold;
+}
+.form-headerbar img {
+  height: 30px;
+  width: 60px;
+}
+.form-modal {
+  position: absolute;
+  display: flex;
+  top: 40%;
+  left: 35%;
+  box-sizing: border-box;
+  box-shadow: 0px 1px 1px 1px;
+  border-radius: 10px;
+  height: 70px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.form-modal h1 {
+  text-align: center;
+}
+*/ #pdffile {
+  color: red;
 }
 
 .input-data input[type="file"] {
@@ -81,7 +43,7 @@
 
 .input-data label {
   position: absolute;
-  top: 12px;
+  top: -5px;
   left: 0;
   pointer-events: none;
   transition: 0.3s ease all;
@@ -101,7 +63,7 @@
 .input-data select:valid ~ label {
   top: -10px;
   font-size: 12px;
-  color: #007bff;
+  color: #000000;
 }
 
 .underline {
@@ -118,11 +80,7 @@
   justify-content: center;
 }
 
-.inner {
-  width: 100%;
-}
-
-.inner button {
+.submit-button button {
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
@@ -136,14 +94,67 @@
   background-color: #0056b3;
 }
 
-@media (max-width: 550px) {
-  .input-data {
-    width: 45%;
-  }
-  .container {
-    margin-top: 0px;
-  }
-  #containers {
-    height: 100%;
+.cancel-button {
+  margin-left: 10px;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-contentss {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: #fefefe;
+  color: rgb(0, 0, 0);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* padding: 10px; */
+  z-index: 999;
+}
+
+.dropdown-contentss p {
+  margin: 5px 0;
+  cursor: pointer;
+  padding: 7px;
+}
+.dropdown-contentss p:hover {
+  background-color: gray;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.input-data {
+  width: 45%;
+  position: relative;
+}
+
+.input-data input,
+.input-data select {
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1px solid #888;
+  outline: none;
+  background-color: transparent;
+}
+
+@media (max-width: 520px) {
+  .form-modal {
+    position: absolute;
+    display: flex;
+    top: 40%;
+    left: 0%;
+    box-sizing: border-box;
+    box-shadow: 0px 1px 1px 1px;
+    border-radius: 10px;
+    height: 70px;
+    padding: 10px;
+    cursor: pointer;
   }
 }

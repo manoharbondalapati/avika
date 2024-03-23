@@ -22,7 +22,7 @@ const UserLogin = () => {
 
   return (
     <div id="userlogin">
-      <div className="userform">
+      <div className="userforms">
         <div className="headings">
           <h1>
             User<span id="login">Login</span>

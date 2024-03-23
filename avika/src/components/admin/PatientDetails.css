@@ -1,5 +1,4 @@
 #patientDetailsPage {
-  background-color: #334833;
   height: 100vh;
 }
 
@@ -14,6 +13,10 @@
   align-items: center;
   margin-bottom: 20px;
 }
+#headerbar img {
+  height: 30px;
+  width: 60px;
+}
 
 #backbutton,
 #patientlogout {
@@ -21,8 +24,8 @@
   height: 50px;
   width: 50px;
   padding: 5px;
-  background-color: rgb(59, 81, 58);
-  color: rgb(253, 191, 4);
+  background-color: white;
+  color: rgb(0, 0, 0);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,14 +45,16 @@
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 5px;
-  padding: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown-content p {
   margin: 0;
-  padding: 5px;
+  padding: 10px;
   cursor: pointer;
+}
+.dropdown-content p:hover {
+  background-color: gray;
 }
 
 .headerbar2 {
@@ -96,7 +101,6 @@
 }
 @media (max-width: 600px) {
   #patientDetailsPage {
-    background-color: #334833;
     height: 100%;
   }
 }
