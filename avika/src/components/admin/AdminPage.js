@@ -20,6 +20,7 @@ const AdminPage = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+
   useEffect(() => {
     if (!token) {
       navigate("/adminlogin");
@@ -27,6 +28,7 @@ const AdminPage = () => {
       dispatch(fetchRecords());
     }
   }, [dispatch, token, navigate]);
+
   const filterRecords = records.filter(
     (record) =>
       record?.patient_name.toLowerCase().includes(searchQuery.toLowerCase()) &&
