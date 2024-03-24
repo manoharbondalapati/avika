@@ -16,8 +16,13 @@ const AdminLogin = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const adminCredentials = { mobile, password };
-    dispatch(loginAdmin(adminCredentials, navigate));
+    dispatch(loginAdmin(adminCredentials, navigate,handleGuest));
   };
+
+  const handleGuest =()=>
+  {
+    navigate('adminpage');
+  }
 
   return (
     <div id="adminlogin">
@@ -76,7 +81,10 @@ const AdminLogin = () => {
               <span id="note">Note:</span> Mobile: 9964517148 and Password:
               harish_med@123
             </p>
-          </form>
+            </form>
+            <div>
+              <p onClick={handleGuest}>Continue as Guest</p>
+            </div>
         </div>
       </div>
     </div>

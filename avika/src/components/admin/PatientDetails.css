@@ -4,14 +4,16 @@
 
 .patientcontainers {
   margin: 0 auto;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 #headerbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
+  padding: 10px;
+  background-color: black;
 }
 #headerbar img {
   height: 30px;
@@ -36,6 +38,7 @@
 #patientlogout {
   margin-left: 10px;
   color: rgb(240, 175, 11);
+  background-color: black;
 }
 
 .dropdown-content {
@@ -61,6 +64,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 20px;
 }
 
 #view-file {
@@ -76,8 +80,9 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 20px;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   background-color: rgb(15, 44, 49);
+  margin: 0px 20px;
 }
 
 #detailsh3 {

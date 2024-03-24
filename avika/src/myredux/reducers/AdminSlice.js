@@ -13,7 +13,8 @@ export const loginAdmin = (adminCredentials, navigate) => async (dispatch) => {
     localStorage.setItem("adminToken", response.data.data.token);
     dispatch(AdminLoginSuccess(response.data));
     message.success("Login Success");
-    navigate('/adminpage'); 
+    navigate('/adminpage');
+    // handleGuest(); 
   } catch (error) {
     dispatch(AdminLoginFailed("Invalid Credentials"));
     message.error("Invalid Credentials");

@@ -95,7 +95,7 @@ const PatientDetails = () => {
         </div>
         <div id="details">
           <h3 id="detailsh3">Patient Details</h3>
-          <hr></hr>
+          <hr/>
           <div className="detail-item">
             <p>
               <span>Patient Name:</span> {details.patient_name}
