@@ -4,14 +4,13 @@
 
 .patientcontainers {
   margin: 0 auto;
-  /* padding: 20px; */
 }
 
 #headerbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* margin-bottom: 20px; */
+
   padding: 10px;
   background-color: black;
 }

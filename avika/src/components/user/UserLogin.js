@@ -12,7 +12,6 @@ const UserLogin = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const loading = useSelector((state) => state.userlogin.loading);
-  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -31,7 +30,6 @@ const UserLogin = () => {
             </span>
           </h1>
         </div>
-       
         <div className="login-form">
           <form onSubmit={handleSubmit}>
             <div className="form-group">
@@ -65,7 +63,6 @@ const UserLogin = () => {
                 required
               />
               <span
-               
                 onClick={() => setShowPassword(!showPassword)}
                 id="show-password"
               >

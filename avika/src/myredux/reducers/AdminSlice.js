@@ -13,8 +13,7 @@ export const loginAdmin = (adminCredentials, navigate) => async (dispatch) => {
     localStorage.setItem("adminToken", response.data.data.token);
     dispatch(AdminLoginSuccess(response.data));
     message.success("Login Success");
-    navigate('/adminpage');
-    // handleGuest(); 
+    navigate("/adminpage");
   } catch (error) {
     dispatch(AdminLoginFailed("Invalid Credentials"));
     message.error("Invalid Credentials");
@@ -27,6 +26,7 @@ const adminSlice = createSlice({
     loading: false,
     admin: null,
     error: null,
+    isAdminLogin: false,
   },
   reducers: {
     AdminLoginStarted: (state) => {
@@ -37,6 +37,7 @@ const adminSlice = createSlice({
     AdminLoginSuccess: (state, action) => {
       state.loading = false;
       state.admin = action.payload;
+      state.isAdminLogin = true;
       state.error = null;
     },
     AdminLoginFailed: (state, action) => {
@@ -46,5 +47,6 @@ const adminSlice = createSlice({
   },
 });
 
-export const { AdminLoginStarted, AdminLoginSuccess, AdminLoginFailed } = adminSlice.actions;
+export const { AdminLoginStarted, AdminLoginSuccess, AdminLoginFailed } =
+  adminSlice.actions;
 export default adminSlice.reducer;

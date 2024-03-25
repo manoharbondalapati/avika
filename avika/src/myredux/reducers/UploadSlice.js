@@ -17,12 +17,11 @@ export const fileUpload = (formData) => async (dispatch) => {
       { headers }
     );
 
-    
     dispatch(uploadFileSuccess(response.data));
     message.success("File uploaded successfully");
   } catch (error) {
     dispatch(uploadFileFailure(error.message));
-    message.error("File upload failed"); 
+    message.error("File upload failed");
   }
 };
 
@@ -39,7 +38,6 @@ const UploadSlice = createSlice({
     },
     uploadFileSuccess(state, action) {
       state.isLoading = false;
-     
     },
     uploadFileFailure(state, action) {
       state.isLoading = false;
@@ -48,6 +46,7 @@ const UploadSlice = createSlice({
   },
 });
 
-export const { uploadFileRequest, uploadFileSuccess, uploadFileFailure } = UploadSlice.actions;
+export const { uploadFileRequest, uploadFileSuccess, uploadFileFailure } =
+  UploadSlice.actions;
 
 export default UploadSlice.reducer;

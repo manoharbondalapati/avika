@@ -1,25 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {message } from 'antd';
+import { message } from "antd";
 
-export const loginUser = ( userCredentails,navigate) => async (dispatch)=> {
+export const loginUser = (userCredentails, navigate) => async (dispatch) => {
   dispatch(UserLoginStarted());
-    try {
-      const response = await axios.post(
-        "https://med.test.avika.ai/auth/login",
-        userCredentails
-      );
+  try {
+    const response = await axios.post(
+      "https://med.test.avika.ai/auth/login",
+      userCredentails
+    );
 
-      localStorage.setItem("userToken", response.data.data.token);
-      dispatch(UserLoginSuccess(response.data));
-      message.success("Login Success");
-      navigate('/userpage')
-    } catch (error) {
-       dispatch(UserLoginFailed("Invalid Credentials"));
-       message.error("Invalid Credentails");
-    }
+    localStorage.setItem("userToken", response.data.data.token);
+    dispatch(UserLoginSuccess(response.data));
+    message.success("Login Success");
+    navigate("/userpage");
+  } catch (error) {
+    dispatch(UserLoginFailed("Invalid Credentials"));
+    message.error("Invalid Credentails");
   }
-
+};
 
 const userSlice = createSlice({
   name: "userlogin",
@@ -28,7 +27,7 @@ const userSlice = createSlice({
     user: null,
     error: null,
   },
-  reducers:  {
+  reducers: {
     UserLoginStarted: (state) => {
       state.loading = true;
       state.user = null;
@@ -44,7 +43,7 @@ const userSlice = createSlice({
       state.error = action.payload;
     },
   },
-   
 });
-export const {UserLoginStarted,UserLoginSuccess,UserLoginFailed}= userSlice.actions;
+export const { UserLoginStarted, UserLoginSuccess, UserLoginFailed } =
+  userSlice.actions;
 export default userSlice.reducer;

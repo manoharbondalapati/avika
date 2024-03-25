@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAdmin } from "../../myredux/reducers/AdminSlice";
 import { MdAdminPanelSettings } from "react-icons/md";
@@ -12,17 +12,18 @@ const AdminLogin = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const loading = useSelector((state) => state.adminlogin.loading);
-
+  const isAdminLogin = useSelector((state) => state.adminlogin.isAdminLogin);
   const handleSubmit = (event) => {
     event.preventDefault();
     const adminCredentials = { mobile, password };
-    dispatch(loginAdmin(adminCredentials, navigate,handleGuest));
+    dispatch(loginAdmin(adminCredentials, navigate));
   };
 
-  const handleGuest =()=>
-  {
-    navigate('adminpage');
-  }
+  useEffect(() => {
+    if (isAdminLogin === true) {
+      navigate("/adminpage");
+    }
+  }, [isAdminLogin, navigate]);
 
   return (
     <div id="adminlogin">
@@ -81,10 +82,10 @@ const AdminLogin = () => {
               <span id="note">Note:</span> Mobile: 9964517148 and Password:
               harish_med@123
             </p>
-            </form>
-            <div>
-              <p onClick={handleGuest}>Continue as Guest</p>
-            </div>
+          </form>
+          <div>
+            <p>Continue as Guest</p>
+          </div>
         </div>
       </div>
     </div>

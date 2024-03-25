@@ -39,7 +39,7 @@ const UserPage = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(fileUpload(formData, token));
-   
+
     setFormData({
       op_number: "",
       ip_number: "",
@@ -55,15 +55,11 @@ const UserPage = () => {
     setShowForm(false);
   };
 
-
-  useEffect(()=>
-  {
-    if(!token)
-    {
-      navigate('/userlogin');
+  useEffect(() => {
+    if (!token) {
+      navigate("/userlogin");
     }
-  
-  },[ navigate,token]);
+  }, [navigate, token]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -75,10 +71,9 @@ const UserPage = () => {
     setFormData({ ...formData, file_path: file });
   };
 
-  const handleFormClose =()=>
-  {
+  const handleFormClose = () => {
     setShowForm(false);
-  }
+  };
 
   const todayDate = new Date().toISOString().split("T")[0];
 
@@ -104,143 +99,156 @@ const UserPage = () => {
         </div>
       </div>
       <div className="form-modal">
-      <h1 onClick={() => setShowForm(true)}>  Upload Medical Document</h1>
+        <h1 onClick={() => setShowForm(true)}> Upload Medical Document</h1>
       </div>
-      <div className="form-display" >
-      <Modal show={showForm} onHide={() => setShowForm(false)} >
-        <Modal.Header closeButton>
-          <Modal.Title>Patient Information</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form onSubmit={handleSubmit} className="userform">
-            <div className="form-row">
-              <div className="input-data">
-                <input
-                  type="text"
-                  name="op_number"
-                  value={formData.op_number}
-                  onChange={handleChange}
-                  required />
+      <div className="form-display">
+        <Modal show={showForm} onHide={() => setShowForm(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Patient Information</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <form onSubmit={handleSubmit} className="userform">
+              <div className="form-row">
+                <div className="input-data">
+                  <input
+                    type="text"
+                    name="op_number"
+                    value={formData.op_number}
+                    onChange={handleChange}
+                    required
+                  />
 
-                <div className="underline"></div>
-                <label>OP Number</label>
-              </div>
-              <div className="input-data">
-                <input
-                  type="text"
-                  name="ip_number"
-                  value={formData.ip_number}
-                  onChange={handleChange}
-                  required
-                   />
-                <div className="underline"></div>
-                <label>IP Number</label>
-              </div>
-            </div>
-            <div className="form-row">
-              <div className="input-data">
-                <input
-                  type="text"
-                  name="patient_name"
-                  value={formData.patient_name}
-                  onChange={handleChange}
-                  required />
-                <div className="underline"></div>
-                <label>Name</label>
-              </div>
-              <div className="input-data">
-                <input
-                  type="text"
-                  name="age"
-                  value={formData.age}
-                  onChange={handleChange}
-                  required />
-                <div className="underline"></div>
-                <label>Age</label>
-              </div>
-            </div>
-            <div className="form-row">
-              <div className="input-data">
-                <select
-                  name="gender"
-                  value={formData.gender}
-                  onChange={handleChange}
-                >
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
-                <div className="underline"></div>
-                <label>Gender</label>
-              </div>
-              <div className="input-data">
-                <input
-                  type="text"
-                  name="place"
-                  value={formData.place}
-                  onChange={handleChange}
-                  required />
-                <div className="underline"></div>
-                <label>Place</label>
-              </div>
-            </div>
-            <div className="form-row">
-              <div className="input-data">
-                <input
-                  type="date"
-                  name="Date_of_registration"
-                  value={formData.Date_of_registration}
-                  onChange={handleChange} 
-                
-                  max={todayDate} 
-                  required
+                  <div className="underline"></div>
+                  <label>OP Number</label>
+                </div>
+                <div className="input-data">
+                  <input
+                    type="text"
+                    name="ip_number"
+                    value={formData.ip_number}
+                    onChange={handleChange}
+                    required
                   />
-                <div className="underline"></div>
-                <label>Date</label>
+                  <div className="underline"></div>
+                  <label>IP Number</label>
+                </div>
               </div>
-              <div className="input-data">
-                <input
-                  type="text"
-                  name="referrence_by"
-                  value={formData.referrence_by}
-                  onChange={handleChange} 
-                  required
+              <div className="form-row">
+                <div className="input-data">
+                  <input
+                    type="text"
+                    name="patient_name"
+                    value={formData.patient_name}
+                    onChange={handleChange}
+                    required
                   />
-                <div className="underline"></div>
-                <label>Reference By</label>
-              </div>
-            </div>
-            <div className="form-row">
-              <div className="input-data">
-                <input
-                  type="text"
-                  name="patient_id"
-                  value={formData.patient_id}
-                  onChange={handleChange} 
-                  required
+                  <div className="underline"></div>
+                  <label>Name</label>
+                </div>
+                <div className="input-data">
+                  <input
+                    type="text"
+                    name="age"
+                    value={formData.age}
+                    onChange={handleChange}
+                    required
                   />
-                <div className="underline"></div>
-                <label>Patient ID</label>
+                  <div className="underline"></div>
+                  <label>Age</label>
+                </div>
               </div>
-              <div className="input-data">
-                <input type="file" name="file_path" onChange={handleFileChange} />
-                {/* <span>pdf only</span> */}
-                <div className="underline"></div>
-                <label>File Path <span id="pdffile">&#40;pdf only&#41;</span></label>
+              <div className="form-row">
+                <div className="input-data">
+                  <select
+                    name="gender"
+                    value={formData.gender}
+                    onChange={handleChange}
+                  >
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                  <div className="underline"></div>
+                  <label>Gender</label>
+                </div>
+                <div className="input-data">
+                  <input
+                    type="text"
+                    name="place"
+                    value={formData.place}
+                    onChange={handleChange}
+                    required
+                  />
+                  <div className="underline"></div>
+                  <label>Place</label>
+                </div>
               </div>
-            </div>
-            <div className="form-row submit-btn">
-              <div className="submit-button">
-               <button type="submit">
+              <div className="form-row">
+                <div className="input-data">
+                  <input
+                    type="date"
+                    name="Date_of_registration"
+                    value={formData.Date_of_registration}
+                    onChange={handleChange}
+                    max={todayDate}
+                    required
+                  />
+                  <div className="underline"></div>
+                  <label>Date</label>
+                </div>
+                <div className="input-data">
+                  <input
+                    type="text"
+                    name="referrence_by"
+                    value={formData.referrence_by}
+                    onChange={handleChange}
+                    required
+                  />
+                  <div className="underline"></div>
+                  <label>Reference By</label>
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="input-data">
+                  <input
+                    type="text"
+                    name="patient_id"
+                    value={formData.patient_id}
+                    onChange={handleChange}
+                    required
+                  />
+                  <div className="underline"></div>
+                  <label>Patient ID</label>
+                </div>
+                <div className="input-data">
+                  <input
+                    type="file"
+                    name="file_path"
+                    onChange={handleFileChange}
+                  />
+
+                  <div className="underline"></div>
+                  <label>
+                    File Path <span id="pdffile">&#40;pdf only&#41;</span>
+                  </label>
+                </div>
+              </div>
+              <div className="form-row submit-btn">
+                <div className="submit-button">
+                  <button type="submit">
                     {isLoading ? "Uploading..." : "Submit"}
                   </button>
-                  <button type="button" className="cancel-button" onClick={handleFormClose}>Cancel</button>
-               
+                  <button
+                    type="button"
+                    className="cancel-button"
+                    onClick={handleFormClose}
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
-            </div>
-          </form>
-        </Modal.Body>
-      </Modal>
-
+            </form>
+          </Modal.Body>
+        </Modal>
       </div>
     </div>
   );
