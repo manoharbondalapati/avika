@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchRecordById } from "../../myredux/reducers/PatientSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import "./PatientDetails.css";
+//import { AdminLogout, loginAdmin } from "../../myredux/reducers/AdminSlice";
 
 const PatientDetails = () => {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ const PatientDetails = () => {
   };
 
   const handleLogout = () => {
+   // dispatch(loginAdmin(AdminLogout))
     localStorage.removeItem("adminToken");
     navigate("/");
   };
@@ -91,42 +93,42 @@ const PatientDetails = () => {
           <hr />
           <div className="detail-item">
             <p>
-              <span>Patient Name:</span> {details.patient_name}
+              Patient Name<span>:</span> <span className="patientdata">{details.patient_name}</span>
             </p>
           </div>
           <div className="detail-item">
             <p>
-              <span>Patient Age:</span> {details.age}
+              Patient Age<span>:</span> <span className="patientdata">{details.age}</span>
             </p>
           </div>
           <div className="detail-item">
             <p>
-              <span>Gender:</span> {details.gender}
+              Gender <span>:</span> <span className="patientdata"> {details.gender}</span>
             </p>
           </div>
           <div className="detail-item">
             <p>
-              <span>Date of Registration:</span> {details.Date_of_registration}
+              Date of Registration<span>:</span> <span className="patientdata">{details.Date_of_registration}</span>
             </p>
           </div>
           <div className="detail-item">
             <p>
-              <span>Place:</span> {details.place}
+             Place<span>:</span><span className="patientdata">{details.place}</span>
             </p>
           </div>
           <div className="detail-item">
             <p>
-              <span>OP Number:</span> {details.op_number}
+             OP Number<span>:</span><span className="patientdata"> {details.op_number}</span>
             </p>
           </div>
           <div className="detail-item">
             <p>
-              <span>IP Number:</span> {details.ip_number}
+              IP Number<span>:</span><span className="patientdata"> {details.op_number}</span>
             </p>
           </div>
           <div className="detail-item">
             <p>
-              <span>Referencer by:</span> {details.referencer_by}
+              Referencer by<span>:</span><span className="patientdata"> {details.op_number}</span>
             </p>
           </div>
         </div>

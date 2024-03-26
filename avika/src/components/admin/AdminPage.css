@@ -139,10 +139,11 @@
   border-radius: 5px;
   cursor: pointer;
 }
-.pagination-item.active {
-  background-color: rgb(242, 165, 93);
+.pagination-item .active 
+{
+  background-color: white;
+  color: rgb(89, 89, 208);
 }
-
 .pagination-container {
   display: flex;
   justify-content: flex-end;

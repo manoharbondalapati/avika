@@ -76,11 +76,11 @@
 }
 
 #details {
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   border-radius: 5px;
   padding: 20px;
   /* margin-top: 10px; */
-  background-color: rgb(15, 44, 49);
+  /* background-color: rgb(15, 44, 49); */
   margin: 0px 20px;
 }
 
@@ -94,14 +94,31 @@
 }
 
 .detail-item p {
+  border-bottom: dotted 1px;
   margin-left: 10px;
-  color: rgb(255, 255, 255);
+  /* color: rgb(255, 255, 255); */
 }
-
-.detail-item span {
+/* 
+.detail-item   {
   font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  margin-left: 300px;
   margin-right: 10px;
   color: rgb(232, 173, 23);
+} */
+
+#details .patientdata 
+{
+  margin-left: 200px;
+   display: flex;
+   margin-top: -25px;
+  flex-direction: column;
+  /* flex-wrap: wrap;  */
+  /* align-items: center;
+  text-align: center; */
+  /* justify-items: center;
+  flex-grow: 1; */
 }
 @media (max-width: 600px) {
   #patientDetailsPage {

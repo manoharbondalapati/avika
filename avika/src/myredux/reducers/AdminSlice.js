@@ -44,9 +44,13 @@ const adminSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    // AdminLogout :(state)=>
+    // {
+    //   state.isAdminLogin = false;
+    // },
   },
 });
 
-export const { AdminLoginStarted, AdminLoginSuccess, AdminLoginFailed } =
+export const { AdminLoginStarted, AdminLoginSuccess, AdminLoginFailed} =
   adminSlice.actions;
 export default adminSlice.reducer;

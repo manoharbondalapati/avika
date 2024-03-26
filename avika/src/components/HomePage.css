@@ -32,28 +32,34 @@ h2 {
 #userdiv {
   box-sizing: border-box;
   box-shadow: 2px 1px 4px 5px black;
-  display: inline-block;
-  height: 50px;
   padding: 5%;
-  margin-left: 25%;
-  margin-top: 5%;
+  margin-top: 7%;
 }
 #admindiv {
   box-sizing: border-box;
   box-shadow: 2px 1px 4px 5px black;
-  display: inline-block;
-  height: 50px;
-  padding: 5%;
+  height: 140px;
+  padding: 5.5%;
   margin-left: 20px;
-  margin-top: 5%;
+  margin-top: 7%;
 }
-@media (max-width: 960px) {
+.divs {
+  display: flex;
+  margin-left: 35%;
+}
+@media (max-width: 520px) {
   #admindiv {
-    margin-top: 7%;
+    margin-left: 0px;
+    height: 65px;
+    padding-left: 80px;
   }
-  #homeheadings {
+  #userdiv {
+    padding-left: 60px;
+  }
+  .divs {
     display: flex;
     flex-direction: column;
+    margin: 6%;
   }
 }
 @keyframes floatUpDown {
@@ -82,25 +88,4 @@ h2 {
 
 #admindiv {
   animation: floatUpDown 3s ease-in-out infinite;
-}
-
-@media (max-width: 760px) {
-  #userdiv {
-    box-sizing: border-box;
-    box-shadow: 2px 1px 4px 5px black;
-    display: inline-block;
-    height: 70px;
-    padding: 5%;
-    margin-left: 25%;
-    margin-top: 5%;
-  }
-  #admindiv {
-    box-sizing: border-box;
-    box-shadow: 2px 1px 4px 5px black;
-    display: inline-block;
-    height: 70px;
-    padding: 5%;
-    margin-left: 20px;
-    margin-top: 5%;
-  }
 }
