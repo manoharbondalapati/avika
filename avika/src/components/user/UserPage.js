@@ -5,6 +5,7 @@ import { fileUpload } from "../../myredux/reducers/UploadSlice";
 import { FaCircleUser } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
+import { UserLogout } from "../../myredux/reducers/UserSlice";
 
 const UserPage = () => {
   const [formData, setFormData] = useState({
@@ -22,19 +23,13 @@ const UserPage = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const token = localStorage.getItem("userToken");
   const isLoading = useSelector((state) => state.fileUpload.isLoading);
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
   };
-
-  const handleLogout = () => {
-    localStorage.removeItem("userToken");
-    navigate("/");
-  };
-
-  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -76,6 +71,12 @@ const UserPage = () => {
   };
 
   const todayDate = new Date().toISOString().split("T")[0];
+
+  const handleLogout = () => {
+    dispatch(UserLogout());
+    localStorage.removeItem("userToken");
+    navigate("/");
+  };
 
   return (
     <div className="medical-form">

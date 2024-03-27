@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../myredux/reducers/UserSlice";
 import { FaUser } from "react-icons/fa";
@@ -12,12 +12,27 @@ const UserLogin = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const loading = useSelector((state) => state.userlogin.loading);
+  const isUserLogin = useSelector((state) => state.UserLogin);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const userCredentials = { mobile, password };
     dispatch(loginUser(userCredentials, navigate));
   };
+
+  const handleGuestLogin = () => {
+    const guestCredentials = {
+      mobile: "7702145910",
+      password: "sharath_med@123",
+    };
+    dispatch(loginUser(guestCredentials, navigate));
+  };
+
+  useEffect(() => {
+    if (isUserLogin === true) {
+      navigate("/userpage");
+    }
+  }, [isUserLogin, navigate]);
 
   return (
     <div id="userlogin">
@@ -77,6 +92,11 @@ const UserLogin = () => {
               sharath_med@123
             </p>
           </form>
+          <div>
+            <button type="button" id="guestbutton" onClick={handleGuestLogin}>
+              Continue as Guest
+            </button>
+          </div>
         </div>
       </div>
     </div>

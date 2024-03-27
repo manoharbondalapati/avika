@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import adminReducer from "../reducers/AdminSlice";
 import recordsReducer from "../reducers/RecordsSlice";
 import userReducer from "../reducers/UserSlice";
-import uploadReducer from '../reducers/UploadSlice';
+import uploadReducer from "../reducers/UploadSlice";
 
 import patientReducer from "../reducers/PatientSlice";
 
@@ -13,7 +13,6 @@ const store = configureStore({
     details: patientReducer,
     userlogin: userReducer,
     fileUpload: uploadReducer,
-   
   },
 });
 

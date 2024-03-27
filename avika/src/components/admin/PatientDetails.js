@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchRecordById } from "../../myredux/reducers/PatientSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import "./PatientDetails.css";
-//import { AdminLogout, loginAdmin } from "../../myredux/reducers/AdminSlice";
+import { AdminLogout } from "../../myredux/reducers/AdminSlice";
 
 const PatientDetails = () => {
   const navigate = useNavigate();
@@ -13,7 +13,6 @@ const PatientDetails = () => {
   const { details, loading, error } = useSelector((state) => state.details);
   const dispatch = useDispatch();
   const token = localStorage.getItem("adminToken");
-
   const { recordId } = useParams();
 
   useEffect(() => {
@@ -29,7 +28,8 @@ const PatientDetails = () => {
   };
 
   const handleLogout = () => {
-   // dispatch(loginAdmin(AdminLogout))
+    dispatch(AdminLogout());
+
     localStorage.removeItem("adminToken");
     navigate("/");
   };
@@ -93,42 +93,50 @@ const PatientDetails = () => {
           <hr />
           <div className="detail-item">
             <p>
-              Patient Name<span>:</span> <span className="patientdata">{details.patient_name}</span>
+              <span>Patient Name:</span>
+              {details.patient_name}
             </p>
           </div>
           <div className="detail-item">
             <p>
-              Patient Age<span>:</span> <span className="patientdata">{details.age}</span>
+              <span>Patient Age:</span> {details.age}
             </p>
           </div>
           <div className="detail-item">
             <p>
-              Gender <span>:</span> <span className="patientdata"> {details.gender}</span>
+              <span> Gender:</span>
+              {details.gender}
             </p>
           </div>
           <div className="detail-item">
             <p>
-              Date of Registration<span>:</span> <span className="patientdata">{details.Date_of_registration}</span>
+              <span> Date of Registration:</span>
+
+              {details.Date_of_registration}
             </p>
           </div>
           <div className="detail-item">
             <p>
-             Place<span>:</span><span className="patientdata">{details.place}</span>
+              <span> Place:</span>
+              {details.place}
             </p>
           </div>
           <div className="detail-item">
             <p>
-             OP Number<span>:</span><span className="patientdata"> {details.op_number}</span>
+              <span> OP Number:</span>
+              {details.op_number}
             </p>
           </div>
           <div className="detail-item">
             <p>
-              IP Number<span>:</span><span className="patientdata"> {details.op_number}</span>
+              <span> IP Number:</span>
+              {details.op_number}
             </p>
           </div>
           <div className="detail-item">
             <p>
-              Referencer by<span>:</span><span className="patientdata"> {details.op_number}</span>
+              <span> Referencer by:</span>
+              {details.op_number}
             </p>
           </div>
         </div>

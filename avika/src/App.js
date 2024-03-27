@@ -24,8 +24,6 @@ const App = () => {
           />
           <Route path="/userlogin" element={<UserLogin />} />
           <Route path="/userpage" element={<UserPage />} />
-         
-         
         </Routes>
       </BrowserRouter>
     </Provider>

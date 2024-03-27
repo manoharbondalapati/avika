@@ -33,7 +33,7 @@ export const fetchRecords = () => async (dispatch) => {
     );
     dispatch(fetchRecordsSuccess(response.data.data));
   } catch (error) {
-    dispatch(fetchRecordsFailure(error));
+    dispatch(fetchRecordsFailure(error.message));
   }
 };
 

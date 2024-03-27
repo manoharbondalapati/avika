@@ -25,7 +25,6 @@
   border-radius: 10px 10px 0px 0px;
   background-color: rgb(41, 61, 61);
 }
- 
 
 .login-form {
   padding: 20px;
@@ -47,7 +46,7 @@ label {
 .shows-password {
   position: absolute;
   right: 645px;
-  top: 51.8%;
+  top: 52.8%;
   transform: translateY(-50%);
   cursor: pointer;
   background-color: transparent;
@@ -76,19 +75,17 @@ label {
   .shows-password {
     position: absolute;
     right: 47px;
-    top: 55.5%;
+    top: 53.5%;
     transform: translateY(-50%);
     cursor: pointer;
     background-color: transparent;
     border: none;
     color: red;
   }
-  #adminlogin
-  {
+  #adminlogin {
     width: 300px;
   }
-  .heading h1 
-  {
+  .heading h1 {
     font-size: 30px;
   }
 }
@@ -97,7 +94,7 @@ label {
   .shows-password {
     position: absolute;
     right: 250px;
-    top: 54.3%;
+    top: 52.3%;
     transform: translateY(-50%);
     cursor: pointer;
     background-color: transparent;
@@ -106,14 +103,25 @@ label {
   }
 }
 
-
 #loginbtn {
   background-color: #333;
   width: 100%;
   font-size: 20px;
- 
 }
 #loginbtn:hover {
+  background-color: white;
+  color: black;
+  border: solid 1px #333;
+}
+#guestButton {
+  background-color: #333;
+  color: white;
+  border: none;
+  outline: none;
+
+  border-radius: 5px;
+}
+#guestButton:hover {
   background-color: white;
   color: black;
   border: solid 1px #333;

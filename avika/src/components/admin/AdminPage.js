@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./AdminPage.css";
-//import { AdminLogout, loginAdmin } from "../../myredux/reducers/AdminSlice";
+import { AdminLogout } from "../../myredux/reducers/AdminSlice";
 
 const AdminPage = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,6 @@ const AdminPage = () => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-  
 
   useEffect(() => {
     if (!token) {
@@ -47,27 +46,22 @@ const AdminPage = () => {
     indexOfLastRecord
   );
 
-  
-  
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
   };
 
   const handleLogout = () => {
-    //dispatch(loginAdmin(AdminLogout));
+    dispatch(AdminLogout());
     localStorage.removeItem("adminToken");
     navigate("/");
   };
 
-
   const handlePatientDetails = (recordId) => {
     const token = localStorage.getItem("adminToken");
-    if (token !== null);
-    navigate(`/patientdetails/${recordId}`);
+    if (token !== null) navigate(`/patientdetails/${recordId}`);
   };
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
   return (
     <div id="allrecords">
       <div id="container" className="table-responsive">
