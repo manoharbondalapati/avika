@@ -12,7 +12,7 @@ const UserLogin = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const loading = useSelector((state) => state.userlogin.loading);
-  const isUserLogin = useSelector((state) => state.UserLogin);
+  const isUserLogin = useSelector((state) => state.userlogin.isUserLogin);
 
   const handleSubmit = (event) => {
     event.preventDefault();
