@@ -43,6 +43,7 @@ h2 {
   margin-left: 20px;
   margin-top: 7%;
 }
+
 .divs {
   display: flex;
   margin-left: 35%;
@@ -51,10 +52,10 @@ h2 {
   #admindiv {
     margin-left: 0px;
     height: 65px;
-    padding-left: 80px;
+    padding-left: 120px;
   }
   #userdiv {
-    padding-left: 60px;
+    padding-left: 100px;
   }
   .divs {
     display: flex;
